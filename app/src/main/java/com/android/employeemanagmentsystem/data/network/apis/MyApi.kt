@@ -1,4 +1,4 @@
-package com.android.employeemanagmentsystem.data.network
+package com.android.employeemanagmentsystem.data.network.apis
 
 import com.android.employeemanagmentsystem.utils.BASE_URL
 import retrofit2.Retrofit

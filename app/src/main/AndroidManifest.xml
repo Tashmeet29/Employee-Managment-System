@@ -3,17 +3,23 @@
     package="com.android.employeemanagmentsystem">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EmployeeManagmentSystem">
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true" />
+
+
+        <!-- Splash Screen Is First Activity to be opened -->
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">

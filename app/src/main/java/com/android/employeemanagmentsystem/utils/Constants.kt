@@ -1,3 +1,3 @@
 package com.android.employeemanagmentsystem.utils
 
-public val BASE_URL = "abc";
+val BASE_URL = "http://192.168.35.44/projects/ems/";

@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.android.employeemanagmentsystem.data.room.entities.Quote
+import com.android.employeemanagmentsystem.data.models.responses.Employee
 
 @Database(
-    entities = [Quote::class],
+    entities = [Employee::class],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun getQuoteDao(): QuoteDao
+    abstract fun getEmployeeDao(): EmployeeDao
 
     companion object {
 

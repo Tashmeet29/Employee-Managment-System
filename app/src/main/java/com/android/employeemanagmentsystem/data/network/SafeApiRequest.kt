@@ -16,7 +16,7 @@ abstract class SafeApiRequest {
             val message = StringBuilder()
             error?.let{
                 try{
-                    message.append(JSONObject(it).getString("message"))
+                    message.append(JSONObject(it).getString("error"))
                 }catch(e: JSONException){ }
                 message.append("\n")
             }

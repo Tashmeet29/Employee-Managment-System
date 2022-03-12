@@ -48,7 +48,7 @@
                     android:text="Email" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_name"
+                    android:id="@+id/et_email"
                     style="@style/EditTextAuth"
                     android:hint="Enter email"
                     android:textSize="16dp"
@@ -95,7 +95,7 @@
                 android:textColor="@color/text_color_light"/>
 
             <Button
-                android:id="@+id/submitButton"
+                android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="60dp"
