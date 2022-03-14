@@ -109,4 +109,6 @@ fun Activity.hideKeyboard() {
     }
 }
 
-
+fun Activity.changeStatusBarColor(color: Int = R.color.extra_light_blue) {
+    this.window.statusBarColor = ContextCompat.getColor(this, color)
+}

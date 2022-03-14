@@ -20,7 +20,7 @@ abstract class SafeApiRequest {
                 }catch(e: JSONException){ }
                 message.append("\n")
             }
-            message.append("Error Code: ${response.code()}")
+//            message.append("Error Code: ${response.code()}")
             throw ApiException(message.toString())
         }
     }
