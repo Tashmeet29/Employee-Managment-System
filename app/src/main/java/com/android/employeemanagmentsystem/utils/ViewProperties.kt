@@ -22,6 +22,11 @@ import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.android.employeemanagmentsystem.R
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 
 inline fun EditText.search(crossinline work: (query: String) -> Unit) {
@@ -41,6 +46,8 @@ inline fun EditText.search(crossinline work: (query: String) -> Unit) {
 
     })
 }
+
+infix fun<T> Boolean.then(first: T): T? = if (this) first else null
 
 fun View.snackbar(message: String){
     Snackbar.make(this, message, Snackbar.LENGTH_LONG).also { snackbar ->
@@ -111,4 +118,38 @@ fun Activity.hideKeyboard() {
 
 fun Activity.changeStatusBarColor(color: Int = R.color.extra_light_blue) {
     this.window.statusBarColor = ContextCompat.getColor(this, color)
+}
+val TAG = "xyz"
+suspend fun Context.handleException(e: Exception){
+    when (e) {
+        //handling exception in api
+        is ApiException -> {
+            withContext(Dispatchers.Main){
+                this@handleException.toast(e.message ?: "null message in api exception")
+                Log.e(TAG, "handleException: " + e.localizedMessage )
+            }
+        }
+        //handling internet exception
+        is NoInternetException -> {
+            withContext(Dispatchers.Main){
+                this@handleException.toast(e.message ?: "null message in api exception")
+                Log.e(TAG, "handleException: " + e.localizedMessage )
+            }
+        }
+        else -> {
+            withContext(Dispatchers.Main){
+                this@handleException.toast(e.message ?: "unknown error in else case")
+                Log.e(TAG, "handleException: " + e.localizedMessage )
+            }
+        }
+    }
+}
+
+fun String.toMultipartReq() = this.toRequestBody("text/plain".toMediaTypeOrNull())
+
+fun ByteArray.toPdfRequestBody(): RequestBody {
+    return RequestBody.create(
+        "application/pdf".toMediaTypeOrNull(),
+        this
+    )
 }

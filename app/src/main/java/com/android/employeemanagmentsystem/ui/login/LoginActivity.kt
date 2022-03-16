@@ -11,6 +11,7 @@ import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
 import com.android.employeemanagmentsystem.utils.ApiException
 import com.android.employeemanagmentsystem.utils.NoInternetException
+import com.android.employeemanagmentsystem.utils.handleException
 import com.android.employeemanagmentsystem.utils.toast
 import kotlinx.coroutines.*
 
@@ -65,25 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
 
                         }catch (e: Exception){
-                            when (e) {
-                                //handling exception in api
-                                is ApiException -> {
-                                    withContext(Dispatchers.Main){
-                                        toast(e.message ?: "null message in api exception")
-                                    }
-                                }
-                                //handling internet exception
-                                is NoInternetException -> {
-                                    withContext(Dispatchers.Main){
-                                        toast(e.message ?: "null message in api exception")
-                                    }
-                                }
-                                else -> {
-                                    withContext(Dispatchers.Main){
-                                        toast(e.message ?: "unknown error in else case")
-                                    }
-                                }
-                            }
+                            handleException(e)
                         }
 
                     }

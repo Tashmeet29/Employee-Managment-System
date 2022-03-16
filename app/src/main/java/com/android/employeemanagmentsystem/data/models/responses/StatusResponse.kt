@@ -1,6 +1,5 @@
 package com.android.employeemanagmentsystem.data.models.responses
 
-data class ApplyTrainingResponse(
-    val training_id: Int
+data class StatusResponse(
+    val status: String
 )
-
