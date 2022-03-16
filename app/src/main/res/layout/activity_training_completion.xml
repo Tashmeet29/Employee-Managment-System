@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.training.training_completion.TrainingCompletion">
+
+
+    <!--Linear Select PDF-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            style="@style/TextViewAuth"
+            android:text="Select PDF " />
+
+        <TextView
+            android:id="@+id/tv_pdf"
+            style="@style/EditTextAuth"
+            android:textColor="@color/text_color_light"
+            android:layout_marginLeft="20dp"
+            android:text="Select Pdf"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/auth_btn"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Submit"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

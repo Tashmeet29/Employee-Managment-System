@@ -180,7 +180,7 @@
 
             </LinearLayout>
 
-            <!--Linear End Date-->
+            <!--Linear Select PDF-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -205,7 +205,7 @@
 
             </LinearLayout>
 
-            <!--Linear End Date-->
+            <!--Linear Apply to-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

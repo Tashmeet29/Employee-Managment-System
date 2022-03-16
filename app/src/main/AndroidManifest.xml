@@ -16,9 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EmployeeManagmentSystem"
         android:usesCleartextTraffic="true">
-
         <activity
-            android:name=".ui.training.ApplyTraining"
+            android:name=".ui.training.training_completion.TrainingCompletion"
+            android:exported="true" />
+        <activity
+            android:name=".ui.training.applied_training.AppliedTraining"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.training.apply_training.ApplyTraining"
+            android:exported="true"></activity>
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true" /> <!-- Splash Screen Is First Activity to be opened -->

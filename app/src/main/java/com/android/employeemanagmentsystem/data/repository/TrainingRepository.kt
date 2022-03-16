@@ -37,6 +37,26 @@ class TrainingRepository : SafeApiRequest() {
         )
     }
 
+    //converting strings to multipart response
+    suspend fun uploadTrainingCertificate(
+        trainingId: String,
+        conpletionPdf: MultipartBody.Part,
+        trainingApi: TrainingApi
+    ) = apiRequest {
+        trainingApi.uploadTrainingCertificate(
+            trainingId.toMultipartReq(),
+            conpletionPdf
+        )
+    }
+
+
+
+    suspend fun getAppliedTrainings(
+        sevarth_id: String,
+        trainingApi: TrainingApi
+    )= apiRequest {
+        trainingApi.getAppliedTrainings(sevarth_id)
+    }
 
 
 

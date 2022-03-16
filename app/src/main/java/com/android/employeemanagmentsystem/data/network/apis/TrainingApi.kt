@@ -1,6 +1,7 @@
 package com.android.employeemanagmentsystem.data.network.apis
 
 import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
+import com.android.employeemanagmentsystem.data.models.responses.Training
 import com.android.employeemanagmentsystem.utils.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,7 +34,21 @@ interface TrainingApi {
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
 
+    //api request for apply to training
+    @Multipart
+    @POST("Training/upload_training_certificate")
+    suspend fun uploadTrainingCertificate(
+        @Part("training_id") training_id: RequestBody,
+        @Part part: MultipartBody.Part
+    ): Response<StatusResponse>
 
+
+
+    @FormUrlEncoded
+    @POST("Training/get_trainings")
+    suspend fun getAppliedTrainings(
+        @Field("sevarth_id") sevarth_id: String
+    ): Response<List<Training>>
 
     companion object{
         operator fun invoke(
