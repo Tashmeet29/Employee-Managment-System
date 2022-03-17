@@ -21,6 +21,7 @@
             android:name=".ui.employee_dashboard.EmployeeDashboard"
             android:exported="true">
 
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,11 +29,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.training.ApplyTraining"
-            android:exported="true">
-
-        </activity>
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true" /> <!-- Splash Screen Is First Activity to be opened -->

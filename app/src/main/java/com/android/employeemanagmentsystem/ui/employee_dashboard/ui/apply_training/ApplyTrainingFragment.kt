@@ -1,4 +1,4 @@
-package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.training.apply_training
+package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -44,6 +44,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         binding = FragmentApplyTrainingBinding.bind(view)
 
@@ -134,12 +135,12 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
             }
 
-            tvPdf.setOnClickListener {
-                val intent = Intent()
-                intent.type = "application/pdf"
-                intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PICK_PDF_REQUEST)
-            }
+                tvPdf.setOnClickListener {
+                    val intent = Intent()
+                    intent.type = "application/pdf"
+                    intent.action = Intent.ACTION_GET_CONTENT
+                    startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PICK_PDF_REQUEST)
+                }
 
             tvStartDate.setOnClickListener {
                 var localDate = LocalDate.now()

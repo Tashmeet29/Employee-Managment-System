@@ -13,13 +13,27 @@
 
     <fragment
         android:id="@+id/nav_apply_training"
-        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.training.apply_training.ApplyTrainingFragment"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training.ApplyTrainingFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_apply_training" />
 
     <fragment
         android:id="@+id/nav_applied_trainings"
-        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.slideshow.AppliedTrainingFragment"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_trainings.AppliedTrainingFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_applied_trainings" />
+        tools:layout="@layout/fragment_applied_trainings" >
+        <action
+            android:id="@+id/action_nav_applied_trainings_to_trainingCompletionFragment"
+            app:destination="@id/trainingCompletionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/trainingCompletionFragment"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.training_completion.TrainingCompletionFragment"
+        android:label="fragment_training_completion"
+        tools:layout="@layout/fragment_training_completion" >
+        <argument
+            android:name="training"
+            app:argType="com.android.employeemanagmentsystem.data.models.responses.Training" />
+    </fragment>
 </navigation>
