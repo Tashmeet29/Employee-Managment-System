@@ -61,4 +61,13 @@
         <item name="android:inputType">textPassword</item>
 
     </style>
+
+    <style name="Theme.EmployeeManagmentSystem.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.EmployeeManagmentSystem.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.EmployeeManagmentSystem.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

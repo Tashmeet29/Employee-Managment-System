@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2E2E2"
+
+    >
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/TextViewAuth"
+                android:layout_gravity="center_horizontal"
+                android:text="Training Application"
+                android:textSize="25dp" />
+
+
+            <!--Linear UserName-->
+            <LinearLayout
+                android:id="@+id/linearLayoutUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_training_name"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Training Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Organization Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Organization Name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_organization_name"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Organization Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Organized By-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Organized By" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_organized_by"
+                    style="@style/EditTextAuth"
+                    android:hint="Organized By"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear Duration-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Duration" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_duration"
+                    style="@style/EditTextAuth"
+                    android:layout_marginLeft="20dp"
+                    android:hint="Enter Training Duration"
+                    android:inputType="number"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear Start Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Start Date" />
+
+                <TextView
+                    android:id="@+id/tv_start_date"
+                    style="@style/EditTextAuth"
+                    android:textColor="@color/text_color_light"
+                    android:layout_marginLeft="20dp"
+                    android:text="set start date"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear End Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="End Date  " />
+
+                <TextView
+                    android:id="@+id/tv_end_date"
+                    style="@style/EditTextAuth"
+                    android:textColor="@color/text_color_light"
+                    android:layout_marginLeft="20dp"
+                    android:text="set end date"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear End Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Select PDF " />
+
+                <TextView
+                    android:id="@+id/tv_pdf"
+                    style="@style/EditTextAuth"
+                    android:textColor="@color/text_color_light"
+                    android:layout_marginLeft="20dp"
+                    android:text="Select Pdf"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear End Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:layout_marginTop="5dp"
+
+                    android:text="Apply To" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+
+
+                        <RadioButton
+                            android:id="@+id/rb_hod"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/text_color_light"
+                            android:layout_weight="1"
+                            android:text="HOD" />
+
+
+                        <RadioButton
+                            android:id="@+id/rb_principal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/text_color_light"
+                            android:text="Principal"
+                            />
+
+
+                    </LinearLayout>
+
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="60dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/auth_btn"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Submit"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:visibility="invisible" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
