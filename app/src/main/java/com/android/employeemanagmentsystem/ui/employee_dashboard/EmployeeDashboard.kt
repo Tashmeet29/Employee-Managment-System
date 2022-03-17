@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.android.employeemanagmentsystem.R
 import com.android.employeemanagmentsystem.databinding.ActivityEmployeeDashboardBinding
+import com.android.employeemanagmentsystem.utils.changeStatusBarColor
 
 class EmployeeDashboard : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class EmployeeDashboard : AppCompatActivity() {
 
         binding = ActivityEmployeeDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        this.changeStatusBarColor()
         setSupportActionBar(binding.appBarEmployeeDashboard.toolbar)
 
 

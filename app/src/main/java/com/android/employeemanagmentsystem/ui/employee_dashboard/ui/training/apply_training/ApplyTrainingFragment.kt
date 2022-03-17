@@ -1,4 +1,4 @@
-package com.android.employeemanagmentsystem.ui.training
+package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.training.apply_training
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -7,14 +7,17 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.android.employeemanagmentsystem.R
 import com.android.employeemanagmentsystem.data.network.apis.TrainingApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
-import com.android.employeemanagmentsystem.databinding.ActivityApplyTrainingBinding
+import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingBinding
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -26,11 +29,10 @@ import java.io.InputStream
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-private const val TAG = "ApplyTraining"
+private const val TAG = "ApplyTrainingFragment"
+class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
-class ApplyTraining : AppCompatActivity() {
-
-    private lateinit var binding: ActivityApplyTrainingBinding
+    private lateinit var binding: FragmentApplyTrainingBinding
     private lateinit var authRepository: AuthRepository
     private lateinit var employeeDao: EmployeeDao
     private lateinit var trainingRepo: TrainingRepository
@@ -40,18 +42,15 @@ class ApplyTraining : AppCompatActivity() {
     private lateinit var byteArray: ByteArray
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding = ActivityApplyTrainingBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        this.changeStatusBarColor()
+        binding = FragmentApplyTrainingBinding.bind(view)
 
         handleClickOfApplyTrainingButton()
 
         authRepository = AuthRepository()
-        employeeDao = AppDatabase.invoke(this).getEmployeeDao()
+        employeeDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
         trainingRepo = TrainingRepository()
         trainingApi = TrainingApi()
 
@@ -78,12 +77,12 @@ class ApplyTraining : AppCompatActivity() {
 
                 when {
 
-                    training_name.isBlank() -> toast("Please Enter Training Name")
-                    organization_name.isBlank() -> toast("Please Enter organization name")
-                    training_duration.isBlank() -> toast("Please Enter Training Duration")
-                    training_start_date.isBlank() -> toast("Please Select Start Date")
-                    training_end_date.isBlank() -> toast("Please Select End Name")
-                    !isPdfSelected -> toast("Please Select PDF to Upload")
+                    training_name.isBlank() -> requireContext().toast("Please Enter Training Name")
+                    organization_name.isBlank() -> requireContext().toast("Please Enter organization name")
+                    training_duration.isBlank() -> requireContext().toast("Please Enter Training Duration")
+                    training_start_date.isBlank() -> requireContext().toast("Please Select Start Date")
+                    training_end_date.isBlank() -> requireContext().toast("Please Select End Name")
+                    !isPdfSelected -> requireContext().toast("Please Select PDF to Upload")
 
                     else -> {
 
@@ -110,10 +109,10 @@ class ApplyTraining : AppCompatActivity() {
                                 )
 
 
-                                withContext(Dispatchers.Main) { toast(trainingResponse.status) }
+                                withContext(Dispatchers.Main) { requireContext().toast(trainingResponse.status) }
 
                             } catch (e: Exception) {
-                                handleException(e)
+                                requireContext().handleException(e)
                             }
 
                         }
@@ -150,7 +149,7 @@ class ApplyTraining : AppCompatActivity() {
                 }
 
                 DatePickerDialog(
-                    this@ApplyTraining,
+                    requireContext(),
                     listener,
                     localDate.dayOfMonth,
                     localDate.monthValue,
@@ -168,7 +167,7 @@ class ApplyTraining : AppCompatActivity() {
                 }
 
                 DatePickerDialog(
-                    this@ApplyTraining,
+                    requireContext(),
                     listener,
                     localDate.dayOfMonth,
                     localDate.monthValue,
@@ -183,7 +182,7 @@ class ApplyTraining : AppCompatActivity() {
     //handling the image chooser activity result
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_PDF_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+        if (requestCode == PICK_PDF_REQUEST && resultCode == AppCompatActivity.RESULT_OK && data != null && data.data != null) {
 
             GlobalScope.launch {
                 val filePath = data.data!!
@@ -193,7 +192,7 @@ class ApplyTraining : AppCompatActivity() {
                 try {
 
                     withContext(Dispatchers.Main){
-                        val fileName: String? = filePath.getOriginalFileName(this@ApplyTraining)
+                        val fileName: String? = filePath.getOriginalFileName(requireContext())
                         binding.tvPdf.text = "$fileName.pdf"
                     }
 
@@ -203,7 +202,7 @@ class ApplyTraining : AppCompatActivity() {
 
 
 
-                    withContext(Dispatchers.Main) { toast(e.toString()) }
+                    withContext(Dispatchers.Main) { requireContext().toast(e.toString()) }
                 }
 
             }
@@ -219,7 +218,7 @@ class ApplyTraining : AppCompatActivity() {
             try {
 
                 val inputStream: InputStream? =
-                    this@ApplyTraining.contentResolver.openInputStream(uri)
+                    requireContext().contentResolver.openInputStream(uri)
                 val byteBuff = ByteArrayOutputStream()
                 val buff = ByteArray(1024)
                 var len = 0
@@ -262,5 +261,4 @@ class ApplyTraining : AppCompatActivity() {
 
 
     }
-
 }
