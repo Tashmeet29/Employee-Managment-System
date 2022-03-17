@@ -8,6 +8,8 @@ import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
 import com.android.employeemanagmentsystem.databinding.ActivitySplashBinding
+import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
+import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
 import com.android.employeemanagmentsystem.ui.login.LoginActivity
 import com.android.employeemanagmentsystem.utils.move
 import kotlinx.coroutines.*
@@ -60,6 +62,13 @@ class SplashActivity : AppCompatActivity() {
 
             val employeeRoleId = savedEmployees[0].role_id
 
+            //role id 1 is for employee
+            if (employeeRoleId.toInt() == 1){
+                this@SplashActivity.move(EmployeeDashboard::class.java)
+            }else{
+                this@SplashActivity.move(AdminDashBoardActivity::class.java)
+
+            }
 
         }
     }

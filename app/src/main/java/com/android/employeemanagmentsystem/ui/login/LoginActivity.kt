@@ -9,10 +9,9 @@ import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
-import com.android.employeemanagmentsystem.utils.ApiException
-import com.android.employeemanagmentsystem.utils.NoInternetException
-import com.android.employeemanagmentsystem.utils.handleException
-import com.android.employeemanagmentsystem.utils.toast
+import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
+import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
+import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 
 private const val TAG = "xLoginActivity"
@@ -62,7 +61,15 @@ class LoginActivity : AppCompatActivity() {
                             //saving the employee in local database
                             authRepository.saveEmp(employee, employeeDao)
 
-                            //todo navigate employee by user id
+                            val employeeRoleId = employee.role_id.toInt()
+
+                            //role id 1 is for employee
+                            if (employeeRoleId.toInt() == 1){
+                                this@LoginActivity.move(EmployeeDashboard::class.java)
+                            }else{
+                                this@LoginActivity.move(AdminDashBoardActivity::class.java)
+
+                            }
 
 
                         }catch (e: Exception){
