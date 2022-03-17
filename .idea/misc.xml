@@ -8,17 +8,28 @@
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_employee_dashboard.xml" value="0.1421875" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_main.xml" value="0.1421875" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_principal_dashboard.xml" value="0.2520833333333333" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_splash.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_training_completion.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_upload_apply_pdf.xml" value="0.25" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/app_bar_employee_dashboard.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/app_bar_principal_dashboard.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/app_bar_prininpal_dashboard.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/content_employee_dashboard.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/content_principal_dashboard.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_applied_trainings.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_apply_training.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_gallery.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_home.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_leave_applications.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_training_applications.xml" value="0.2" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/item_trainings.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/nav_header_employee_dashboard.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/nav_header_principal_dashboard.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/menu/activity_main_drawer.xml" value="0.22916666666666666" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/menu/activity_principal_dashboard.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/menu/employee_dashboard.xml" value="0.22916666666666666" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/menu/principal_dashboard.xml" value="0.26614583333333336" />
       </map>
     </option>
   </component>
