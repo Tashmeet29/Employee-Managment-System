@@ -12,6 +12,9 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.android.employeemanagmentsystem.R
+import com.android.employeemanagmentsystem.data.network.apis.AuthApi
+import com.android.employeemanagmentsystem.data.repository.AuthRepository
+import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityEmployeeDashboardBinding
 import com.android.employeemanagmentsystem.utils.changeStatusBarColor
 
@@ -19,6 +22,8 @@ class EmployeeDashboard : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityEmployeeDashboardBinding
+    private lateinit var authRepository: AuthRepository
+    private lateinit var employeeDao: EmployeeDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.data.repository
 
+import com.android.employeemanagmentsystem.data.models.responses.Training
 import com.android.employeemanagmentsystem.data.network.SafeApiRequest
 import com.android.employeemanagmentsystem.data.network.apis.TrainingApi
 import com.android.employeemanagmentsystem.utils.toMultipartReq
@@ -50,14 +51,27 @@ class TrainingRepository : SafeApiRequest() {
     }
 
 
-
     suspend fun getAppliedTrainings(
         sevarth_id: String,
         trainingApi: TrainingApi
-    )= apiRequest {
+    ) = apiRequest {
         trainingApi.getAppliedTrainings(sevarth_id)
     }
 
+    suspend fun getAppliedTrainingsByAdmin(
+        roleId: Int,
+        sevarth_id: String,
+        trainingApi: TrainingApi
+    ): List<Training> {
+        if (roleId == 2) return apiRequest { trainingApi.getTrainingsByHod(sevarth_id) }
+        else return apiRequest { trainingApi.getTrainingsByPrincipal(sevarth_id) }
+    }
+
+    suspend fun updateTrainingStatus(
+        trainingId: String,
+        trainingStatusId: String,
+        trainingApi: TrainingApi
+    ) = apiRequest { trainingApi.updateTrainingStatus(trainingId, trainingStatusId) }
 
 
 }

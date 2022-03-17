@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_applied_trainings.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_apply_training.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/activity_employee_dashboard.xml" value="0.1421875" />
@@ -19,6 +20,7 @@
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/content_admin_dashboard.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/content_employee_dashboard.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/content_principal_dashboard.xml" value="0.26614583333333336" />
+        <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_application_details.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_applied_trainings.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_apply_training.xml" value="0.26614583333333336" />
         <entry key="..\:/Kolin projects for practicing/CollegeProject/app/src/main/res/layout/fragment_gallery.xml" value="0.26614583333333336" />

@@ -15,13 +15,26 @@
         android:id="@+id/nav_training_applications"
         android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.training_applications.TrainingApplicationsFragment"
         android:label="@string/menu_training_applications"
-        tools:layout="@layout/fragment_training_applications" />
+        tools:layout="@layout/fragment_training_applications" >
+        <action
+            android:id="@+id/action_nav_training_applications_to_applicationDetails"
+            app:destination="@id/applicationDetails" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_leave_applications"
         android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.leave_applications.LeaveApplicationsFragment"
         android:label="@string/menu_leave_applications"
         tools:layout="@layout/fragment_leave_applications" />
+    <fragment
+        android:id="@+id/applicationDetails"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.application_details.ApplicationDetails"
+        android:label="fragment_application_details"
+        tools:layout="@layout/fragment_application_details" >
+        <argument
+            android:name="training"
+            app:argType="com.android.employeemanagmentsystem.data.models.responses.Training" />
+    </fragment>
 
 
 </navigation>

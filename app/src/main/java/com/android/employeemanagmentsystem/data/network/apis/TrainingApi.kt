@@ -42,12 +42,29 @@ interface TrainingApi {
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
 
-
+    @FormUrlEncoded
+    @POST("Training/update_training_status")
+    suspend fun updateTrainingStatus(
+        @Field("training_id") trainingId: String,
+        @Field("training_status_id") trainingStatusId: String,
+    ): Response<StatusResponse>
 
     @FormUrlEncoded
     @POST("Training/get_trainings")
     suspend fun getAppliedTrainings(
         @Field("sevarth_id") sevarth_id: String
+    ): Response<List<Training>>
+
+    @FormUrlEncoded
+    @POST("Training/get_trainings_by_hod")
+    suspend fun getTrainingsByHod(
+        @Field("hod_id") hod_id: String
+    ): Response<List<Training>>
+
+    @FormUrlEncoded
+    @POST("Training/get_trainings_by_principal")
+    suspend fun getTrainingsByPrincipal(
+        @Field("principal_id") principal_id: String
     ): Response<List<Training>>
 
     companion object{

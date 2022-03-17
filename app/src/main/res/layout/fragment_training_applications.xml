@@ -5,18 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.admin_dashboard.ui.training_applications.TrainingApplicationsFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment Training Applications"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:layout_centerInParent="true"/>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:listitem="@layout/item_trainings"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        tools:listitem="@layout/item_trainings"/>
 
 </RelativeLayout>
