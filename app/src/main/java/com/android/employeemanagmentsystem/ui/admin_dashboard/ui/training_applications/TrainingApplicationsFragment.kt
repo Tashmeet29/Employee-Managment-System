@@ -2,6 +2,7 @@ package com.android.employeemanagmentsystem.ui.admin_dashboard.ui.training_appli
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,16 +37,26 @@ class TrainingApplicationsFragment: Fragment(R.layout.fragment_training_applicat
         val trainingApi = TrainingApi()
 
         val empDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
+
+        binding.progressBar.isVisible = true
+
         GlobalScope.launch {
             val employee = authRepository.getEmployee(empDao)
 
             val trainings: List<Training> = trainingRepository.getAppliedTrainingsByAdmin(employee.role_id.toInt(), employee.sevarth_id,  trainingApi)
 
             withContext(Dispatchers.Main){
+
+                binding.progressBar.isVisible = false
+
+                binding.tvNotAvailable.isVisible = trainings.isEmpty()
+
                 binding.recyclerView.apply {
                     adapter = AppliedTrainingsAdapter(trainings, this@TrainingApplicationsFragment)
                     layoutManager = LinearLayoutManager(requireContext())
                 }
+
+
             }
 
         }

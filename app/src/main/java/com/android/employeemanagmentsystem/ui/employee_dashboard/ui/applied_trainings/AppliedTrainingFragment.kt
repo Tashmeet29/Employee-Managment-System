@@ -2,8 +2,8 @@ package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_tra
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.employeemanagmentsystem.R
@@ -18,7 +18,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AppliedTrainingFragment : Fragment(R.layout.fragment_applied_trainings), TrainingsAdapter.TrainingClickListener {
+class AppliedTrainingFragment : Fragment(R.layout.fragment_applied_trainings),
+    TrainingsAdapter.TrainingClickListener {
 
     private lateinit var binding: FragmentAppliedTrainingsBinding
 
@@ -38,16 +39,28 @@ class AppliedTrainingFragment : Fragment(R.layout.fragment_applied_trainings), T
         val trainingApi = TrainingApi()
 
         val empDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
+
+        binding.progressBar.isVisible = true
+
         GlobalScope.launch {
             val sevarthId = authRepository.getEmployee(empDao).sevarth_id
 
-            val trainings: List<Training> = trainingRepository.getAppliedTrainings(sevarthId, trainingApi)
+            val trainings: List<Training> =
+                trainingRepository.getAppliedTrainings(sevarthId, trainingApi)
 
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
+
+                binding.tvNotAvailable.isVisible = trainings.isEmpty()
+
                 binding.recyclerView.apply {
                     adapter = TrainingsAdapter(trainings, this@AppliedTrainingFragment)
                     layoutManager = LinearLayoutManager(requireContext())
                 }
+
+                binding.progressBar.isVisible = false
+
+
+
             }
 
         }
@@ -55,8 +68,13 @@ class AppliedTrainingFragment : Fragment(R.layout.fragment_applied_trainings), T
 
     }
 
+
+
+
     override fun onTrainingItemClicked(training: Training) {
-        AppliedTrainingFragmentDirections.actionNavAppliedTrainingsToTrainingCompletionFragment(training).apply {
+        AppliedTrainingFragmentDirections.actionNavAppliedTrainingsToTrainingCompletionFragment(
+            training
+        ).apply {
             findNavController().navigate(this)
         }
     }

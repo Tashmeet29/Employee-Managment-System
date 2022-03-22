@@ -14,3 +14,19 @@ fun Uri.getOriginalFileName(context: Context): String? {
     }
 }
 
+fun Int.getTrainingStatusById(): String{
+
+    val trainingStatus = this
+
+    return when(trainingStatus){
+        1 -> "Applied"
+        2 -> "Approved by HOD"
+        3 -> "Approved by Principal"
+        4 -> "Decline by HOD"
+        5 -> "Decline by Principal"
+
+        else -> "Unknown status id found"
+    }
+
+
+}

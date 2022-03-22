@@ -1,74 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.admin_dashboard.ui.application_details.ApplicationDetails">
+    android:background="#E2E2E2">
 
-    <!--Linear Duration-->
-    <LinearLayout
+
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/TextViewAuth"
-            android:text="Name" />
-
-        <TextView
-            android:id="@+id/et_name"
-            style="@style/EditTextAuth"
-            android:layout_marginLeft="20dp"
-            android:hint="Enter Training Duration"
-            android:inputType="number"
-            android:textSize="16dp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        >
-        <Button
-            android:id="@+id/btnAccept"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginVertical="10dp"
-            android:background="@drawable/auth_btn"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Accept"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
 
-        <Button
-            android:id="@+id/btnDecline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginVertical="10dp"
-            android:background="@drawable/auth_btn"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Decline"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+            android:orientation="vertical">
 
 
-</RelativeLayout>
+            <!--Linear UserName-->
+            <LinearLayout
+                android:id="@+id/linearLayout_UserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@id/tv_name"
+                    style="@style/TextViewAuth"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/tv_training_name"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Training Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Organization Name-->
+            <LinearLayout
+                android:id="@+id/linearLayout_Duraton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Duration" />
+
+                <TextView
+                    android:id="@+id/tv_duration"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter duration,start and end date"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_OrgName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tv_Organization"
+                    style="@style/TextViewAuth"
+                    android:text="Organization Name" />
+
+                <TextView
+                    android:id="@+id/tv_Organization_Name"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Organization Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear Application Type-->
+            <LinearLayout
+                android:id="@+id/linearLayoutUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Apply Letter" />
+
+                <TextView
+                    android:id="@+id/tv_apply_letter"
+                    style="@style/EditTextAuth"
+                    android:hint="Apply Letter"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+
+            <!--Linear End Date-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Training status " />
+
+                <TextView
+                    android:id="@+id/et_training_status"
+                    style="@style/EditTextAuth"
+                    android:hint="Training status "
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text=" Training Type" />
+
+                <TextView
+                    android:id="@+id/et_training_type"
+                    style="@style/EditTextAuth"
+                    android:hint="Training status id"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearButtonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <Button
+                    android:id="@+id/btnApply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="60dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/auth_btn"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Apply"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnDecline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="60dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/auth_btn"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Decline"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+            <!--Linear End Date-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:visibility="invisible" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+

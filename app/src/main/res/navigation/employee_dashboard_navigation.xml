@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/trainingCompletionFragment"
         android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.training_completion.TrainingCompletionFragment"
-        android:label="fragment_training_completion"
+        android:label="Training Details"
         tools:layout="@layout/fragment_training_completion" >
         <argument
             android:name="training"

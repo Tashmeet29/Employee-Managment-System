@@ -9,9 +9,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.employeemanagmentsystem.R
@@ -22,7 +22,6 @@ import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingBinding
-import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_trainings.TrainingsAdapter
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
@@ -32,6 +31,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 private const val TAG = "ApplyTrainingFragment"
+
 class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
     private lateinit var binding: FragmentApplyTrainingBinding
@@ -61,25 +61,31 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
         getTrainingTypes()
     }
 
-    public fun getTrainingTypes(){
+    public fun getTrainingTypes() {
         GlobalScope.launch {
             val types: List<TrainingTypes> = trainingRepo.getTrainingTypes(trainingApi)
 
             val adapter = TrainingTypesAdapter(requireContext(), types)
 
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 binding.spinnerTrainingTypes.adapter = adapter
 
-                binding.spinnerTrainingTypes.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        selectedType = types[p2].id
+                binding.spinnerTrainingTypes.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            selectedType = types[p2].id
+                        }
+
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                        }
+
                     }
-
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-
-                    }
-
-                }
 
             }
         }
@@ -118,6 +124,10 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
                             try {
 
+                                withContext(Dispatchers.Main) {
+                                    binding.progressBar.isVisible = true
+                                }
+
                                 //getting employee details from room database
                                 val employee = authRepository.getEmployee(employeeDao)
 
@@ -139,17 +149,24 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
 
                                 withContext(Dispatchers.Main) {
+                                    binding.progressBar.isVisible = false
                                     requireContext().toast(trainingResponse.status)
                                 }
 
                                 delay((1 * 1000).toLong())
 
-                                withContext(Dispatchers.Main){
-                                    findNavController().popBackStack()
+                                withContext(Dispatchers.Main) {
+                                    findNavController().navigate(R.id.nav_applied_trainings)
                                 }
 
                             } catch (e: Exception) {
+
+                                withContext(Dispatchers.Main) {
+                                    binding.progressBar.isVisible = false
+                                }
+
                                 requireContext().handleException(e)
+
                             }
 
                         }
@@ -171,18 +188,18 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
             }
 
-                tvPdf.setOnClickListener {
-                    val intent = Intent()
-                    intent.type = "application/pdf"
-                    intent.action = Intent.ACTION_GET_CONTENT
-                    startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PICK_PDF_REQUEST)
-                }
+            tvPdf.setOnClickListener {
+                val intent = Intent()
+                intent.type = "application/pdf"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PICK_PDF_REQUEST)
+            }
 
             tvStartDate.setOnClickListener {
                 var localDate = LocalDate.now()
 
                 var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
-                    tvStartDate.text = "$date-${month+1}-$year"
+                    tvStartDate.text = "$date-${month + 1}-$year"
                 }
 
                 DatePickerDialog(
@@ -200,7 +217,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
                 var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
 
-                    tvEndDate.text = "$date-${month+1}-$year"
+                    tvEndDate.text = "$date-${month + 1}-$year"
                 }
 
                 DatePickerDialog(
@@ -228,7 +245,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
                 try {
 
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         val fileName: String? = filePath.getOriginalFileName(requireContext())
                         binding.tvPdf.text = "$fileName.pdf"
                     }
@@ -236,7 +253,6 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                     isPdfSelected = true
                     byteArray = convertUriToBytes(filePath)
                 } catch (e: java.lang.Exception) {
-
 
 
                     withContext(Dispatchers.Main) { requireContext().toast(e.toString()) }

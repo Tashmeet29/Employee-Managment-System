@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/applicationDetails"
         android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.application_details.ApplicationDetails"
-        android:label="fragment_application_details"
+        android:label="Application Details"
         tools:layout="@layout/fragment_application_details" >
         <argument
             android:name="training"

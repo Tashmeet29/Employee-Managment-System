@@ -17,6 +17,7 @@ data class Training(
     val comp_certificate: String,
     val training_status_id: Int,
     val hod_id: String,
-    val principal_id: String
+    val principal_id: String,
+    val training_type: String
 ): Parcelable
 

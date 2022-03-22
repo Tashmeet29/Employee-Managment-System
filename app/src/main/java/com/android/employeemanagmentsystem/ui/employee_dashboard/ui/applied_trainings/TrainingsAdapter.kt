@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.employeemanagmentsystem.data.models.responses.Training
 import com.android.employeemanagmentsystem.databinding.ItemTrainingsBinding
+import com.android.employeemanagmentsystem.utils.getTrainingStatusById
 
 class TrainingsAdapter(
     private val trainings: List<Training>,
@@ -28,9 +29,12 @@ class TrainingsAdapter(
             binding.apply {
                 tvName.text = training.name
                 tvDuration.text = training.duration
+                tvStatus.text = training.training_status_id.getTrainingStatusById()
             }
         }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrainingViewHolder {
         val binding = ItemTrainingsBinding.inflate(
