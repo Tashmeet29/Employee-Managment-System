@@ -37,6 +37,9 @@ class TrainingApplicationsFragment: Fragment(R.layout.fragment_training_applicat
         val trainingApi = TrainingApi()
 
         val empDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
+
+        binding.progressBar.isVisible = true
+
         GlobalScope.launch {
             val employee = authRepository.getEmployee(empDao)
 
@@ -44,12 +47,16 @@ class TrainingApplicationsFragment: Fragment(R.layout.fragment_training_applicat
 
             withContext(Dispatchers.Main){
 
+                binding.progressBar.isVisible = false
+
                 binding.tvNotAvailable.isVisible = trainings.isEmpty()
 
                 binding.recyclerView.apply {
                     adapter = AppliedTrainingsAdapter(trainings, this@TrainingApplicationsFragment)
                     layoutManager = LinearLayoutManager(requireContext())
                 }
+
+
             }
 
         }

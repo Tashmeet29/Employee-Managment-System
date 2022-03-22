@@ -58,12 +58,18 @@ class AppliedTrainingFragment : Fragment(R.layout.fragment_applied_trainings),
                 }
 
                 binding.progressBar.isVisible = false
+
+
+
             }
 
         }
 
 
     }
+
+
+
 
     override fun onTrainingItemClicked(training: Training) {
         AppliedTrainingFragmentDirections.actionNavAppliedTrainingsToTrainingCompletionFragment(

@@ -25,5 +25,11 @@
         android:visibility="invisible"
         android:text="Trainings Applications\n Not Found"/>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:visibility="invisible" />
 
 </RelativeLayout>

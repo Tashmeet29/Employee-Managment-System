@@ -23,13 +23,6 @@
             android:orientation="vertical">
 
 
-            <TextView
-                style="@style/TextViewAuth"
-                android:layout_gravity="center_horizontal"
-                android:text="Application Details"
-                android:textSize="25dp" />
-
-
             <!--Linear UserName-->
             <LinearLayout
                 android:id="@+id/linearLayout_UserName"
@@ -181,6 +174,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/LinearButtonLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -189,18 +183,6 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <TextView
-                    style="@style/TextViewAuth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Upload Completion Certificate" />
-
-                <TextView
-                    android:id="@+id/et_training_name"
-                    style="@style/EditTextAuth"
-                    android:hint="Upload Completion Certificate"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
 
                 <Button
                     android:id="@+id/btnApply"
@@ -211,7 +193,7 @@
                     android:background="@drawable/auth_btn"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="Submit"
+                    android:text="Apply"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -227,7 +209,7 @@
                     android:background="@drawable/auth_btn"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="Submit"
+                    android:text="Decline"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/white"

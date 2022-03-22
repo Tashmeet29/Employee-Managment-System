@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.employeemanagmentsystem.data.models.responses.Training
 import com.android.employeemanagmentsystem.databinding.ItemTrainingsBinding
+import com.android.employeemanagmentsystem.utils.getTrainingStatusById
 
 class AppliedTrainingsAdapter(
     private val trainings: List<Training>,
@@ -28,6 +29,7 @@ class AppliedTrainingsAdapter(
             binding.apply {
                 tvName.text = training.name
                 tvDuration.text = training.duration
+                tvStatus.text = training.training_status_id.getTrainingStatusById()
             }
         }
     }
