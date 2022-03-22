@@ -20,6 +20,7 @@ class TrainingRepository : SafeApiRequest() {
         training_status_id: String,
         org_id: String,
         department_id: String,
+        training_type: String,
         applyPdf: MultipartBody.Part,
         trainingApi: TrainingApi
     ) = apiRequest {
@@ -34,9 +35,12 @@ class TrainingRepository : SafeApiRequest() {
             training_status_id.toMultipartReq(),
             org_id.toMultipartReq(),
             department_id.toMultipartReq(),
+            training_type.toMultipartReq(),
             applyPdf
         )
     }
+
+    suspend fun getTrainingTypes(trainingApi: TrainingApi) = apiRequest { trainingApi.getTrainingTypes() }
 
     //converting strings to multipart response
     suspend fun uploadTrainingCertificate(

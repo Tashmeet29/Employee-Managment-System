@@ -8,21 +8,23 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.android.employeemanagmentsystem.R
+import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
 import com.android.employeemanagmentsystem.data.network.apis.TrainingApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingBinding
+import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_trainings.TrainingsAdapter
 import com.android.employeemanagmentsystem.utils.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -40,6 +42,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
     private val PICK_PDF_REQUEST = 112
     private var isPdfSelected = false
     private lateinit var byteArray: ByteArray
+    private var selectedType = "-1"
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,7 +58,31 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
         trainingRepo = TrainingRepository()
         trainingApi = TrainingApi()
 
+        getTrainingTypes()
+    }
 
+    public fun getTrainingTypes(){
+        GlobalScope.launch {
+            val types: List<TrainingTypes> = trainingRepo.getTrainingTypes(trainingApi)
+
+            val adapter = TrainingTypesAdapter(requireContext(), types)
+
+            withContext(Dispatchers.Main){
+                binding.spinnerTrainingTypes.adapter = adapter
+
+                binding.spinnerTrainingTypes.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        selectedType = types[p2].id
+                    }
+
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                    }
+
+                }
+
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -106,11 +133,20 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                                     department_id = employee.dept_id.toString(),
                                     trainingApi = trainingApi,
                                     training_status_id = (rbHod.isChecked) then "1" ?: "0",
-                                    applyPdf = convertBytesToMultipart()
+                                    applyPdf = convertBytesToMultipart(),
+                                    training_type = selectedType
                                 )
 
 
-                                withContext(Dispatchers.Main) { requireContext().toast(trainingResponse.status) }
+                                withContext(Dispatchers.Main) {
+                                    requireContext().toast(trainingResponse.status)
+                                }
+
+                                delay((1 * 1000).toLong())
+
+                                withContext(Dispatchers.Main){
+                                    findNavController().popBackStack()
+                                }
 
                             } catch (e: Exception) {
                                 requireContext().handleException(e)

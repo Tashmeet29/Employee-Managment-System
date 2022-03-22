@@ -81,7 +81,7 @@ inline fun SearchView.searchQuery(crossinline work: (query: String) -> Unit) {
 
 fun Context.toast(msg: String) {
 
-    Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
 }
 

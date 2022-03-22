@@ -2,6 +2,7 @@ package com.android.employeemanagmentsystem.data.network.apis
 
 import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
 import com.android.employeemanagmentsystem.data.models.responses.Training
+import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
 import com.android.employeemanagmentsystem.utils.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,6 +32,7 @@ interface TrainingApi {
         @Part("training_status_id") training_status_id: RequestBody,
         @Part("org_id") org_id: RequestBody,
         @Part("department_id") department_id: RequestBody,
+        @Part("training_type") training_type: RequestBody,
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
 
@@ -41,6 +43,9 @@ interface TrainingApi {
         @Part("training_id") training_id: RequestBody,
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
+
+    @GET("Training/get_training_types")
+    suspend fun getTrainingTypes(): Response<List<TrainingTypes>>
 
     @FormUrlEncoded
     @POST("Training/update_training_status")
