@@ -59,10 +59,10 @@ class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
             binding.apply {
 
                 withContext(Dispatchers.Main){
-                    etName.text = training.name
+                    etTrainingName.text = training.name
 
 
-                    btnAccept.setOnClickListener {
+                    btnApply.setOnClickListener {
 
                         GlobalScope.launch {
                             if (isHod) {

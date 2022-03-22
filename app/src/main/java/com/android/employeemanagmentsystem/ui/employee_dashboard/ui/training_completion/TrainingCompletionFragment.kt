@@ -8,10 +8,12 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.employeemanagmentsystem.R
 import com.android.employeemanagmentsystem.data.models.responses.Training
+import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
 import com.android.employeemanagmentsystem.data.network.apis.TrainingApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
@@ -19,10 +21,7 @@ import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentTrainingCompletionBinding
 import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_trainings.AppliedTrainingFragment
-import com.android.employeemanagmentsystem.utils.getOriginalFileName
-import com.android.employeemanagmentsystem.utils.handleException
-import com.android.employeemanagmentsystem.utils.toPdfRequestBody
-import com.android.employeemanagmentsystem.utils.toast
+import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -57,8 +56,16 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
         trainingRepo = TrainingRepository()
         trainingApi = TrainingApi()
 
+        training = arguments?.get("training") as Training
+
+        setTrainingType(training.training_type)
+
         binding.apply {
-            tvPdf.setOnClickListener {
+
+            linearTrainingCompletion.isVisible = training.training_status_id == 3
+            btnSubmit.isVisible = training.training_status_id == 3
+
+            tvCompletionCertificate.setOnClickListener {
                 val intent = Intent()
                 intent.type = "application/pdf"
                 intent.action = Intent.ACTION_GET_CONTENT
@@ -90,10 +97,37 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
 
             }
 
+            etTrainingName.text = training.name
+            tvOrganizationName.text = if(training.org_name.isBlank()) training.org_name else training.organized_by
+
+            tvApplyLetter.text = training.apply_letter
+
+            etDuration.text = getDurationInWeeks(training.duration) + "  (" + training.start_date + " to " + training.end_date + ")"
+            etTrainingStatus.text = training.training_status_id.getTrainingStatusById()
         }
 
-        training = arguments?.get("training") as Training
+
         Log.e(TAG, "onViewCreated: " + training.name )
+    }
+
+    private fun setTrainingType(statusId: String){
+        GlobalScope.launch {
+            val training: TrainingTypes = trainingRepo.getTrainingTypes(trainingApi, statusId)
+            withContext(Dispatchers.Main){
+                binding.etTrainingType.text = training.name
+
+            }
+        }
+    }
+
+    private fun getDurationInWeeks(days: String): String {
+        val day: Int = days.toInt()
+
+        return if(day < 7) "$days days "
+        else{
+            val week = (day % 365) / 7
+            "$week weeks"
+        }
     }
 
     suspend fun convertUriToBytes(uri: Uri): ByteArray {
@@ -161,7 +195,7 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
 
                     withContext(Dispatchers.Main){
                         val fileName: String? = filePath.getOriginalFileName(requireContext())
-                        binding.tvPdf.text = "$fileName.pdf"
+                        binding.tvCompletionCertificate.text = "$fileName.pdf"
                     }
 
                     isPdfSelected = true

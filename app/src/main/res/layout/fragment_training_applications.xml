@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E7EAF1"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.admin_dashboard.ui.training_applications.TrainingApplicationsFragment">
 
@@ -12,5 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_trainings"/>
+
+    <TextView
+        android:id="@+id/tv_not_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:text="Trainings Applications\n Not Found"/>
+
 
 </RelativeLayout>

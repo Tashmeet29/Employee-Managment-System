@@ -40,6 +40,8 @@ class TrainingRepository : SafeApiRequest() {
         )
     }
 
+    suspend fun getTrainingTypes(trainingApi: TrainingApi, statusId: String) = apiRequest { trainingApi.getTrainingTypes(statusId)}
+
     suspend fun getTrainingTypes(trainingApi: TrainingApi) = apiRequest { trainingApi.getTrainingTypes() }
 
     //converting strings to multipart response

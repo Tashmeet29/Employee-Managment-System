@@ -67,6 +67,12 @@ interface TrainingApi {
     ): Response<List<Training>>
 
     @FormUrlEncoded
+    @POST("Training/get_training_type")
+    suspend fun getTrainingTypes(
+        @Field("status_id") status_id: String
+    ): Response<TrainingTypes>
+
+    @FormUrlEncoded
     @POST("Training/get_trainings_by_principal")
     suspend fun getTrainingsByPrincipal(
         @Field("principal_id") principal_id: String
