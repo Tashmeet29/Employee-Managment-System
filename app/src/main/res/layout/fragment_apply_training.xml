@@ -125,6 +125,14 @@
                     android:inputType="number"
                     android:textSize="16dp" />
 
+                <TextView
+                    android:id="@+id/tv_end_date"
+                    style="@style/EditTextAuth"
+                    android:layout_marginLeft="20dp"
+                    android:text="set end date"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="16dp" />
+
 
             </LinearLayout>
 
@@ -145,9 +153,9 @@
                 <TextView
                     android:id="@+id/tv_start_date"
                     style="@style/EditTextAuth"
-                    android:textColor="@color/text_color_light"
                     android:layout_marginLeft="20dp"
                     android:text="set start date"
+                    android:textColor="@color/text_color_light"
                     android:textSize="16dp" />
 
 
@@ -166,14 +174,6 @@
                 <TextView
                     style="@style/TextViewAuth"
                     android:text="End Date  " />
-
-                <TextView
-                    android:id="@+id/tv_end_date"
-                    style="@style/EditTextAuth"
-                    android:textColor="@color/text_color_light"
-                    android:layout_marginLeft="20dp"
-                    android:text="set end date"
-                    android:textSize="16dp" />
 
 
             </LinearLayout>
@@ -195,10 +195,9 @@
                 <!--Spinner widget-->
                 <Spinner
                     android:id="@+id/spinner_training_types"
-                    android:layout_height="40dp"
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="20dp"
-                   />
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp" />
 
 
             </LinearLayout>
@@ -220,9 +219,9 @@
                 <TextView
                     android:id="@+id/tv_pdf"
                     style="@style/EditTextAuth"
-                    android:textColor="@color/text_color_light"
                     android:layout_marginLeft="20dp"
                     android:text="Select Pdf"
+                    android:textColor="@color/text_color_light"
                     android:textSize="16dp" />
 
 
@@ -253,8 +252,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:weightSum="2"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
 
                         <RadioButton
@@ -262,9 +261,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:textColor="@color/text_color_light"
                             android:layout_weight="1"
-                            android:text="HOD" />
+                            android:text="HOD"
+                            android:textColor="@color/text_color_light" />
 
 
                         <RadioButton
@@ -272,9 +271,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textColor="@color/text_color_light"
                             android:text="Principal"
-                            />
+                            android:textColor="@color/text_color_light" />
 
 
                     </LinearLayout>

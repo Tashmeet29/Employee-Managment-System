@@ -65,9 +65,9 @@ class LoginActivity : AppCompatActivity() {
 
                             //role id 1 is for employee
                             if (employeeRoleId.toInt() == 1){
-                                this@LoginActivity.move(EmployeeDashboard::class.java)
+                                this@LoginActivity.move(EmployeeDashboard::class.java, true)
                             }else{
-                                this@LoginActivity.move(AdminDashBoardActivity::class.java)
+                                this@LoginActivity.move(AdminDashBoardActivity::class.java, true)
 
                             }
 

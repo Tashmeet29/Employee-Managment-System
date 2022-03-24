@@ -64,9 +64,9 @@ class SplashActivity : AppCompatActivity() {
 
             //role id 1 is for employee
             if (employeeRoleId.toInt() == 1){
-                this@SplashActivity.move(EmployeeDashboard::class.java)
+                this@SplashActivity.move(EmployeeDashboard::class.java, true)
             }else{
-                this@SplashActivity.move(AdminDashBoardActivity::class.java)
+                this@SplashActivity.move(AdminDashBoardActivity::class.java, true)
 
             }
 
