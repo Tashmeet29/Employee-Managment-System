@@ -16,7 +16,7 @@ import okhttp3.RequestBody
 import retrofit2.http.*
 
 
-interface TrainingApi {
+interface git pushTrainingApi {
 
     //api request for apply to training
     @Multipart
