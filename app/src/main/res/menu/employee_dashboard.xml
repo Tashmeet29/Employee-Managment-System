@@ -13,5 +13,12 @@
         <item
             android:id="@+id/nav_applied_trainings"
             android:title="@string/menu_applied_training" />
+        <item
+            android:id="@+id/nav_add_completed_trainings"
+            android:title="Add Completed Training" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/menu_logout" />
     </group>
 </menu>

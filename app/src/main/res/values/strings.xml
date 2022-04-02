@@ -15,4 +15,5 @@
     <string name="menu_training_applications">Training Applications</string>
     <string name="menu_leave_applications">Leave Applications</string>
     <string name="title_activity_principal_dashboard">ActivityPrincipalDashboard</string>
+    <string name="menu_logout">Logout</string>
 </resources>

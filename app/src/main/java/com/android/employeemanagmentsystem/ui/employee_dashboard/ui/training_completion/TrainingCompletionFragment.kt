@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.training_completion
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -45,6 +46,7 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
 
     private lateinit var training: Training
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,8 +64,8 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
 
         binding.apply {
 
-            linearTrainingCompletion.isVisible = training.training_status_id == 3
-            btnSubmit.isVisible = training.training_status_id == 3
+            linearTrainingCompletion.isVisible = training.training_status_id == APPROVED_BY_PRINCIPAL
+            btnSubmit.isVisible = training.training_status_id == APPROVED_BY_PRINCIPAL
 
             tvCompletionCertificate.setOnClickListener {
                 val intent = Intent()
@@ -102,7 +104,7 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
 
             tvApplyLetter.text = training.apply_letter
 
-            etDuration.text = getDurationInWeeks(training.duration) + "  (" + training.start_date + " to " + training.end_date + ")"
+            etDuration.text = training.duration.getDurationInWeeks() +  "  (" + training.start_date + " to " + training.end_date + ")"
             etTrainingStatus.text = training.training_status_id.getTrainingStatusById()
         }
 
@@ -117,16 +119,6 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
                 binding.etTrainingType.text = training.name
 
             }
-        }
-    }
-
-    private fun getDurationInWeeks(days: String): String {
-        val day: Int = days.toInt()
-
-        return if(day < 7) "$days days "
-        else{
-            val week = (day % 365) / 7
-            "$week weeks"
         }
     }
 

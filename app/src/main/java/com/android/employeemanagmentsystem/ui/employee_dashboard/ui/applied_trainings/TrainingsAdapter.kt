@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.employeemanagmentsystem.data.models.responses.Training
 import com.android.employeemanagmentsystem.databinding.ItemTrainingsBinding
+import com.android.employeemanagmentsystem.utils.getDurationInWeeks
 import com.android.employeemanagmentsystem.utils.getTrainingStatusById
 
 class TrainingsAdapter(
@@ -28,7 +29,7 @@ class TrainingsAdapter(
         fun bindDate(training: Training){
             binding.apply {
                 tvName.text = training.name
-                tvDuration.text = training.duration
+                tvDuration.text = training.duration.getDurationInWeeks()
                 tvStatus.text = training.training_status_id.getTrainingStatusById()
             }
         }

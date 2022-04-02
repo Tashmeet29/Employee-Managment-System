@@ -38,6 +38,24 @@ interface TrainingApi {
 
     //api request for apply to training
     @Multipart
+    @POST("Training/add_completed_training")
+    suspend fun add_completed_training(
+        @Part("sevarth_id") sevarth_id: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("duration") duration: RequestBody,
+        @Part("start_date") start_date: RequestBody,
+        @Part("end_date") end_date: RequestBody,
+        @Part("org_name") org_name: RequestBody,
+        @Part("organized_by") organized_by: RequestBody,
+        @Part("training_status_id") training_status_id: RequestBody,
+        @Part("org_id") org_id: RequestBody,
+        @Part("department_id") department_id: RequestBody,
+        @Part("training_type") training_type: RequestBody,
+        @Part part: MultipartBody.Part
+    ): Response<StatusResponse>
+
+    //api request for apply to training
+    @Multipart
     @POST("Training/upload_training_certificate")
     suspend fun uploadTrainingCertificate(
         @Part("training_id") training_id: RequestBody,
@@ -63,7 +81,8 @@ interface TrainingApi {
     @FormUrlEncoded
     @POST("Training/get_trainings_by_hod")
     suspend fun getTrainingsByHod(
-        @Field("hod_id") hod_id: String
+        @Field("hod_id") hod_id: String,
+        @Field("status_id") statusId: String
     ): Response<List<Training>>
 
     @FormUrlEncoded
@@ -75,7 +94,8 @@ interface TrainingApi {
     @FormUrlEncoded
     @POST("Training/get_trainings_by_principal")
     suspend fun getTrainingsByPrincipal(
-        @Field("principal_id") principal_id: String
+        @Field("principal_id") principal_id: String,
+        @Field("status_id") statusId: String
     ): Response<List<Training>>
 
     companion object{

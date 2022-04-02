@@ -25,5 +25,8 @@ class AuthRepository : SafeApiRequest() {
         employeeDao.getEmployee(0)
     }
 
+    suspend fun logoutUser(employeeDao: EmployeeDao) = withContext(Dispatchers.IO){
+        employeeDao.logOut()
+    }
 
 }

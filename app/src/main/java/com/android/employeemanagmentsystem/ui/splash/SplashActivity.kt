@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.ui.splash
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.employeemanagmentsystem.data.models.responses.Employee
@@ -14,10 +15,11 @@ import com.android.employeemanagmentsystem.ui.login.LoginActivity
 import com.android.employeemanagmentsystem.utils.move
 import kotlinx.coroutines.*
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
-    private val splashTime = 4
+    private val splashTime = 1
     private lateinit var authRepository: AuthRepository
     private lateinit var employeeDao: EmployeeDao
 
@@ -58,7 +60,6 @@ class SplashActivity : AppCompatActivity() {
                 this@SplashActivity.move(LoginActivity::class.java)
             }
         } else {
-            //todo:  navigation employee according to role id
 
             val employeeRoleId = savedEmployees[0].role_id
 

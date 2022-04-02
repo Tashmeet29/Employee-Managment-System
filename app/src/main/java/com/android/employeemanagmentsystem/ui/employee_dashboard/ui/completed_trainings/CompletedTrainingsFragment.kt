@@ -1,4 +1,4 @@
-package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training
+package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.completed_trainings
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -21,7 +21,9 @@ import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
+import com.android.employeemanagmentsystem.databinding.FragmentAddCompletedTrainingBinding
 import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingBinding
+import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training.TrainingTypesAdapter
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
@@ -30,11 +32,10 @@ import java.io.InputStream
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-private const val TAG = "ApplyTrainingFragment"
+private const val TAG = "CompletedTrainingsFragm"
+class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_training) {
 
-class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
-
-    private lateinit var binding: FragmentApplyTrainingBinding
+    private lateinit var binding: FragmentAddCompletedTrainingBinding
     private lateinit var authRepository: AuthRepository
     private lateinit var employeeDao: EmployeeDao
     private lateinit var trainingRepo: TrainingRepository
@@ -44,12 +45,13 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
     private lateinit var byteArray: ByteArray
     private var selectedType = "-1"
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding = FragmentAddCompletedTrainingBinding.bind(view)
 
-        binding = FragmentApplyTrainingBinding.bind(view)
 
         handleClickOfApplyTrainingButton()
 
@@ -59,9 +61,10 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
         trainingApi = TrainingApi()
 
         getTrainingTypes()
+
     }
 
-    public fun getTrainingTypes() {
+    fun getTrainingTypes() {
         GlobalScope.launch {
             val types: List<TrainingTypes> = trainingRepo.getTrainingTypes(trainingApi)
 
@@ -97,7 +100,6 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
         binding.apply {
 
-            rbHod.isChecked = true
 
             btnSubmit.setOnClickListener {
 
@@ -131,7 +133,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                                 //getting employee details from room database
                                 val employee = authRepository.getEmployee(employeeDao)
 
-                                val trainingResponse = trainingRepo.applyTraining(
+                                val trainingResponse = trainingRepo.add_completed_training(
                                     sevarth_id = employee.sevarth_id,
                                     name = training_name,
                                     duration = training_duration,
@@ -142,7 +144,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                                     org_id = employee.org_id.toString(),
                                     department_id = employee.dept_id.toString(),
                                     trainingApi = trainingApi,
-                                    training_status_id = (rbHod.isChecked) then APPLIED_TO_HOD.toString() ?: APPLIED_TO_PRINCIPLE.toString(),
+                                    training_status_id = COMPLETED.toString(),
                                     applyPdf = convertBytesToMultipart(),
                                     training_type = selectedType
                                 )
@@ -156,7 +158,6 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                                 delay((1 * 1000).toLong())
 
                                 withContext(Dispatchers.Main) {
-                                    findNavController().popBackStack(R.id.nav_apply_training, true)
                                     findNavController().navigate(R.id.nav_applied_trainings)
                                 }
 
@@ -178,16 +179,6 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
             }
 
-            rbHod.setOnClickListener {
-                rbHod.isChecked = true
-                rbPrincipal.isChecked = false
-
-            }
-            rbPrincipal.setOnClickListener {
-                rbHod.isChecked = false
-                rbPrincipal.isChecked = true
-
-            }
 
             tvPdf.setOnClickListener {
                 val intent = Intent()

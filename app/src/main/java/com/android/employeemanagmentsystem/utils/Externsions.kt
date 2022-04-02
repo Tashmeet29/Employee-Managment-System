@@ -16,17 +16,27 @@ fun Uri.getOriginalFileName(context: Context): String? {
 
 fun Int.getTrainingStatusById(): String{
 
-    val trainingStatus = this
-
-    return when(trainingStatus){
-        1 -> "Applied"
-        2 -> "Approved by HOD"
-        3 -> "Approved by Principal"
+    return when(this){
+        1 -> "Applied to HOD"
+        2 -> "Applied to Principle"
+        3 -> "Approved by HOD"
         4 -> "Decline by HOD"
-        5 -> "Decline by Principal"
+        5 -> "Approved by Principle"
+        6 -> "Decline by Principle"
+        7 -> "Completed"
 
         else -> "Unknown status id found"
     }
 
 
+}
+
+fun String.getDurationInWeeks(): String {
+    val day: Int = this.toInt()
+
+    return if(day < 7) "$this days "
+    else{
+        val week = (day % 365) / 7
+        "$week weeks"
+    }
 }

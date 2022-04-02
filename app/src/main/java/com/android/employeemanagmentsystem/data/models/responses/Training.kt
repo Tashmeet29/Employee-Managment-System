@@ -1,6 +1,8 @@
 package com.android.employeemanagmentsystem.data.models.responses
 
 import android.os.Parcelable
+import com.android.employeemanagmentsystem.utils.getDurationInWeeks
+import com.android.employeemanagmentsystem.utils.getTrainingStatusById
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -19,5 +21,10 @@ data class Training(
     val hod_id: String,
     val principal_id: String,
     val training_type: String
-): Parcelable
+): Parcelable{
+
+    val myDuration get() = duration.getDurationInWeeks()
+
+    val myStatus get() = training_status_id.getTrainingStatusById()
+}
 

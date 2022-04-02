@@ -125,13 +125,6 @@
                     android:inputType="number"
                     android:textSize="16dp" />
 
-                <TextView
-                    android:id="@+id/tv_end_date"
-                    style="@style/EditTextAuth"
-                    android:layout_marginLeft="20dp"
-                    android:text="set end date"
-                    android:textColor="@color/text_color_light"
-                    android:textSize="16dp" />
 
 
             </LinearLayout>
@@ -174,6 +167,15 @@
                 <TextView
                     style="@style/TextViewAuth"
                     android:text="End Date  " />
+
+                <TextView
+                    android:id="@+id/tv_end_date"
+                    style="@style/EditTextAuth"
+                    android:layout_marginLeft="20dp"
+                    android:text="set end date"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="16dp" />
+
 
 
             </LinearLayout>
@@ -313,7 +315,7 @@
         android:id="@+id/progress_bar"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_centerInParent="true"
         android:visibility="invisible" />
 
 

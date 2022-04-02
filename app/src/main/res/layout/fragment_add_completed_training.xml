@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E2E2E2"
-
-    >
+    tools:context=".ui.employee_dashboard.ui.completed_trainings.CompletedTrainingsFragment">
 
 
     <ScrollView
@@ -25,8 +25,16 @@
             android:orientation="vertical">
 
 
+            <TextView
+                style="@style/TextViewAuth"
+                android:layout_gravity="center_horizontal"
+                android:text="Training Application"
+                android:textSize="25dp" />
+
+
             <!--Linear UserName-->
             <LinearLayout
+                android:id="@+id/linearLayoutUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -39,7 +47,7 @@
                     style="@style/TextViewAuth"
                     android:text="Name" />
 
-                <TextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_training_name"
                     style="@style/EditTextAuth"
                     android:hint="Enter Training Name"
@@ -61,18 +69,19 @@
 
                 <TextView
                     style="@style/TextViewAuth"
-                    android:text="Duration" />
+                    android:text="Organization Name" />
 
-                <TextView
-                    android:id="@+id/et_duration"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_organization_name"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Duration"
+                    android:hint="Enter Organization Name"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
 
 
             </LinearLayout>
 
+            <!--Organized By-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,13 +93,88 @@
 
                 <TextView
                     style="@style/TextViewAuth"
-                    android:text="Organization Name" />
+                    android:text="Organized By" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_organized_by"
+                    style="@style/EditTextAuth"
+                    android:hint="Organized By"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear Duration-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/tv_organization_name"
+                    style="@style/TextViewAuth"
+                    android:text="Duration" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_duration"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Organization Name"
-                    android:inputType="textPersonName"
+                    android:layout_marginLeft="20dp"
+                    android:hint="Enter Training Duration"
+                    android:inputType="number"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear Start Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Start Date" />
+
+                <TextView
+                    android:id="@+id/tv_start_date"
+                    style="@style/EditTextAuth"
+                    android:layout_marginLeft="20dp"
+                    android:text="set start date"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear End Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="End Date  " />
+
+                <TextView
+                    android:id="@+id/tv_end_date"
+                    style="@style/EditTextAuth"
+                    android:layout_marginLeft="20dp"
+                    android:text="set end date"
+                    android:textColor="@color/text_color_light"
                     android:textSize="16dp" />
 
 
@@ -103,95 +187,48 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
                 <TextView
                     style="@style/TextViewAuth"
-                    android:text="Apply Letter" />
+                    android:text="Training Type " />
 
-                <TextView
-                    android:id="@+id/tv_apply_letter"
-                    style="@style/EditTextAuth"
-                    android:hint="Apply Letter"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                <!--Spinner widget-->
+                <Spinner
+                    android:id="@+id/spinner_training_types"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp" />
 
 
             </LinearLayout>
-
 
             <!--Linear End Date-->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
                 <TextView
                     style="@style/TextViewAuth"
-                    android:text="Training status " />
+                    android:text="Select PDF " />
 
                 <TextView
-                    android:id="@+id/et_training_status"
+                    android:id="@+id/tv_pdf"
                     style="@style/EditTextAuth"
-                    android:hint="Training status "
-                    android:inputType="textPersonName"
+                    android:layout_marginLeft="20dp"
+                    android:text="Select Certification Pdf"
+                    android:textColor="@color/text_color_light"
                     android:textSize="16dp" />
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewAuth"
-                    android:text=" Training Type" />
-
-                <TextView
-                    android:id="@+id/et_training_type"
-                    style="@style/EditTextAuth"
-                    android:hint="Training status id"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearTrainingCompletion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewAuth"
-                    android:text="Completion Certificate" />
-
-                <TextView
-                    android:id="@+id/tv_completion_certificate"
-                    style="@style/EditTextAuth"
-                    android:hint="Upload Certificate"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btnSubmit"
@@ -209,7 +246,6 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
-            <!--Linear End Date-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -224,11 +260,12 @@
         android:id="@+id/progress_bar"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_centerInParent="true"
         android:visibility="invisible" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</RelativeLayout>
 
 
 

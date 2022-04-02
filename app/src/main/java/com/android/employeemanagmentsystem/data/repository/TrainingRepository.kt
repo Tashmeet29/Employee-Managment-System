@@ -40,6 +40,38 @@ class TrainingRepository : SafeApiRequest() {
         )
     }
 
+    //converting strings to multipart response
+    suspend fun add_completed_training(
+        sevarth_id: String,
+        name: String,
+        duration: String,
+        start_date: String,
+        end_date: String,
+        org_name: String,
+        organized_by: String,
+        training_status_id: String,
+        org_id: String,
+        department_id: String,
+        training_type: String,
+        applyPdf: MultipartBody.Part,
+        trainingApi: TrainingApi
+    ) = apiRequest {
+        trainingApi.add_completed_training(
+            sevarth_id.toMultipartReq(),
+            name.toMultipartReq(),
+            duration.toMultipartReq(),
+            start_date.toMultipartReq(),
+            end_date.toMultipartReq(),
+            org_name.toMultipartReq(),
+            organized_by.toMultipartReq(),
+            training_status_id.toMultipartReq(),
+            org_id.toMultipartReq(),
+            department_id.toMultipartReq(),
+            training_type.toMultipartReq(),
+            applyPdf
+        )
+    }
+
     suspend fun getTrainingTypes(trainingApi: TrainingApi, statusId: String) = apiRequest { trainingApi.getTrainingTypes(statusId)}
 
     suspend fun getTrainingTypes(trainingApi: TrainingApi) = apiRequest { trainingApi.getTrainingTypes() }
@@ -67,10 +99,11 @@ class TrainingRepository : SafeApiRequest() {
     suspend fun getAppliedTrainingsByAdmin(
         roleId: Int,
         sevarth_id: String,
+        status_id: String,
         trainingApi: TrainingApi
     ): List<Training> {
-        if (roleId == 2) return apiRequest { trainingApi.getTrainingsByHod(sevarth_id) }
-        else return apiRequest { trainingApi.getTrainingsByPrincipal(sevarth_id) }
+        if (roleId == 2) return apiRequest { trainingApi.getTrainingsByHod(sevarth_id, status_id) }
+        else return apiRequest { trainingApi.getTrainingsByPrincipal(sevarth_id, status_id) }
     }
 
     suspend fun updateTrainingStatus(
