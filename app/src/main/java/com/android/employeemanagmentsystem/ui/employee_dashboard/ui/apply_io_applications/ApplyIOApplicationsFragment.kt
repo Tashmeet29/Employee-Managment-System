@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,11 +17,11 @@ import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.IOApplicationRepository
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentIoApplyApplicationsBinding
-import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training.TAG
+import com.android.employeemanagmentsystem.utils.getOriginalFileName
 import com.android.employeemanagmentsystem.utils.handleException
-import com.android.employeemanagmentsystem.utils.then
 import com.android.employeemanagmentsystem.utils.toPdfRequestBody
 import com.android.employeemanagmentsystem.utils.toast
+import kotlinx.android.synthetic.main.fragment_apply_training.*
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
@@ -40,10 +41,12 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
     private var isPdfSelected = false
     private lateinit var byteArray: ByteArray
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentIoApplyApplicationsBinding.bind(view)
+        ioApplicationApi = IOApplicationApi.invoke()
 
         applyApplications()
     }
@@ -72,7 +75,7 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                     !isPdfSelected -> requireContext().toast("Please Select PDF to Upload")
 
                     else -> {
-s
+
                         GlobalScope.launch {
 
                             try {
@@ -84,25 +87,15 @@ s
                                 //getting employee details from room database
                                 val employee = authRepository.getEmployee(employeeDao)
 
-                                /*
-                                *  sevarth_id: String,
-        title: String,
-        desc: String,
-        date: String,
-        end_date: String,
-        org_id: String,
-        department_id: String,
-        applyPdf: MultipartBody.Part,
-        iOApplicationApi: IOApplicationApi*/
-
                                 val trainingResponse = ioApplicationRepository.applyIOApplication(
                                     sevarth_id = employee.sevarth_id,
                                     title = title,
                                     desc = desc,
                                     date = date,
-
+                                    org_id = employee.org_id,
+                                    department_id = employee.dept_id,
                                     applyPdf = convertBytesToMultipart(),
-
+                                    iOApplicationApi = ioApplicationApi
                                 )
 
 
@@ -172,6 +165,36 @@ s
         return filePart
 
 
+    }
+
+    //handling the image chooser activity result
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_PDF_REQUEST && resultCode == AppCompatActivity.RESULT_OK && data != null && data.data != null) {
+
+            GlobalScope.launch {
+                val filePath = data.data!!
+
+
+
+                try {
+
+                    withContext(Dispatchers.Main) {
+                        val fileName: String? = filePath.getOriginalFileName(requireContext())
+                        binding.tvPdf.text = "$fileName.pdf"
+                    }
+
+                    isPdfSelected = true
+                    byteArray = convertUriToBytes(filePath)
+                } catch (e: java.lang.Exception) {
+
+
+                    withContext(Dispatchers.Main) { requireContext().toast(e.toString()) }
+                }
+
+            }
+
+        }
     }
 
     suspend fun convertUriToBytes(uri: Uri): ByteArray {

@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Employee_Table")
 data class Employee(
     val sevarth_id: String,
-    val org_id: Integer,
-    val dept_id: Integer,
+    val org_id: String,
+    val dept_id: String,
     val role_id: Integer,
     val email: String,
     val password: String,

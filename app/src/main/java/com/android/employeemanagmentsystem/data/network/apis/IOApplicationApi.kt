@@ -26,7 +26,6 @@ interface IOApplicationApi {
         @Part("title") title: RequestBody,
         @Part("desc") desc: RequestBody,
         @Part("date") date: RequestBody,
-        @Part("organized_by") organized_by: RequestBody,
         @Part("org_id") org_id: RequestBody,
         @Part("department_id") department_id: RequestBody,
         @Part part: MultipartBody.Part
