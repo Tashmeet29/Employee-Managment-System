@@ -49,7 +49,11 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
 
         binding = FragmentTrainingApplicationsBinding.bind(view)
 
-        generatePdf()
+        binding.apply {
+            btnGeneratePdf.setOnClickListener {
+                createTabularPdf()
+            }
+        }
 
         setSpinner()
 
@@ -57,40 +61,39 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
     }
 
     private fun generatePdf() {
-        binding.btnGeneratePdf.setOnClickListener {
-
-            val name = status[status_id] + ".pdf"
-            val file =
-                File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${name}")
-
-            val fileOutputStream = FileOutputStream(file)
-            val pdfDocument = PdfDocument()
-
-            val title = Paint()
-
-            title.apply {
-                textSize = 15F
-                typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-                color = ContextCompat.getColor(requireContext(), R.color.black)
-            }
 
 
-            addDataToPdf(pdfDocument, title)
+        val name = status[status_id] + ".pdf"
+        val file =
+            File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${name}")
 
+        val fileOutputStream = FileOutputStream(file)
+        val pdfDocument = PdfDocument()
 
+        val title = Paint()
 
-            try {
-                pdfDocument.writeTo(fileOutputStream)
-                requireContext().toast("Report Generated Successfully")
-                Log.e(TAG, "generatePdf: pfd generated" + file.absolutePath)
-            } catch (e: Exception) {
-                requireContext().toast(e.toString())
-            } finally {
-                pdfDocument.close()
-            }
+        title.apply {
+            textSize = 15F
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+            color = ContextCompat.getColor(requireContext(), R.color.black)
         }
 
+
+        addDataToPdf(pdfDocument, title)
+
+
+
+        try {
+            pdfDocument.writeTo(fileOutputStream)
+            requireContext().toast("Report Generated Successfully")
+            Log.e(TAG, "generatePdf: pfd generated" + file.absolutePath)
+        } catch (e: Exception) {
+            requireContext().toast(e.toString())
+        } finally {
+            pdfDocument.close()
+        }
     }
+
 
     private fun addDataToPdf(pdfDocument: PdfDocument, title: Paint) {
 
@@ -267,6 +270,55 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
         }
     }
 
+
+    private fun createTabularPdf() {
+        val myPdfDocument = PdfDocument()
+        val paint = Paint().apply {
+            textSize = 35F
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+            color = ContextCompat.getColor(requireContext(), R.color.black)
+        }
+
+        val myPageInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(2000, 2010, 1).create()
+        val myPage = myPdfDocument.startPage(myPageInfo)
+        val canvas = myPage.canvas
+
+        canvas.drawText("Government Polytechnic Amravati", 1000F, 100F, paint)
+
+        paint.apply {
+            style = Paint.Style.STROKE
+            strokeWidth = 2F
+        }
+
+        canvas.drawRect(20f, 180f, 1980f, 260f, paint)
+
+        canvas.drawText("Sevarth-Id", 20f, 230f, paint)
+        canvas.drawText("Training Name", 400f, 230f, paint)
+        canvas.drawText("Duration ", 700f, 230f, paint)
+        canvas.drawText("Start Date ", 900f, 230f, paint)
+        canvas.drawText("End Date ", 1100f, 230f, paint)
+        canvas.drawText("Organized By ", 1300f, 230f, paint)
+        canvas.drawText("Status ", 1600f, 230f, paint)
+
+
+
+
+
+        myPdfDocument.finishPage(myPage)
+
+        val name = status[status_id] + ".pdf"
+        val file =
+            File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${name}")
+
+        try {
+            myPdfDocument.writeTo(FileOutputStream(file))
+            requireContext().toast("Document Created Successfully")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            myPdfDocument.close()
+        }
+    }
 }
 
 
