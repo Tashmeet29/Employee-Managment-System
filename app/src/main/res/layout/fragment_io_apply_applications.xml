@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2E2E2"
+    tools:context=".ui.employee_dashboard.ui.apply_io_applications.ApplyIOApplicationsFragment">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+
+            android:orientation="vertical">
+
+
+<!--            <TextView-->
+<!--                style="@style/TextViewAuth"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:text="I/O Application"-->
+<!--                android:textSize="25dp" />-->
+
+
+            <!--Linear UserName-->
+            <LinearLayout
+                android:id="@+id/linearLayoutUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Title" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_io_title"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Title Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Organization Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Description" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_desc"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Description of Application"
+                    android:inputType="textMultiLine"
+                    android:lines="5"
+                    android:gravity="top|start"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+
+
+            <!--Linear Start Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Date" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/EditTextAuth"
+                    android:textColor="@color/text_color_light"
+                    android:layout_marginLeft="20dp"
+                    android:text="Set Date"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+
+
+            <!--Linear End Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Select PDF " />
+
+                <TextView
+                    android:id="@+id/tv_pdf"
+                    style="@style/EditTextAuth"
+                    android:textColor="@color/text_color_light"
+                    android:layout_marginLeft="20dp"
+                    android:text="Select Pdf"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <!--Linear End Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:layout_marginTop="5dp"
+
+                    android:text="Select Type" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+
+
+                        <RadioButton
+                            android:id="@+id/rb_inward"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12dp"
+                            android:textColor="@color/text_color_light"
+                            android:layout_weight="1"
+                            android:text="INWARD" />
+
+
+                        <RadioButton
+                            android:id="@+id/rb_outward"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="12dp"
+                            android:textColor="@color/text_color_light"
+                            android:text="OUTWARD"
+                            />
+
+
+                    </LinearLayout>
+
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="60dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/auth_btn"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Submit"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:visibility="invisible" />
+
+
+
+</RelativeLayout>
+
+
+
+
