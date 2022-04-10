@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E2E2E2">
+    android:background="#E2E2E2"
+    tools:context=".ui.employee_dashboard.ui.apply_io_applications.ApplyIOApplicationsFragment">
 
 
     <ScrollView
@@ -23,11 +25,11 @@
             android:orientation="vertical">
 
 
-            <TextView
-                style="@style/TextViewAuth"
-                android:layout_gravity="center_horizontal"
-                android:text="I/O Application"
-                android:textSize="25dp" />
+<!--            <TextView-->
+<!--                style="@style/TextViewAuth"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:text="I/O Application"-->
+<!--                android:textSize="25dp" />-->
 
 
             <!--Linear UserName-->
@@ -169,6 +171,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
+                            android:textSize="12dp"
                             android:textColor="@color/text_color_light"
                             android:layout_weight="1"
                             android:text="INWARD" />
@@ -179,6 +182,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:textSize="12dp"
                             android:textColor="@color/text_color_light"
                             android:text="OUTWARD"
                             />
@@ -222,6 +226,7 @@
         android:id="@+id/progress_bar"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal|center_vertical"
         android:visibility="invisible" />
 

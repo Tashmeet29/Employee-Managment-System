@@ -17,6 +17,7 @@ class IOApplicationRepository : SafeApiRequest() {
         date: String,
         org_id: String,
         department_id: String,
+        application_type: String,
         applyPdf: MultipartBody.Part,
         iOApplicationApi: IOApplicationApi
     ) = apiRequest {
@@ -27,48 +28,16 @@ class IOApplicationRepository : SafeApiRequest() {
             date.toMultipartReq(),
             org_id.toMultipartReq(),
             department_id.toMultipartReq(),
+            application_type.toMultipartReq(),
             applyPdf
         )
     }
 
-    suspend fun getTrainingTypes(trainingApi: TrainingApi, statusId: String) = apiRequest { trainingApi.getTrainingTypes(statusId)}
-
-    suspend fun getTrainingTypes(trainingApi: TrainingApi) = apiRequest { trainingApi.getTrainingTypes() }
-
-    //converting strings to multipart response
-    suspend fun uploadTrainingCertificate(
-        trainingId: String,
-        conpletionPdf: MultipartBody.Part,
-        trainingApi: TrainingApi
-    ) = apiRequest {
-        trainingApi.uploadTrainingCertificate(
-            trainingId.toMultipartReq(),
-            conpletionPdf
-        )
-    }
-
-
-    suspend fun getAppliedTrainings(
+    suspend fun getAppliedApplications(
         sevarth_id: String,
-        trainingApi: TrainingApi
+        iOApplicationApi: IOApplicationApi
     ) = apiRequest {
-        trainingApi.getAppliedTrainings(sevarth_id)
+        iOApplicationApi.getAppliedApplications(sevarth_id)
     }
-
-    suspend fun getAppliedTrainingsByAdmin(
-        roleId: Int,
-        sevarth_id: String,
-        trainingApi: TrainingApi
-    ): List<Training> {
-        if (roleId == 2) return apiRequest { trainingApi.getTrainingsByHod(sevarth_id) }
-        else return apiRequest { trainingApi.getTrainingsByPrincipal(sevarth_id) }
-    }
-
-    suspend fun updateTrainingStatus(
-        trainingId: String,
-        trainingStatusId: String,
-        trainingApi: TrainingApi
-    ) = apiRequest { trainingApi.updateTrainingStatus(trainingId, trainingStatusId) }
-
 
 }

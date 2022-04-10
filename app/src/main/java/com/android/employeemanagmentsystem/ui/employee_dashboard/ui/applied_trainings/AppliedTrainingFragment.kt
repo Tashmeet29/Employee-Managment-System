@@ -36,11 +36,13 @@ class AppliedTrainingFragment : Fragment(R.layout.fragment_applied_trainings),
     private fun getTrainings() {
         val authRepository = AuthRepository()
         val trainingRepository = TrainingRepository()
-        val trainingApi = TrainingApi()
+        val trainingApi = TrainingApi.invoke()
 
         val empDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
 
         binding.progressBar.isVisible = true
+
+
 
         GlobalScope.launch {
             val sevarthId = authRepository.getEmployee(empDao).sevarth_id

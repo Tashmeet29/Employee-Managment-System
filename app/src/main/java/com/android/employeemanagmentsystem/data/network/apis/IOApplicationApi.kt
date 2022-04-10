@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.data.network.apis
 
+import com.android.employeemanagmentsystem.data.models.responses.Application
 import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
 import com.android.employeemanagmentsystem.data.models.responses.Training
 import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
@@ -28,8 +29,15 @@ interface IOApplicationApi {
         @Part("date") date: RequestBody,
         @Part("org_id") org_id: RequestBody,
         @Part("department_id") department_id: RequestBody,
+        @Part("application_type") application_type: RequestBody,
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
+
+    @FormUrlEncoded
+    @POST("IoApplication/get_applications")
+    suspend fun getAppliedApplications(
+        @Field("sevarth_id") sevarth_id: String
+    ): Response<List<Application>>
 
     companion object{
         operator fun invoke(

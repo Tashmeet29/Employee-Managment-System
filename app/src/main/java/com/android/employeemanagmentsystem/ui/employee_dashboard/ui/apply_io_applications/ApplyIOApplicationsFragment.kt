@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_io_applications
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -15,17 +16,16 @@ import com.android.employeemanagmentsystem.R
 import com.android.employeemanagmentsystem.data.network.apis.IOApplicationApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.IOApplicationRepository
+import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentIoApplyApplicationsBinding
-import com.android.employeemanagmentsystem.utils.getOriginalFileName
-import com.android.employeemanagmentsystem.utils.handleException
-import com.android.employeemanagmentsystem.utils.toPdfRequestBody
-import com.android.employeemanagmentsystem.utils.toast
+import com.android.employeemanagmentsystem.utils.*
 import kotlinx.android.synthetic.main.fragment_apply_training.*
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 private const val TAG = "ApplyIOApplicationsFrag"
@@ -41,12 +41,17 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
     private var isPdfSelected = false
     private lateinit var byteArray: ByteArray
 
+    private var application_type = APPLICATION_TYPE_INWARD
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentIoApplyApplicationsBinding.bind(view)
         ioApplicationApi = IOApplicationApi.invoke()
+        authRepository = AuthRepository()
+        ioApplicationRepository = IOApplicationRepository()
+        employeeDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
 
         applyApplications()
     }
@@ -55,9 +60,27 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
     private fun applyApplications() {
 
 
+
         binding.apply {
 
             rbInward.isChecked = true
+
+            tvDate.setOnClickListener {
+                var localDate = LocalDate.now()
+
+                var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
+                    tvDate.text = "$date-${month + 1}-$year"
+                }
+
+                DatePickerDialog(
+                    requireContext(),
+                    listener,
+                    localDate.dayOfMonth,
+                    localDate.monthValue,
+                    localDate.year
+                ).show()
+
+            }
 
             btnSubmit.setOnClickListener {
                 val title = etIoTitle.text.toString()
@@ -94,6 +117,7 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                                     date = date,
                                     org_id = employee.org_id,
                                     department_id = employee.dept_id,
+                                    application_type = application_type.toString(),
                                     applyPdf = convertBytesToMultipart(),
                                     iOApplicationApi = ioApplicationApi
                                 )
@@ -139,12 +163,12 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
             rbInward.setOnClickListener {
                 rbInward.isChecked = true
                 rbOutward.isChecked = false
-
+                application_type = APPLICATION_TYPE_INWARD
             }
             rbOutward.setOnClickListener {
                 rbInward.isChecked = false
                 rbOutward.isChecked = true
-
+                application_type = APPLICATION_TYPE_OUTWARD
             }
         }
     }
@@ -157,7 +181,7 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
 
         val filePart =
             MultipartBody.Part.createFormData(
-                "training_application",
+                "io_application",
                 fileName,
                 byteArray.toPdfRequestBody()
             )
