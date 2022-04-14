@@ -28,9 +28,9 @@
         tools:layout="@layout/fragment_leave_applications" />
     <fragment
         android:id="@+id/applicationDetails"
-        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.application_details.ApplicationDetails"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.application_details.TrainingApplicationDetails"
         android:label="Application Details"
-        tools:layout="@layout/fragment_application_details" >
+        tools:layout="@layout/fragment_training_details" >
         <argument
             android:name="training"
             app:argType="com.android.employeemanagmentsystem.data.models.responses.Training" />

@@ -21,6 +21,8 @@ interface AuthApi {
     ): Response<Employee>
 
 
+
+
     companion object{
         operator fun invoke(
             //networkConnectionInterceptor: NetworkConnectionInterceptor

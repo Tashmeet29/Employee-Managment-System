@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_trainings
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import com.android.employeemanagmentsystem.databinding.ItemTrainingsBinding
 import com.android.employeemanagmentsystem.utils.getDurationInWeeks
 import com.android.employeemanagmentsystem.utils.getTrainingStatusById
 
+private const val TAG = "TrainingsAdapter"
 class TrainingsAdapter(
     private val trainings: List<Training>,
     private val listener: TrainingClickListener
@@ -52,6 +54,9 @@ class TrainingsAdapter(
         )
     }
 
-    override fun getItemCount() = trainings.size
+    override fun getItemCount(): Int{
+        Log.e(TAG, "getItemCount: " + trainings.size )
+        return trainings.size
+    }
 
 }

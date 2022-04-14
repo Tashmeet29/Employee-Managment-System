@@ -3,8 +3,6 @@ package com.android.employeemanagmentsystem.utils
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 
 fun Uri.getOriginalFileName(context: Context): String? {
     return context.contentResolver.query(this, null, null, null, null)?.use {
@@ -17,13 +15,31 @@ fun Uri.getOriginalFileName(context: Context): String? {
 fun Int.getTrainingStatusById(): String{
 
     return when(this){
-        1 -> "Applied to HOD"
-        2 -> "Applied to Principle"
-        3 -> "Approved by HOD"
-        4 -> "Decline by HOD"
-        5 -> "Approved by Principle"
-        6 -> "Decline by Principle"
-        7 -> "Completed"
+        TRAINING_APPLIED_TO_HOD -> "Applied to HOD"
+        TRAINING_APPLIED_TO_PRINCIPLE -> "Applied to Principle"
+        TRAINING_APPROVED_BY_HOD -> "Approved by HOD"
+        TRAINING_DECLINE_BY_HOD -> "Decline by HOD"
+        TRAINING_APPROVED_BY_PRINCIPAL -> "Approved by Principle"
+        TRAINING_DECLINED_BY_PRINCIPLE -> "Decline by Principle"
+        TRAINING_COMPLETED -> "Completed"
+
+        else -> "Unknown status id found"
+    }
+
+
+}
+
+fun Int.getIoApplicationStatusById(): String{
+
+    return when(this){
+        IO_APPLICATION_APPLIED -> "Applied"
+        IO_APPROVED_BY_HOD -> "Approved By HOD"
+        IO_APPROVED_BY_REGISTRAR -> "Approved By Registrar"
+        IO_APPROVED_BY_PRINCIPLE -> "Approved By Principle"
+        IO_Declined_BY_Hod -> "Decline by HOD"
+        IO_Declined_BY_Registrar -> "Decline by Registrar"
+        IO_Declined_BY_Principle -> "Decline By Principle"
+
 
         else -> "Unknown status id found"
     }

@@ -39,6 +39,12 @@ interface IOApplicationApi {
         @Field("sevarth_id") sevarth_id: String
     ): Response<List<Application>>
 
+    @FormUrlEncoded
+    @POST("IoApplication/get_application_by_id")
+    suspend fun getApplication(
+        @Field("application_id") application_id: String
+    ): Response<Application>
+
     companion object{
         operator fun invoke(
         ) : IOApplicationApi {

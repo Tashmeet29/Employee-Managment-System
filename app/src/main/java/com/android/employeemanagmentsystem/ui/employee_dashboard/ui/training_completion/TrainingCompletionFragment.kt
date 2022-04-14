@@ -21,7 +21,6 @@ import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentTrainingCompletionBinding
-import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_trainings.AppliedTrainingFragment
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -64,8 +63,8 @@ class TrainingCompletionFragment: Fragment(R.layout.fragment_training_completion
 
         binding.apply {
 
-            linearTrainingCompletion.isVisible = training.training_status_id == APPROVED_BY_PRINCIPAL
-            btnSubmit.isVisible = training.training_status_id == APPROVED_BY_PRINCIPAL
+            linearTrainingCompletion.isVisible = training.training_status_id == TRAINING_APPROVED_BY_PRINCIPAL
+            btnSubmit.isVisible = training.training_status_id == TRAINING_APPROVED_BY_PRINCIPAL
 
             tvCompletionCertificate.setOnClickListener {
                 val intent = Intent()

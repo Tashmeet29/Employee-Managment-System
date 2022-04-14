@@ -3,13 +3,11 @@ package com.android.employeemanagmentsystem.ui.admin_dashboard.ui.application_de
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
 import android.view.View
 import androidx.core.app.ActivityCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.employeemanagmentsystem.R
@@ -21,7 +19,7 @@ import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
-import com.android.employeemanagmentsystem.databinding.FragmentApplicationDetailsBinding
+import com.android.employeemanagmentsystem.databinding.FragmentTrainingDetailsBinding
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 import java.io.File
@@ -32,15 +30,16 @@ import android.graphics.*
 import android.graphics.pdf.PdfDocument
 import android.graphics.pdf.PdfDocument.PageInfo
 import android.net.Uri
+import androidx.core.view.isVisible
 import java.io.FileOutputStream
 import java.io.IOException
 
 
 private const val TAG = "ApplicationDetails"
 
-class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
+class TrainingApplicationDetails : Fragment(R.layout.fragment_training_details) {
 
-    private lateinit var binding: FragmentApplicationDetailsBinding
+    private lateinit var binding: FragmentTrainingDetailsBinding
     private lateinit var training: Training
 
     private lateinit var trainingRepository: TrainingRepository
@@ -54,7 +53,7 @@ class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentApplicationDetailsBinding.bind(view)
+        binding = FragmentTrainingDetailsBinding.bind(view)
 
         training = arguments?.get("training") as Training
         trainingApi = TrainingApi.invoke()
@@ -222,9 +221,9 @@ class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
                 withContext(Dispatchers.Main) {
 
 
-                    if (isHod && training.training_status_id == APPLIED_TO_HOD) binding.LinearButtonLayout.isVisible =
+                    if (isHod && training.training_status_id == TRAINING_APPLIED_TO_HOD) binding.LinearButtonLayout.isVisible =
                         true
-                    else if ((!isHod && training.training_status_id == APPLIED_TO_PRINCIPLE) || (!isHod && training.training_status_id == APPROVED_BY_HOD)) binding.LinearButtonLayout.isVisible =
+                    else if ((!isHod && training.training_status_id == TRAINING_APPLIED_TO_PRINCIPLE) || (!isHod && training.training_status_id == TRAINING_APPROVED_BY_HOD)) binding.LinearButtonLayout.isVisible =
                         true
 
                     btnApply.setOnClickListener {
@@ -237,7 +236,7 @@ class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
 
                                 val response = trainingRepository.updateTrainingStatus(
                                     training.id,
-                                    APPROVED_BY_HOD.toString(),
+                                    TRAINING_APPROVED_BY_HOD.toString(),
                                     trainingApi
                                 )
                                 withContext(Dispatchers.Main) {
@@ -258,7 +257,7 @@ class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
 
                                 val response = trainingRepository.updateTrainingStatus(
                                     training.id,
-                                    APPROVED_BY_PRINCIPAL.toString(),
+                                    TRAINING_APPROVED_BY_PRINCIPAL.toString(),
                                     trainingApi
                                 )
                                 withContext(Dispatchers.Main) {
@@ -291,7 +290,7 @@ class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
 
                                 val response = trainingRepository.updateTrainingStatus(
                                     training.id,
-                                    DECLINE_BY_HOD.toString(),
+                                    TRAINING_DECLINE_BY_HOD.toString(),
                                     trainingApi
                                 )
 
@@ -312,7 +311,7 @@ class ApplicationDetails : Fragment(R.layout.fragment_application_details) {
                                 }
                                 val response = trainingRepository.updateTrainingStatus(
                                     training.id,
-                                    DECLINED_BY_PRINCIPLE.toString(),
+                                    TRAINING_DECLINED_BY_PRINCIPLE.toString(),
                                     trainingApi
                                 )
                                 withContext(Dispatchers.Main) {

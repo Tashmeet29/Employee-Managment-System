@@ -33,6 +33,14 @@ class IOApplicationRepository : SafeApiRequest() {
         )
     }
 
+    suspend fun getApplication(
+        application_id: String,
+        iOApplicationApi: IOApplicationApi
+    ) = apiRequest {
+        iOApplicationApi.getApplication(application_id)
+    }
+
+
     suspend fun getAppliedApplications(
         sevarth_id: String,
         iOApplicationApi: IOApplicationApi

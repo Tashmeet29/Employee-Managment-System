@@ -142,7 +142,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                                     org_id = employee.org_id.toString(),
                                     department_id = employee.dept_id.toString(),
                                     trainingApi = trainingApi,
-                                    training_status_id = (rbHod.isChecked) then APPLIED_TO_HOD.toString() ?: APPLIED_TO_PRINCIPLE.toString(),
+                                    training_status_id = (rbHod.isChecked) then TRAINING_APPLIED_TO_HOD.toString() ?: TRAINING_APPLIED_TO_PRINCIPLE.toString(),
                                     applyPdf = convertBytesToMultipart(),
                                     training_type = selectedType
                                 )

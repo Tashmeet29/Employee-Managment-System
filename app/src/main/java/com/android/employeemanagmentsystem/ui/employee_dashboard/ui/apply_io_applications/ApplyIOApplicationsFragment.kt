@@ -131,7 +131,8 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                                 delay((1 * 1000).toLong())
 
                                 withContext(Dispatchers.Main) {
-                                    findNavController().navigate(R.id.nav_applied_trainings)
+                                    findNavController().popBackStack(R.id.nav_apply_application, true)
+                                    findNavController().navigate(R.id.nav_applied_applications)
                                 }
 
                             } catch (e: Exception) {

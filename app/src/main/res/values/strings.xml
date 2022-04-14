@@ -12,6 +12,7 @@
     <string name="menu_apply_training">Apply Training</string>
     <string name="menu_applied_training">Applied Trainings</string>
     <string name="menu_apply_application">Apply Application</string>
+    <string name="menu_applied_applications">Applied Applications</string>
 
     <string name="menu_training_applications">Training Applications</string>
     <string name="menu_leave_applications">Leave Applications</string>

@@ -22,7 +22,7 @@ import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.databinding.FragmentTrainingApplicationsBinding
-import com.android.employeemanagmentsystem.utils.ALL_STATUS
+import com.android.employeemanagmentsystem.utils.TRAINING_ALL_STATUS
 import com.android.employeemanagmentsystem.utils.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -38,7 +38,7 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
     AppliedTrainingsAdapter.TrainingClickListener {
 
     private lateinit var binding: FragmentTrainingApplicationsBinding
-    private var status_id = ALL_STATUS
+    private var status_id = TRAINING_ALL_STATUS
     lateinit var trainings: List<Training>
 
     lateinit var status: List<String>

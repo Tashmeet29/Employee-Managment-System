@@ -22,7 +22,6 @@ import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentAddCompletedTrainingBinding
-import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingBinding
 import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training.TrainingTypesAdapter
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
@@ -144,7 +143,7 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
                                     org_id = employee.org_id.toString(),
                                     department_id = employee.dept_id.toString(),
                                     trainingApi = trainingApi,
-                                    training_status_id = COMPLETED.toString(),
+                                    training_status_id = TRAINING_COMPLETED.toString(),
                                     applyPdf = convertBytesToMultipart(),
                                     training_type = selectedType
                                 )
