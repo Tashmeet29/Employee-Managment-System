@@ -36,7 +36,8 @@ interface IOApplicationApi {
     @FormUrlEncoded
     @POST("IoApplication/get_applications")
     suspend fun getAppliedApplications(
-        @Field("sevarth_id") sevarth_id: String
+        @Field("sevarth_id") sevarth_id: String,
+        @Field("role_id") role_id: String
     ): Response<List<Application>>
 
     @FormUrlEncoded
@@ -44,6 +45,13 @@ interface IOApplicationApi {
     suspend fun getApplication(
         @Field("application_id") application_id: String
     ): Response<Application>
+
+    @FormUrlEncoded
+    @POST("IoApplication/update_status_id")
+    suspend fun updateStatusId(
+        @Field("application_id") application_id: String,
+        @Field("status_id") status_id: String,
+    ): Response<StatusResponse>
 
     companion object{
         operator fun invoke(

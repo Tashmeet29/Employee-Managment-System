@@ -40,12 +40,21 @@ class IOApplicationRepository : SafeApiRequest() {
         iOApplicationApi.getApplication(application_id)
     }
 
+    suspend fun updateStatusId(
+        application_id: String,
+        status_id: String,
+        iOApplicationApi: IOApplicationApi
+    ) = apiRequest {
+        iOApplicationApi.updateStatusId(application_id, status_id)
+    }
+
 
     suspend fun getAppliedApplications(
         sevarth_id: String,
+        role_id: String,
         iOApplicationApi: IOApplicationApi
     ) = apiRequest {
-        iOApplicationApi.getAppliedApplications(sevarth_id)
+        iOApplicationApi.getAppliedApplications(sevarth_id, role_id)
     }
 
 }

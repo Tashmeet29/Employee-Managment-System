@@ -15,6 +15,9 @@
             android:id="@+id/nav_leave_applications"
             android:title="@string/menu_leave_applications" />
 
+        <item android:id="@+id/nav_applied_applications"
+            android:title="@string/menu_applied_applications"/>
+
         <item
             android:id="@+id/nav_logout"
             android:title="@string/menu_logout" />

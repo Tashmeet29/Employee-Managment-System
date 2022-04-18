@@ -1,6 +1,6 @@
 package com.android.employeemanagmentsystem.utils
 
-const val BASE_URL = "http://192.168.38.44/projects/ems/";
+const val BASE_URL = "http://192.168.113.44/projects/ems/";
 
 const val TRAINING_ALL_STATUS = 0
 const val TRAINING_APPLIED_TO_HOD = 1
@@ -23,3 +23,9 @@ const val IO_Declined_BY_Hod = 5
 const val IO_Declined_BY_Registrar = 6
 const val IO_Declined_BY_Principle = 7
 
+const val ROLE_EMPLOYEE = 1
+const val ROLE_HOD = 2
+const val ROLE_Principle = 3
+const val ROLE_Registrar = 4
+
+//error in approve button click in io application using hod

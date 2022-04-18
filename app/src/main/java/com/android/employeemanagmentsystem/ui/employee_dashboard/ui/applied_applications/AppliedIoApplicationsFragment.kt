@@ -45,8 +45,8 @@ class AppliedIoApplicationsFragment: Fragment(R.layout.fragment_applied_applicat
     private fun getApplications(){
 
         GlobalScope.launch {
-            val sevarthId = authRepository.getEmployee(employeeDao).sevarth_id
-            val applications = ioApplicationRepository.getAppliedApplications(sevarthId, ioApplicationApi)
+            val currUser = authRepository.getEmployee(employeeDao)
+            val applications = ioApplicationRepository.getAppliedApplications(currUser.sevarth_id, currUser.role_id.toString(),  ioApplicationApi)
 
             withContext(Dispatchers.Main) {
                 binding.recyclerView.apply {

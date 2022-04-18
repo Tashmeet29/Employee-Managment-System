@@ -214,7 +214,7 @@ class TrainingApplicationDetails : Fragment(R.layout.fragment_training_details) 
         GlobalScope.launch {
             employee = authRepository.getEmployee(employeeDao)
 
-            val isHod = employee.role_id.toInt() == 2
+            val isHod = employee.role_id.toInt() == ROLE_HOD
 
             binding.apply {
 

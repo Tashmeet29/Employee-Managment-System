@@ -42,4 +42,25 @@
         tools:layout="@layout/fragment_logout" />
 
 
+    <fragment
+        android:id="@+id/ioApplicationDetails"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.application_details.IoApplicationDetails"
+        android:label="Io Application"
+        tools:layout="@layout/fragment_io_application_details" >
+        <argument
+            android:name="Application"
+            app:argType="com.android.employeemanagmentsystem.data.models.responses.Application" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_applied_applications"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_applications.AppliedIoApplicationsFragment"
+        android:label="@string/menu_applied_applications"
+        tools:layout="@layout/fragment_applied_applications" >
+        <action
+            android:id="@+id/action_nav_applied_applications_to_ioApplicationDetails"
+            app:destination="@id/ioApplicationDetails" />
+    </fragment>
+
+
 </navigation>
