@@ -11,6 +11,7 @@ import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
 import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
 import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
+import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 
@@ -64,11 +65,17 @@ class LoginActivity : AppCompatActivity() {
                             val employeeRoleId = employee.role_id.toInt()
 
                             //role id 1 is for employee
-                            if (employeeRoleId.toInt() == 1){
-                                this@LoginActivity.move(EmployeeDashboard::class.java, true)
-                            }else{
-                                this@LoginActivity.move(AdminDashBoardActivity::class.java, true)
+                            when {
+                                employeeRoleId.toInt() == ROLE_EMPLOYEE -> {
+                                    this@LoginActivity.move(EmployeeDashboard::class.java, true)
+                                }
+                                employeeRoleId.toInt() == ROLE_Registrar -> {
+                                    this@LoginActivity.move(RegistrarDashboard::class.java, true)
+                                }
+                                else -> {
+                                    this@LoginActivity.move(AdminDashBoardActivity::class.java, true)
 
+                                }
                             }
 
 

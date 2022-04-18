@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.android.employeemanagmentsystem.ui.logout.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" />
+
+    <fragment
+        android:id="@+id/nav_applied_applications"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_applications.AppliedIoApplicationsFragment"
+        android:label="@string/menu_applied_applications"
+        tools:layout="@layout/fragment_applied_applications" >
+        <action
+            android:id="@+id/action_nav_applied_applications_to_ioApplicationDetails"
+            app:destination="@id/ioApplicationDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ioApplicationDetails"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.application_details.IoApplicationDetails"
+        android:label="Io Application"
+        tools:layout="@layout/fragment_io_application_details" >
+        <argument
+            android:name="Application"
+            app:argType="com.android.employeemanagmentsystem.data.models.responses.Application" />
+    </fragment>
+
+
+</navigation>

@@ -1,17 +1,19 @@
 package com.android.employeemanagmentsystem.ui.splash
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.android.employeemanagmentsystem.data.models.responses.Employee
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
-import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
 import com.android.employeemanagmentsystem.databinding.ActivitySplashBinding
 import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
 import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
 import com.android.employeemanagmentsystem.ui.login.LoginActivity
+import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
+import com.android.employeemanagmentsystem.utils.ROLE_EMPLOYEE
+import com.android.employeemanagmentsystem.utils.ROLE_Registrar
 import com.android.employeemanagmentsystem.utils.move
 import kotlinx.coroutines.*
 
@@ -64,11 +66,17 @@ class SplashActivity : AppCompatActivity() {
             val employeeRoleId = savedEmployees[0].role_id
 
             //role id 1 is for employee
-            if (employeeRoleId.toInt() == 1){
-                this@SplashActivity.move(EmployeeDashboard::class.java, true)
-            }else{
-                this@SplashActivity.move(AdminDashBoardActivity::class.java, true)
+            when {
+                employeeRoleId.toInt() == ROLE_EMPLOYEE -> {
+                    this@SplashActivity.move(EmployeeDashboard::class.java, true)
+                }
+                employeeRoleId.toInt() == ROLE_Registrar -> {
+                    this@SplashActivity.move(RegistrarDashboard::class.java, true)
+                }
+                else -> {
+                    this@SplashActivity.move(AdminDashBoardActivity::class.java, true)
 
+                }
             }
 
         }
