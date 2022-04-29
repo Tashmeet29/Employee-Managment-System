@@ -57,7 +57,7 @@
 
             </LinearLayout>
 
-            <!--Organization Name-->
+            <!--Application Description-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,7 +135,6 @@
 
             </LinearLayout>
 
-            <!--Linear End Date-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,9 +153,36 @@
                     android:id="@+id/tv_application_type"
                     style="@style/EditTextAuth"
                     android:layout_marginLeft="20dp"
-                    android:text="Select Pdf"
+                    android:text="Application Type"
                     android:textColor="@color/text_color_light"
                     android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <!--Application Description-->
+            <LinearLayout
+                android:id="@+id/linear_remark_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Remark" />
+
+                <EditText
+                    android:id="@+id/et_remark"
+                    style="@style/EditTextAuth"
+                    android:gravity="top|start"
+                    android:hint="Enter remark here"
+                    android:inputType="textMultiLine"
+                    android:lines="2"
+                    android:textSize="16dp" />
+
 
             </LinearLayout>
 

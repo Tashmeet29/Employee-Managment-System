@@ -12,6 +12,7 @@ data class Application(
     val id: String,
     val sevarth_id: String,
     val date: String,
+    val description: String,
     val remark: String,
     val application: String,
     val title: String,

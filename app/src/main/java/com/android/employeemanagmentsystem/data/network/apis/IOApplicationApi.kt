@@ -51,6 +51,7 @@ interface IOApplicationApi {
     suspend fun updateStatusId(
         @Field("application_id") application_id: String,
         @Field("status_id") status_id: String,
+        @Field("remark") remark: String,
     ): Response<StatusResponse>
 
     companion object{

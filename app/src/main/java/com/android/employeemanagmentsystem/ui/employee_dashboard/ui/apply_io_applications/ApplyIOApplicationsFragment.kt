@@ -27,6 +27,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.*
 
 private const val TAG = "ApplyIOApplicationsFrag"
 class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applications) {
@@ -66,7 +67,11 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
             rbInward.isChecked = true
 
             tvDate.setOnClickListener {
-                var localDate = LocalDate.now()
+                val calendar: Calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
+
 
                 var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
                     tvDate.text = "$date-${month + 1}-$year"
@@ -75,9 +80,9 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                 DatePickerDialog(
                     requireContext(),
                     listener,
-                    localDate.dayOfMonth,
-                    localDate.monthValue,
-                    localDate.year
+                    year,
+                    month,
+                    day
                 ).show()
 
             }
@@ -178,7 +183,7 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
     fun convertBytesToMultipart(): MultipartBody.Part {
 
         val localDateTime = LocalDateTime.now()
-        val fileName = "${localDateTime.hour + localDateTime.minute + localDateTime.second}.pdf"
+        val fileName = "${localDateTime.hour}${localDateTime.minute}${localDateTime.second}.pdf"
 
         val filePart =
             MultipartBody.Part.createFormData(

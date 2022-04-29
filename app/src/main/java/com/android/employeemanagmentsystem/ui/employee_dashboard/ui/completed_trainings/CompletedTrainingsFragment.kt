@@ -292,7 +292,7 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
     fun convertBytesToMultipart(): MultipartBody.Part {
 
         val localDateTime = LocalDateTime.now()
-        val fileName = "${localDateTime.hour + localDateTime.minute + localDateTime.second}.pdf"
+        val fileName = "${localDateTime.hour}${localDateTime.minute}${localDateTime.second}.pdf"
 
         val filePart =
             MultipartBody.Part.createFormData(

@@ -29,6 +29,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.*
 
 private const val TAG = "ApplyTrainingFragment"
 
@@ -197,7 +198,10 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
             }
 
             tvStartDate.setOnClickListener {
-                var localDate = LocalDate.now()
+                val calendar: Calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
 
                 var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
                     tvStartDate.text = "$date-${month + 1}-$year"
@@ -206,15 +210,18 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                 DatePickerDialog(
                     requireContext(),
                     listener,
-                    localDate.dayOfMonth,
-                    localDate.monthValue,
-                    localDate.year
+                    year,
+                    month,
+                    day
                 ).show()
 
             }
 
             tvEndDate.setOnClickListener {
-                var localDate = LocalDate.now()
+                val calendar: Calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
 
                 var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
 
@@ -224,9 +231,9 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                 DatePickerDialog(
                     requireContext(),
                     listener,
-                    localDate.dayOfMonth,
-                    localDate.monthValue,
-                    localDate.year
+                    year,
+                    month,
+                    day
                 ).show()
 
             }
@@ -302,7 +309,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
     fun convertBytesToMultipart(): MultipartBody.Part {
 
         val localDateTime = LocalDateTime.now()
-        val fileName = "${localDateTime.hour + localDateTime.minute + localDateTime.second}.pdf"
+        val fileName = "${localDateTime.hour}${localDateTime.minute}${localDateTime.second}.pdf"
 
         val filePart =
             MultipartBody.Part.createFormData(

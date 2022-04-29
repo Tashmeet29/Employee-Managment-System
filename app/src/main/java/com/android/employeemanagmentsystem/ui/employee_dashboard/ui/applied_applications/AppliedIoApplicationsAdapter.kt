@@ -37,6 +37,7 @@ class AppliedIoApplicationsAdapter(
                 tvName.text = application.title
                 tvDate.text = application.date
                 tvStatus.text = application.getApplicationStringStatus
+                tvRemark.text = application.remark
             }
         }
     }

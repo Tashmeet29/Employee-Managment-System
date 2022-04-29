@@ -43,9 +43,10 @@ class IOApplicationRepository : SafeApiRequest() {
     suspend fun updateStatusId(
         application_id: String,
         status_id: String,
+        remark: String,
         iOApplicationApi: IOApplicationApi
     ) = apiRequest {
-        iOApplicationApi.updateStatusId(application_id, status_id)
+        iOApplicationApi.updateStatusId(application_id, status_id, remark)
     }
 
 

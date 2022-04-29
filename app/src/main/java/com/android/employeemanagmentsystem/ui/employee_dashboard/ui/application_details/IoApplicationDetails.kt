@@ -20,7 +20,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class IoApplicationDetails: Fragment(R.layout.fragment_io_application_details) {
+class IoApplicationDetails : Fragment(R.layout.fragment_io_application_details) {
 
     private lateinit var binding: FragmentIoApplicationDetailsBinding
     private lateinit var application: Application
@@ -56,17 +56,21 @@ class IoApplicationDetails: Fragment(R.layout.fragment_io_application_details) {
             curr_user = authRepository.getEmployee(employeeDao)
 
             //if current user is hod and employee just applied application
-            var hod_cond = (curr_user.role_id.toInt() == ROLE_HOD) and (application.status_id.toInt() == IO_APPLICATION_APPLIED)
+            var hod_cond =
+                (curr_user.role_id.toInt() == ROLE_HOD) and (application.status_id.toInt() == IO_APPLICATION_APPLIED)
 
             //if current user is registrar and hod had approved application
-            var registrar_cond = (curr_user.role_id.toInt() == ROLE_Registrar) and (application.status_id.toInt() == IO_APPROVED_BY_HOD)
+            var registrar_cond =
+                (curr_user.role_id.toInt() == ROLE_Registrar) and (application.status_id.toInt() == IO_APPROVED_BY_HOD)
 
             //if current user is principle and hod had approved application
-            var principle_cond = (curr_user.role_id.toInt() == ROLE_Principle) and (application.status_id.toInt() == IO_APPROVED_BY_REGISTRAR)
+            var principle_cond =
+                (curr_user.role_id.toInt() == ROLE_Principle) and (application.status_id.toInt() == IO_APPROVED_BY_REGISTRAR)
 
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 //show approve or decline button if any one is true
                 binding.LinearButtonLayout.isVisible = hod_cond or registrar_cond or principle_cond
+                binding.linearRemarkLayout.isVisible = hod_cond or registrar_cond or principle_cond
             }
 
         }
@@ -74,77 +78,115 @@ class IoApplicationDetails: Fragment(R.layout.fragment_io_application_details) {
 
         binding.btnApply.setOnClickListener {
 
-            GlobalScope.launch {
+
+            if (binding.etRemark.text.isEmpty()) {
+                requireContext().toast("Please Add Remark");
+            } else {
+
+                GlobalScope.launch {
 
 
+                    // if hod click approved button change status id to approve_by_hod
+                    if (curr_user.role_id.toInt() == ROLE_HOD) {
+                        val status = ioApplicationRepository.updateStatusId(
+                            application.id,
+                            IO_APPROVED_BY_HOD.toString(),
+                            binding.etRemark.text.toString(),
+                            ioApplicationApi
+                        )
 
-                // if hod click approved button change status id to approve_by_hod
-                if(curr_user.role_id.toInt() == ROLE_HOD){
-                    val status = ioApplicationRepository.updateStatusId(application.id, IO_APPROVED_BY_HOD.toString(), ioApplicationApi)
 
+                        withContext(Dispatchers.Main) {
+                            requireContext().toast(status.status)
+                        }
 
-                    withContext(Dispatchers.Main){
-                        requireContext().toast(status.status)
                     }
+                    // if registrar click approve button change status id to approve by registrar
+                    else if (curr_user.role_id.toInt() == ROLE_Registrar) {
+                        val status = ioApplicationRepository.updateStatusId(
+                            application.id,
+                            IO_APPROVED_BY_REGISTRAR.toString(),
+                            binding.etRemark.text.toString(),
+                            ioApplicationApi
+                        )
+                        withContext(Dispatchers.Main) {
+                            requireContext().toast(status.status)
+                        }
 
-                }
-                // if registrar click approve button change status id to approve by registrar
-                else if(curr_user.role_id.toInt() == ROLE_Registrar){
-                    val status = ioApplicationRepository.updateStatusId(application.id, IO_APPROVED_BY_REGISTRAR.toString(), ioApplicationApi)
-                    withContext(Dispatchers.Main){
-                        requireContext().toast(status.status)
                     }
+                    // if principle click approve button change status id to approve by principle
+                    else if (curr_user.role_id.toInt() == ROLE_Principle) {
+                        val status = ioApplicationRepository.updateStatusId(
+                            application.id,
+                            IO_APPROVED_BY_PRINCIPLE.toString(),
+                            binding.etRemark.text.toString(),
+                            ioApplicationApi
+                        )
+                        withContext(Dispatchers.Main) {
+                            requireContext().toast(status.status)
+                        }
 
-                }
-                // if principle click approve button change status id to approve by principle
-                else if(curr_user.role_id.toInt() == ROLE_Principle){
-                    val status = ioApplicationRepository.updateStatusId(application.id, IO_APPROVED_BY_PRINCIPLE.toString(), ioApplicationApi)
-                    withContext(Dispatchers.Main){
-                        requireContext().toast(status.status)
                     }
-
-                }
-                withContext(Dispatchers.Main){
-                    findNavController().popBackStack()
+                    withContext(Dispatchers.Main) {
+                        findNavController().popBackStack()
+                    }
                 }
             }
-
         }
 
         binding.btnDecline.setOnClickListener {
 
-            GlobalScope.launch {
-                // if hod click approved button change status id to approve_by_hod
-                if(curr_user.role_id.toInt() == ROLE_HOD){
-                    val status = ioApplicationRepository.updateStatusId(application.id, IO_Declined_BY_Hod.toString(), ioApplicationApi)
-                    withContext(Dispatchers.Main){
-                        requireContext().toast(status.status)
-                    }
+            if (binding.etRemark.text.isEmpty()) {
+                requireContext().toast("Please Add Remark");
+            } else {
+                GlobalScope.launch {
+                    // if hod click approved button change status id to approve_by_hod
+                    if (curr_user.role_id.toInt() == ROLE_HOD) {
+                        val status = ioApplicationRepository.updateStatusId(
+                            application.id,
+                            IO_Declined_BY_Hod.toString(),
+                            binding.etRemark.text.toString(),
+                            ioApplicationApi
+                        )
+                        withContext(Dispatchers.Main) {
+                            requireContext().toast(status.status)
+                        }
 
-                }
-                // if registrar click approve button change status id to approve by registrar
-                else if(curr_user.role_id.toInt() == ROLE_Registrar){
-                    val status = ioApplicationRepository.updateStatusId(application.id, IO_Declined_BY_Hod.toString(), ioApplicationApi)
-                    withContext(Dispatchers.Main){
-                        requireContext().toast(status.status)
                     }
+                    // if registrar click approve button change status id to approve by registrar
+                    else if (curr_user.role_id.toInt() == ROLE_Registrar) {
+                        val status = ioApplicationRepository.updateStatusId(
+                            application.id,
+                            IO_Declined_BY_Hod.toString(),
+                            binding.etRemark.text.toString(),
+                            ioApplicationApi
+                        )
+                        withContext(Dispatchers.Main) {
+                            requireContext().toast(status.status)
+                        }
 
-                }
-                // if principle click approve button change status id to approve by principle
-                else if(curr_user.role_id.toInt() == ROLE_Principle){
-                    val status = ioApplicationRepository.updateStatusId(application.id, IO_Declined_BY_Hod.toString(), ioApplicationApi)
-                    withContext(Dispatchers.Main){
-                        requireContext().toast(status.status)
                     }
+                    // if principle click approve button change status id to approve by principle
+                    else if (curr_user.role_id.toInt() == ROLE_Principle) {
+                        val status = ioApplicationRepository.updateStatusId(
+                            application.id,
+                            IO_Declined_BY_Hod.toString(),
+                            binding.etRemark.text.toString(),
+                            ioApplicationApi
+                        )
+                        withContext(Dispatchers.Main) {
+                            requireContext().toast(status.status)
+                        }
 
-                }
-                withContext(Dispatchers.Main){
-                    findNavController().popBackStack()
+                    }
+                    withContext(Dispatchers.Main) {
+                        findNavController().popBackStack()
+                    }
                 }
             }
 
-        }
 
+        }
 
 
     }
@@ -153,7 +195,7 @@ class IoApplicationDetails: Fragment(R.layout.fragment_io_application_details) {
         binding.apply {
 
             tvIoTitle.text = application.title
-            tvDesc.text = application.remark
+            tvDesc.text = application.description
             tvDate.text = application.date
             tvPdf.text = application.application
             tvApplicationType.text = application.getApplicationStringType
