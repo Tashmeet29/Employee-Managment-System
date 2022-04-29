@@ -3,6 +3,9 @@ package com.android.employeemanagmentsystem.utils
 const val BASE_URL = "http://192.168.9.44" +
         "/projects/ems/";
 
+const val BASE_URL = "http://192.168.9.44" +
+        "/projects/ems/";
+
 const val TRAINING_ALL_STATUS = 0
 const val TRAINING_APPLIED_TO_HOD = 1
 const val TRAINING_APPLIED_TO_PRINCIPLE = 2
@@ -14,7 +17,6 @@ const val TRAINING_COMPLETED = 7
 
 val APPLICATION_TYPE_INWARD = 1
 val APPLICATION_TYPE_OUTWARD = 2
-
 
 const val IO_APPLICATION_APPLIED = 1;
 const val IO_APPROVED_BY_HOD = 2
