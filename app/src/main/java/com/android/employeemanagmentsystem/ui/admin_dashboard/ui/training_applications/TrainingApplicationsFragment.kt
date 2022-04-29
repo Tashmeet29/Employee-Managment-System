@@ -42,6 +42,7 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
     lateinit var trainings: List<Training>
 
     lateinit var status: List<String>
+    lateinit var paint: Paint
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,121 +59,6 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
         setSpinner()
 
         getTrainings()
-    }
-
-    private fun generatePdf() {
-
-
-        val name = status[status_id] + ".pdf"
-        val file =
-            File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${name}")
-
-        val fileOutputStream = FileOutputStream(file)
-        val pdfDocument = PdfDocument()
-
-        val title = Paint()
-
-        title.apply {
-            textSize = 15F
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-            color = ContextCompat.getColor(requireContext(), R.color.black)
-        }
-
-
-        addDataToPdf(pdfDocument, title)
-
-
-
-        try {
-            pdfDocument.writeTo(fileOutputStream)
-            requireContext().toast("Report Generated Successfully")
-            Log.e(TAG, "generatePdf: pfd generated" + file.absolutePath)
-        } catch (e: Exception) {
-            requireContext().toast(e.toString())
-        } finally {
-            pdfDocument.close()
-        }
-    }
-
-
-    private fun addDataToPdf(pdfDocument: PdfDocument, title: Paint) {
-
-        for (i in 0..trainings.size step 3) {
-
-            var x = 50f
-            var y = 100f
-            var offset = 20f
-
-            val myPageInfo: PdfDocument.PageInfo =
-                PdfDocument.PageInfo.Builder(1120, 1000, 1).create()
-            val myPage = pdfDocument.startPage(myPageInfo)
-            val canvas: Canvas = myPage.canvas
-
-            var training = trainings[i]
-            canvas.drawText("Training Name :-  " + training.name, x, y, title)
-            y += offset
-            canvas.drawText("Training Duration :-  " + training.myDuration, x, y, title)
-            y += offset
-            canvas.drawText(
-                "Date :-  " + training.start_date + " - " + training.end_date,
-                x,
-                y,
-                title
-            )
-            y += offset
-            canvas.drawText("Sevarth-ID :-  " + training.sevarth_id, x, y, title)
-            y += offset
-            canvas.drawText("Organized By :-  " + training.org_name, x, y, title)
-            y += offset
-            canvas.drawText("Status :-  " + training.myStatus, x, y, title)
-            y += 50F
-
-            if (i + 1 >= trainings.size) {
-                pdfDocument.finishPage(myPage)
-                continue
-            }
-
-            training = trainings[i + 1]
-            canvas.drawText("Training Name :-  " + training.name, x, y, title)
-            y += offset
-            canvas.drawText("Training Duration :-  " + training.myDuration, x, y, title)
-            y += offset
-            canvas.drawText(
-                "Date :-  " + training.start_date + " - " + training.end_date,
-                x,
-                y,
-                title
-            )
-            y += offset
-            canvas.drawText("Sevarth-ID :-  " + training.sevarth_id, x, y, title)
-            y += offset
-            canvas.drawText("Organized By :-  " + training.org_name, x, y, title)
-            y += offset
-            canvas.drawText("Status :-  " + training.myStatus, x, y, title)
-            y += 50F
-
-            training = trainings[i + 2]
-            canvas.drawText("Training Name :-  " + training.name, x, y, title)
-            y += offset
-            canvas.drawText("Training Duration :-  " + training.myDuration, x, y, title)
-            y += offset
-            canvas.drawText(
-                "Date :-  " + training.start_date + " - " + training.end_date,
-                x,
-                y,
-                title
-            )
-            y += offset
-            canvas.drawText("Sevarth-ID :-  " + training.sevarth_id, x, y, title)
-            y += offset
-            canvas.drawText("Organized By :-  " + training.org_name, x, y, title)
-            y += offset
-            canvas.drawText("Status :-  " + training.myStatus, x, y, title)
-            y += 50F
-
-            pdfDocument.finishPage(myPage)
-
-        }
     }
 
     private fun setSpinner() {
@@ -272,65 +158,132 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
 
 
     private fun createTabularPdf() {
-        val myPdfDocument = PdfDocument()
-        val paint = Paint().apply {
-            textSize = 35F
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-            color = ContextCompat.getColor(requireContext(), R.color.black)
+
+        GlobalScope.launch {
+
+            withContext(Dispatchers.IO){
+
+                withContext(Dispatchers.Main){
+                    binding.progressBar.isVisible = true
+                }
+
+                val myPdfDocument = PdfDocument()
+                paint = Paint().apply {
+                    textSize = 55F
+                    typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+                    color = ContextCompat.getColor(requireContext(), R.color.black)
+                }
+
+                //setting data in pdf page
+                var pageNumber = 1
+                var i = 0
+                val rows = 24
+                while (i < trainings.size){
+
+                    if(i+rows > trainings.size) {
+                        setPage(myPdfDocument, pageNumber, i, trainings.size-1);
+                        pageNumber += 1
+                        i += rows
+                        continue
+                    }
+
+                    setPage(myPdfDocument, pageNumber, i, i+rows);
+                    pageNumber += 1
+                    i += rows;
+
+                }
+
+                storePdfOffline(myPdfDocument)
+
+                withContext(Dispatchers.Main){
+                    binding.progressBar.isVisible = false
+                }
+            }
+
+
         }
 
-        val myPageInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(2000, 2010, 1).create()
-        val myPage = myPdfDocument.startPage(myPageInfo)
-        val canvas = myPage.canvas
+    }
 
-        canvas.drawText("Government Polytechnic Amravati", 1000F, 100F, paint)
+
+    private fun setPage(myPdfDocument: PdfDocument, pageNumber: Int, low: Int, high: Int) {
+
+        var myPageInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(2000, 3010, pageNumber).create()
+        var myPage = myPdfDocument.startPage(myPageInfo)
+        var canvas = myPage.canvas
+
+        canvas.drawText("Government Polytechnic Amravati", 800F, 100F, paint)
 
         paint.apply {
+            textSize = 35f
             style = Paint.Style.STROKE
             strokeWidth = 2F
         }
 
         canvas.drawRect(20f, 180f, 1980f, 260f, paint)
 
-        canvas.drawText("Sevarth-Id", 20f, 230f, paint)
-        canvas.drawText("Training Name", 400f, 230f, paint)
-        canvas.drawText("Duration ", 700f, 230f, paint)
-        canvas.drawText("Start Date ", 900f, 230f, paint)
-        canvas.drawText("End Date ", 1100f, 230f, paint)
-        canvas.drawText("Organized By ", 1300f, 230f, paint)
-        canvas.drawText("Status ", 1600f, 230f, paint)
+        canvas.drawText("Sevarth-Id", 23f, 230f, paint)
+        canvas.drawText("Training Name", 260f, 230f, paint)
+        canvas.drawText("Duration ", 650f, 230f, paint)
+        canvas.drawText("Start Date ", 820f, 230f, paint)
+        canvas.drawText("End Date ", 1050f, 230f, paint)
+        canvas.drawText("Status", 1350f, 230f, paint)
+        canvas.drawText("Organized By", 1600f, 230f, paint)
+
+        var x = 20f
+        var y = 280f
+        var offset_y = 100f
+
+        for (i in low .. high){
+
+            y += offset_y
+            x = 50f
 
 
+            canvas.drawText(trainings[i].sevarth_id, x, y, paint)
+            x += 230f
+            canvas.drawText(trainings[i].name, x, y, paint)
+            x += 400f
+            canvas.drawText(trainings[i].duration, x, y, paint)
+            x += 150f
+            canvas.drawText(trainings[i].start_date, x, y, paint)
+            x += 230f
+            canvas.drawText(trainings[i].end_date, x, y, paint)
+            x += 200f
+            canvas.drawText(trainings[i].myStatus, x, y, paint)
+            x += 350f
+            canvas.drawText(trainings[i].organized_by, x, y, paint)
 
+
+        }
 
 
         myPdfDocument.finishPage(myPage)
+    }
 
-        val name = status[status_id] + ".pdf"
-        val file =
-            File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${name}")
+    private suspend fun storePdfOffline(myPdfDocument: PdfDocument) {
 
-        try {
-            myPdfDocument.writeTo(FileOutputStream(file))
-            requireContext().toast("Document Created Successfully")
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            myPdfDocument.close()
+        withContext(Dispatchers.IO){
+            val name = status[status_id] + ".pdf"
+            val file =
+                File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${name}")
+
+            try {
+                myPdfDocument.writeTo(FileOutputStream(file))
+                withContext(Dispatchers.Main) {
+                    requireContext().toast("Document Created Successfully")
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    requireContext().toast(e.toString())
+                    e.printStackTrace()
+                }
+            } finally {
+                myPdfDocument.close()
+            }
         }
+
+
     }
 }
 
-
-/*
-
-        val columnsWidth: FloatArray = FloatArray(2)
-        columnsWidth[0] = 200f
-        columnsWidth[1] = 200f
-
-        val table = Table(columnsWidth)
-        table.addCell("Cell 1")
-        table.addCell("Cell 2")
-
-        table.addCell(Cell(2, 1).add(Paragraph("paragraph")))
-        table.addCell("332")*/
