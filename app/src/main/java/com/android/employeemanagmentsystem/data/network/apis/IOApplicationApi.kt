@@ -1,9 +1,6 @@
 package com.android.employeemanagmentsystem.data.network.apis
 
-import com.android.employeemanagmentsystem.data.models.responses.Application
-import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
-import com.android.employeemanagmentsystem.data.models.responses.Training
-import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
+import com.android.employeemanagmentsystem.data.models.responses.*
 import com.android.employeemanagmentsystem.utils.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,6 +16,9 @@ import retrofit2.http.*
 
 interface IOApplicationApi {
 
+    @GET("IOApplication/get_departments")
+    suspend fun getDepartments(): Response<List<Departments>>
+
     //api request for apply to training
     @Multipart
     @POST("IOApplication/apply_io_application")
@@ -30,6 +30,7 @@ interface IOApplicationApi {
         @Part("org_id") org_id: RequestBody,
         @Part("department_id") department_id: RequestBody,
         @Part("application_type") application_type: RequestBody,
+        @Part("from_department") from_department: RequestBody,
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
 

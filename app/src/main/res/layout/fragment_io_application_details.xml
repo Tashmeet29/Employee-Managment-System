@@ -159,6 +159,54 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:layout_marginTop="5dp"
+                    android:text="From" />
+
+                <TextView
+                    android:id="@+id/tv_application_from"
+                    style="@style/EditTextAuth"
+                    android:layout_marginLeft="20dp"
+                    android:text="Application From"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:layout_marginTop="5dp"
+                    android:text="To" />
+
+                <TextView
+                    android:id="@+id/tv_application_to"
+                    style="@style/EditTextAuth"
+                    android:layout_marginLeft="20dp"
+                    android:text="Application To"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
             <!--Application Description-->
             <LinearLayout
                 android:id="@+id/linear_remark_layout"

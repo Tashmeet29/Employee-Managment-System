@@ -7,18 +7,22 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.employeemanagmentsystem.R
+import com.android.employeemanagmentsystem.data.models.responses.Departments
+import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
 import com.android.employeemanagmentsystem.data.network.apis.IOApplicationApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.IOApplicationRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentIoApplyApplicationsBinding
+import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training.TrainingTypesAdapter
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.android.synthetic.main.fragment_apply_training.*
 import kotlinx.coroutines.*
@@ -42,6 +46,8 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
     private var isPdfSelected = false
     private lateinit var byteArray: ByteArray
 
+    private var selected_department = "1"
+
     private var application_type = APPLICATION_TYPE_INWARD
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -55,7 +61,41 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
         employeeDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
 
         applyApplications()
+        getDepartments()
     }
+
+    /*Shows Departments on spinner and handle its click*/
+    public fun getDepartments() {
+        GlobalScope.launch {
+            val departments: List<Departments> = ioApplicationRepository.getDepartments(ioApplicationApi)
+
+            val adapter = DepartmentAdapter(requireContext(), departments)
+
+            withContext(Dispatchers.Main) {
+                binding.spinnerDepartments.adapter = adapter
+
+                binding.spinnerDepartments.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            selected_department = departments[p2].dept_id
+                            Log.e(TAG, "onItemSelected: $selected_department")
+                        }
+
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                        }
+
+                    }
+
+            }
+        }
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun applyApplications() {
@@ -121,8 +161,9 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                                     desc = desc,
                                     date = date,
                                     org_id = employee.org_id,
-                                    department_id = employee.dept_id,
+                                    department_id = selected_department,
                                     application_type = application_type.toString(),
+                                    from_department = employee.dept_id,
                                     applyPdf = convertBytesToMultipart(),
                                     iOApplicationApi = ioApplicationApi
                                 )

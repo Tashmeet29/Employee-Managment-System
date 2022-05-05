@@ -21,9 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-
             android:orientation="vertical">
-
 
             <!--Linear UserName-->
             <LinearLayout
@@ -120,9 +118,7 @@
 
             </LinearLayout>
 
-
             <!--Linear End Date-->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

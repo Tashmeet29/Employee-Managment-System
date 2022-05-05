@@ -197,6 +197,8 @@ class IoApplicationDetails : Fragment(R.layout.fragment_io_application_details) 
             tvIoTitle.text = application.title
             tvDesc.text = application.description
             tvDate.text = application.date
+            tvApplicationFrom.text = application.from_dept.toInt().getStringDepartment()
+            tvApplicationTo.text = application.to_dept.toInt().getStringDepartment()
             tvPdf.text = application.application
             tvApplicationType.text = application.getApplicationStringType
 

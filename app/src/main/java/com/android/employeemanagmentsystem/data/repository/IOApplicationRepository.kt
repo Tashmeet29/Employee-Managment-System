@@ -18,6 +18,7 @@ class IOApplicationRepository : SafeApiRequest() {
         org_id: String,
         department_id: String,
         application_type: String,
+        from_department: String,
         applyPdf: MultipartBody.Part,
         iOApplicationApi: IOApplicationApi
     ) = apiRequest {
@@ -29,9 +30,15 @@ class IOApplicationRepository : SafeApiRequest() {
             org_id.toMultipartReq(),
             department_id.toMultipartReq(),
             application_type.toMultipartReq(),
-            applyPdf
+            from_department.toMultipartReq(),
+            applyPdf,
+
+
         )
     }
+
+    suspend fun getDepartments(iOApplicationApi: IOApplicationApi) = apiRequest { iOApplicationApi.getDepartments() }
+
 
     suspend fun getApplication(
         application_id: String,

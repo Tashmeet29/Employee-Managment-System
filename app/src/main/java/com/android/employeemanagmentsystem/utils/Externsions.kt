@@ -29,6 +29,17 @@ fun Int.getTrainingStatusById(): String{
 
 }
 
+fun Int.getStringDepartment(): String{
+    return when(this){
+        1 -> "CS"
+        2 -> "IT"
+        3 -> "ME"
+        4 -> "CE"
+        5 -> "EXTC"
+        else -> "$this"
+    }
+}
+
 fun Int.getIoApplicationStatusById(): String{
 
     return when(this){

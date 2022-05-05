@@ -20,7 +20,10 @@ data class Application(
     val registrar_id: String,
     val principal_id: String,
     val status_id: String,
-    val application_type: String
+    val application_type: String,
+    val to_dept: String,
+    val from_dept: String,
+
 ) : Parcelable {
 
     val getApplicationStringType
@@ -45,4 +48,8 @@ data class Application(
         
         """
     }
+
+
 }
+
+
