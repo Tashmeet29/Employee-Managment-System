@@ -1,14 +1,12 @@
 package com.android.employeemanagmentsystem.data.network.apis
 
+import com.android.employeemanagmentsystem.data.models.responses.EmployeeDetails
 import com.android.employeemanagmentsystem.data.models.responses.Employee
 import com.android.employeemanagmentsystem.utils.BASE_URL
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface AuthApi {
 
@@ -20,13 +18,17 @@ interface AuthApi {
         @Field("password") password: String,
     ): Response<Employee>
 
+    //api request for login of all employees of all roles
+    @GET("EmployeeDetails/getDetails")
+    suspend fun getEmployeeDetails(
+        @Query("sevarth_id") sevarth_id: String
+    ): Response<EmployeeDetails>
 
 
-
-    companion object{
+    companion object {
         operator fun invoke(
             //networkConnectionInterceptor: NetworkConnectionInterceptor
-        ) : AuthApi {
+        ): AuthApi {
 
 //            val okkHttpclient = OkHttpClient.Builder()
 //                .addInterceptor(networkConnectionInterceptor)
@@ -40,6 +42,7 @@ interface AuthApi {
                 .create(AuthApi::class.java)
         }
     }
+
 
 }
 

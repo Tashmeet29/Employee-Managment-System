@@ -21,15 +21,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textAlignment="center"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="12dp"
+                android:textColor="@color/black"/>
 
             <ImageView
                 android:id="@+id/posterImage"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="230dp"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="15dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/login" />
+                android:src="@drawable/login_img" />
 
 
             <!--Linear UserName-->
@@ -52,6 +63,7 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter email"
                     android:textSize="16dp"
+                    android:textColor="@color/black"
                     android:inputType="textPersonName" />
 
 
@@ -78,6 +90,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_password"
+                        android:textColor="@color/black"
                         style="@style/EditTextAuthPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -86,6 +99,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvForgotPassword"
                 style="@style/TextViewAuth"
                 android:hint="Forgot Password?"
                 android:layout_gravity="right"
@@ -94,22 +108,35 @@
                 android:layout_marginRight="20dp"
                 android:textColor="@color/text_color_light"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="60dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
+                android:paddingVertical="12dp"
                 android:background="@drawable/auth_btn"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 android:text="Submit"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="16dp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 />
+            <TextView
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:layout_marginHorizontal="30dp"
+                android:textAlignment="center"
+                android:padding="15dp"
+                android:textColor="@color/l_blue"
+                android:text="Not Registered yet? Sign Up"
+                android:textSize="18dp"
+                android:layout_marginVertical="15dp"
+                android:elevation="2dp"/>
+
 
 
         </LinearLayout>

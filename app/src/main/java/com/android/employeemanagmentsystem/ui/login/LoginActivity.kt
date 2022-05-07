@@ -11,7 +11,9 @@ import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
 import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
 import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
+import com.android.employeemanagmentsystem.ui.forgot_password.ForgotPasswordActivity
 import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
+import com.android.employeemanagmentsystem.ui.registration.RegistrationActivity
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 
@@ -32,6 +34,22 @@ class LoginActivity : AppCompatActivity() {
         init_variables()
 
         handleLoginButtonClick()
+
+        handleForgotPasswordClick()
+
+        handleRegisterClick()
+    }
+
+    private fun handleRegisterClick() {
+        binding.btnRegister.setOnClickListener {
+            this@LoginActivity.move(RegistrationActivity::class.java, false)
+        }
+    }
+
+    private fun handleForgotPasswordClick() {
+        binding.tvForgotPassword.setOnClickListener {
+            this@LoginActivity.move(ForgotPasswordActivity::class.java, true)
+        }
     }
 
     private fun init_variables() {
@@ -55,6 +73,10 @@ class LoginActivity : AppCompatActivity() {
                 password.isBlank() -> toast("Please Enter Password")
                 else -> {
                     GlobalScope.launch {
+
+
+
+
                         try {
                             //making network call to get user credentials
                             val employee: Employee = authRepository.empLogin(email, password, authApi)

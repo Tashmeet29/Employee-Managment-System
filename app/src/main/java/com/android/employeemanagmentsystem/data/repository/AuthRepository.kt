@@ -29,4 +29,8 @@ class AuthRepository : SafeApiRequest() {
         employeeDao.logOut()
     }
 
+    suspend fun getEmployeeDetailse(sevarth_id: String, authApi: AuthApi) = withContext(Dispatchers.IO){
+        apiRequest { authApi.getEmployeeDetails(sevarth_id) }
+    }
+
 }
