@@ -18,6 +18,12 @@ interface AuthApi {
         @Field("password") password: String,
     ): Response<Employee>
 
+    @FormUrlEncoded
+    @POST("/get_fp_question")
+    suspend fun emailValidate(
+        @Field("email") email: String,
+    ): Response<String>
+
     //api request for login of all employees of all roles
     @GET("EmployeeDetails/getDetails")
     suspend fun getEmployeeDetails(

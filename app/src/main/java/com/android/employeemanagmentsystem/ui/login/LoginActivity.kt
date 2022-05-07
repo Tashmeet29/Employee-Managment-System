@@ -11,6 +11,7 @@ import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
 import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
 import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
+import com.android.employeemanagmentsystem.ui.forgot_password.AskEmailActivity
 import com.android.employeemanagmentsystem.ui.forgot_password.ForgotPasswordActivity
 import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
 import com.android.employeemanagmentsystem.ui.registration.RegistrationActivity
@@ -48,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleForgotPasswordClick() {
         binding.tvForgotPassword.setOnClickListener {
-            this@LoginActivity.move(ForgotPasswordActivity::class.java, true)
+            this@LoginActivity.move(AskEmailActivity::class.java, true)
         }
     }
 

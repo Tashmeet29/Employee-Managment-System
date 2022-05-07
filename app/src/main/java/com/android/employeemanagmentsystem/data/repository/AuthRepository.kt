@@ -13,6 +13,10 @@ class AuthRepository : SafeApiRequest() {
         return apiRequest { authApi.employeeLogin(email, password) }
     }
 
+    suspend fun validateEmail(email: String, authApi: AuthApi): String {
+        return apiRequest { authApi.emailValidate(email) }
+    }
+
     suspend fun saveEmp(employee: Employee, employeeDao: EmployeeDao) =
         withContext(Dispatchers.IO) {
             employeeDao.saveEmployee(employee)
