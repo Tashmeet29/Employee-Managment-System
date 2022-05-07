@@ -2,6 +2,7 @@ package com.android.employeemanagmentsystem.data.network.apis
 
 import com.android.employeemanagmentsystem.data.models.responses.EmployeeDetails
 import com.android.employeemanagmentsystem.data.models.responses.Employee
+import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
 import com.android.employeemanagmentsystem.utils.BASE_URL
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -19,10 +20,17 @@ interface AuthApi {
     ): Response<Employee>
 
     @FormUrlEncoded
-    @POST("/get_fp_question")
+    @POST("get_fp_question")
     suspend fun emailValidate(
         @Field("email") email: String,
-    ): Response<String>
+    ): Response<StatusResponse>
+
+    @FormUrlEncoded
+    @POST("validate_answer")
+    suspend fun answerValidate(
+        @Field("email") email: String,
+        @Field("answer") answer: String,
+    ): Response<StatusResponse>
 
     //api request for login of all employees of all roles
     @GET("EmployeeDetails/getDetails")

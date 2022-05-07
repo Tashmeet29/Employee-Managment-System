@@ -2,7 +2,6 @@ package com.android.employeemanagmentsystem.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.android.employeemanagmentsystem.data.models.responses.Employee
 import com.android.employeemanagmentsystem.data.network.apis.AuthApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
@@ -12,8 +11,8 @@ import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
 import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
 import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
 import com.android.employeemanagmentsystem.ui.forgot_password.AskEmailActivity
-import com.android.employeemanagmentsystem.ui.forgot_password.ForgotPasswordActivity
 import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
+import com.android.employeemanagmentsystem.ui.add_details.AddDetailsActivity
 import com.android.employeemanagmentsystem.ui.registration.RegistrationActivity
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*

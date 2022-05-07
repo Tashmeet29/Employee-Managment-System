@@ -1,21 +1,16 @@
 package com.android.employeemanagmentsystem.ui.forgot_password
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.android.employeemanagmentsystem.data.models.responses.Employee
+import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
 import com.android.employeemanagmentsystem.data.network.apis.AuthApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.ActivityAskEmailBinding
-import com.android.employeemanagmentsystem.databinding.ActivityLoginBinding
-import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
-import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
-import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
-import com.android.employeemanagmentsystem.ui.registration.RegistrationActivity
 import com.android.employeemanagmentsystem.utils.*
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import okhttp3.Dispatcher
 
 class AskEmailActivity : AppCompatActivity() {
 
@@ -29,17 +24,24 @@ class AskEmailActivity : AppCompatActivity() {
         binding = ActivityAskEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        init_variables()
+        handleSubmitButtonClick()
 
     }
 
+    private fun init_variables() {
+        authRepository = AuthRepository()
+        authApi = AuthApi.invoke()
+//        employeeDao = AppDatabase.invoke(applicationContext).getEmployeeDao()
+    }
     //handles click of login button
     @DelicateCoroutinesApi
-    private fun handleLoginButtonClick() {
+    private fun handleSubmitButtonClick() {
         //handles the click of login button
         binding.btnSubmit.setOnClickListener {
             //getting email and password after click of login button
             val email = binding.etEmail.text.toString()
+            toast(email)
 
             when {
                 //checking email and password is empty or not
@@ -49,8 +51,15 @@ class AskEmailActivity : AppCompatActivity() {
 
                         try {
                             //making network call to get user credentials
-                            val message: String = authRepository.validateEmail(email, authApi)
-                            binding.tvAskingEmail.text = message
+                            val message: StatusResponse = authRepository.validateEmail(email, authApi)
+//                            binding.tvAskingEmail.text = message.status.toString()
+                            withContext(Dispatchers.Main){
+                                Intent(this@AskEmailActivity, ForgotPasswordActivity::class.java).apply{
+                                    putExtra("email",email)
+                                    putExtra("question",message.status)
+                                    startActivity(this)
+                                }
+                            }
 
                         }catch (e: Exception){
                             handleException(e)

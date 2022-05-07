@@ -60,6 +60,7 @@ android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"
+                android:textColor="@color/black"
                 style="@style/EditTextAuth"
                 android:hint="Enter Your E-mail"
                 android:textSize="16dp"

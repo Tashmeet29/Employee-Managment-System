@@ -25,7 +25,7 @@
             <TextView
                 style="@style/TextViewReg"
                 android:layout_gravity="center_horizontal"
-                android:text="Add Details"
+                android:text="Registration Form"
                 android:textSize="25dp" />
 
 
@@ -42,12 +42,12 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="First Name" />
+                    android:text="Sevarth ID" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_first_name"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your First Name"
+                    android:hint="Your Sevarth Id"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
 
@@ -66,12 +66,12 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Middle Name" />
+                    android:text="Organization" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_middle_name"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your Middle Name"
+                    android:hint="Select Your Organization"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
 
@@ -90,103 +90,14 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Last Name" />
+                    android:text="Employee Name" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_last_name"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your Last Name"
+                    android:hint="Enter Your Name"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:layout_marginTop="5dp"
-
-                    android:text="Gender" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <RadioButton
-                            android:id="@+id/rb_male"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:text="Male"
-                            android:textColor="@color/text_color_dark" />
-
-                        <RadioButton
-                            android:id="@+id/rb_female"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:text="Female"
-                            android:textColor="@color/text_color_dark" />
-
-                        <RadioButton
-                            android:id="@+id/rb_other"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:text="Other"
-                            android:textColor="@color/text_color_dark" />
-
-                    </LinearLayout>
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Date of Birth" />
-
-                <Button
-                    android:id="@+id/pick_date_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:background="@color/light_blue"
-                    android:gravity="center"
-                    android:text="Select Date"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-                <!--                <com.google.android.material.textfield.TextInputEditText-->
-                <!--                    android:id="@+id/et_dobs"-->
-                <!--                    style="@style/EditTextAuth"-->
-                <!--                    android:hint="Enter Your dob"-->
-                <!--                    android:inputType="date"-->
-                <!--                    android:textSize="16dp"/>-->
 
             </LinearLayout>
 
@@ -201,12 +112,12 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Sevarth ID" />
+                    android:text="Department" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sevarth_id"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your Sevarth ID"
+                    android:hint="Select Your Department"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
 
@@ -223,12 +134,12 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Contact Number" />
+                    android:text="Role" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_cont_no"
+                    android:id="@+id/et_role"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your Contact Number"
+                    android:hint="Select Your Role"
                     android:inputType="phone"
                     android:textSize="16dp" />
 
@@ -245,12 +156,12 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Alternet Contact Number" />
+                    android:text="Enter Your Email" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_alt_cont_no"
+                    android:id="@+id/et_email"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your Alternet Contact Number"
+                    android:hint="Enter Email"
                     android:inputType="phone"
                     android:textSize="16dp" />
 
@@ -267,12 +178,12 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Photo" />
+                    android:text="Password" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_photo"
                     style="@style/EditTextAuth"
-                    android:hint="Tu kheech teri photo"
+                    android:hint="Enter Strong Password"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
 
@@ -289,12 +200,12 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Qualification" />
+                    android:text="Hint Question(for Forgot Password)" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_qualification"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your Qualification"
+                    android:hint="Enter Hint Question"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
 
@@ -311,335 +222,23 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Designation" />
+                    android:text="Answer" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_designation"
+                    android:id="@+id/et_aswer"
                     style="@style/EditTextAuth"
-                    android:hint="Enter Your Designation"
+                    android:hint="Enter Answer of Hint Que"
                     android:inputType="textPersonName"
                     android:textSize="16dp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Department ID" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_dept_id"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Department ID"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Experience" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_experience"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Experience In Years."
-                    android:inputType="number"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Retirement" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_retirement"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Retirement Year"
-                    android:inputType="number"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Aadhar Card" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_aadhar"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Aadhar Card"
-                    android:inputType="number"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Pan Card" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_pan"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Pan Card"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Cast" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_cast"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Cast"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Sub-Cast" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_subcast"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Sub-Cast"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Blood Group" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_blood_grp"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Blood Group"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Identification Mark" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_id_mark"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Identification Mark"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Address" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_address"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Address"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="City" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_city"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your City"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Pin-code" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_pincode"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Pin-Code"
-                    android:inputType="number"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="State" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_state"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your State"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Country" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_country"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Country"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="60dp"
-                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="45dp"
                 android:background="@drawable/auth_btn"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -648,15 +247,11 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:visibility="invisible" />
-
+                android:layout_marginTop="60dp"
+                android:textStyle="bold"
+                />
         </LinearLayout>
+
 
     </ScrollView>
 
@@ -668,3 +263,4 @@
         android:visibility="invisible" />
 
 </RelativeLayout>
+

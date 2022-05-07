@@ -17,13 +17,16 @@
         android:theme="@style/Theme.EmployeeManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.forgot_password.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.forgot_password.AskEmailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.forgot_password.GetQuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.registration.RegistrationActivity"
+            android:name=".ui.add_details.AddDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.forgot_password.ForgotPasswordActivity"

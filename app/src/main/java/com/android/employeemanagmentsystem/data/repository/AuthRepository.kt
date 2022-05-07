@@ -1,6 +1,7 @@
 package com.android.employeemanagmentsystem.data.repository
 
 import com.android.employeemanagmentsystem.data.models.responses.Employee
+import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
 import com.android.employeemanagmentsystem.data.network.SafeApiRequest
 import com.android.employeemanagmentsystem.data.network.apis.AuthApi
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
@@ -13,8 +14,11 @@ class AuthRepository : SafeApiRequest() {
         return apiRequest { authApi.employeeLogin(email, password) }
     }
 
-    suspend fun validateEmail(email: String, authApi: AuthApi): String {
+    suspend fun validateEmail(email: String, authApi: AuthApi): StatusResponse {
         return apiRequest { authApi.emailValidate(email) }
+    }
+    suspend fun validateAnswer(email: String,answer:String, authApi: AuthApi): StatusResponse {
+        return apiRequest { authApi.answerValidate(email,answer) }
     }
 
     suspend fun saveEmp(employee: Employee, employeeDao: EmployeeDao) =
