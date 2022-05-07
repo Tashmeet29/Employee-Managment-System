@@ -4,6 +4,7 @@ import com.android.employeemanagmentsystem.data.models.responses.EmployeeDetails
 import com.android.employeemanagmentsystem.data.models.responses.Employee
 import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
 import com.android.employeemanagmentsystem.utils.BASE_URL
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -32,6 +33,13 @@ interface AuthApi {
         @Field("answer") answer: String,
     ): Response<StatusResponse>
 
+    @FormUrlEncoded
+    @POST("reset_password")
+    suspend fun changePassword(
+        @Field("email") email: String,
+        @Field("password") password: String,
+    ): Response<StatusResponse>
+
     //api request for login of all employees of all roles
     @GET("EmployeeDetails/getDetails")
     suspend fun getEmployeeDetails(
@@ -45,7 +53,7 @@ interface AuthApi {
         ): AuthApi {
 
 //            val okkHttpclient = OkHttpClient.Builder()
-//                .addInterceptor(networkConnectionInterceptor)
+////                .addInterceptor(networkConnectionInterceptor)
 //                .build()
 
             return Retrofit.Builder()

@@ -56,23 +56,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     public fun getEmployeeDetails() {
         GlobalScope.launch {
-            val employee = authRepository.getEmployee(employeeDao)
 
-            val employeeDetails: EmployeeDetails =
-                authRepository.getEmployeeDetailse("GPAMTCM05", authApi)
+            try {
+                val employee = authRepository.getEmployee(employeeDao)
 
-            withContext(Dispatchers.Main) {
-                binding.apply {
-                    tvFirstName.text = employeeDetails.first_name
-                    tvMiddleName.text = employeeDetails.middle_name
-                    tvLastName.text = employeeDetails.last_name
-                    tvDob.text = employeeDetails.dob
-                    tvDesignation.text = employeeDetails.designation
-                    tvSevarthid.text = employeeDetails.sevarth_id
-                    tvBloodgroup.text = employeeDetails.blood_grp
-                    tvCast.text = employeeDetails.cast
+                val employeeDetails: EmployeeDetails =
+                    authRepository.getEmployeeDetailse(employee.sevarth_id, authApi)
+
+                withContext(Dispatchers.Main) {
+                    binding.apply {
+                        tvFirstName.text = employeeDetails.first_name
+                        tvMiddleName.text = employeeDetails.middle_name
+                        tvLastName.text = employeeDetails.last_name
+                        tvDob.text = employeeDetails.dob
+                        tvDesignation.text = employeeDetails.designation
+                        tvSevarthid.text = employeeDetails.sevarth_id
+                        tvBloodgroup.text = employeeDetails.blood_grp
+                        tvCast.text = employeeDetails.cast
+                    }
+                }
+            }catch (e: Exception){
+                HomeFragmentDirections.actionNavHomeToAddUserDetailsFragment().apply {
+                    findNavController().navigate(this)
                 }
             }
+
         }
     }
 }
