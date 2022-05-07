@@ -76,9 +76,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     }
                 }
             }catch (e: Exception){
-                HomeFragmentDirections.actionNavHomeToAddUserDetailsFragment().apply {
-                    findNavController().navigate(this)
+                withContext(Dispatchers.Main){
+                    HomeFragmentDirections.actionNavHomeToAddUserDetailsFragment().apply {
+                        findNavController().navigate(this)
+                    }
                 }
+
             }
 
         }
