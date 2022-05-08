@@ -17,6 +17,9 @@
         android:theme="@style/Theme.EmployeeManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.registration.RegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.forgot_password.ResetPasswordActivity"
             android:exported="false" />
         <activity

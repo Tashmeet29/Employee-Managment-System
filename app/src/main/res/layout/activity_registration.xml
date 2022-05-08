@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E2E2E2">
+    android:background="#E2E2E2"
+    tools:context=".ui.registration.RegistrationActivity">
 
 
     <ScrollView
@@ -45,7 +47,7 @@
                     android:text="Sevarth ID" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_first_name"
+                    android:id="@+id/et_sevarth_id"
                     style="@style/EditTextAuth"
                     android:hint="Your Sevarth Id"
                     android:inputType="textPersonName"
@@ -69,7 +71,7 @@
                     android:text="Organization" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_middle_name"
+                    android:id="@+id/et_org"
                     style="@style/EditTextAuth"
                     android:hint="Select Your Organization"
                     android:inputType="textPersonName"
@@ -93,7 +95,7 @@
                     android:text="Employee Name" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_last_name"
+                    android:id="@+id/et_emp_name"
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Name"
                     android:inputType="textPersonName"
@@ -115,7 +117,7 @@
                     android:text="Department" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_sevarth_id"
+                    android:id="@+id/et_department"
                     style="@style/EditTextAuth"
                     android:hint="Select Your Department"
                     android:inputType="textPersonName"
@@ -181,7 +183,7 @@
                     android:text="Password" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_photo"
+                    android:id="@+id/et_password"
                     style="@style/EditTextAuth"
                     android:hint="Enter Strong Password"
                     android:inputType="textPersonName"
@@ -203,7 +205,7 @@
                     android:text="Hint Question(for Forgot Password)" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_qualification"
+                    android:id="@+id/et_hint_question"
                     style="@style/EditTextAuth"
                     android:hint="Enter Hint Question"
                     android:inputType="textPersonName"

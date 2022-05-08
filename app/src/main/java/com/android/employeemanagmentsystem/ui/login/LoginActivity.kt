@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleRegisterClick() {
         binding.btnRegister.setOnClickListener {
-            this@LoginActivity.move(RegistrationActivity::class.java, false)
+            this@LoginActivity.move(RegistrationActivity::class.java, true)
         }
     }
 

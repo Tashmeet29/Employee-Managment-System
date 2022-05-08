@@ -39,6 +39,21 @@ interface AuthApi {
         @Field("email") email: String,
         @Field("password") password: String,
     ): Response<StatusResponse>
+    //post registration form
+    @FormUrlEncoded
+    @POST("new_registration")
+    suspend fun newRegistration(
+        @Field("sevarth_id") sevarth_id: String: String,
+        @Field("organization") organization: String,
+        @Field("name") name: String,
+        @Field("department") department: String,
+        @Field("email") email: String,
+        @Field("role") role: String,
+        @Field("password") password: String,
+        @Field("hint_question") hint_question: String,
+        @Field("hint_answer") hint_answer: String,
+
+    ): Response<StatusResponse>
 
     //api request for login of all employees of all roles
     @GET("EmployeeDetails/getDetails")
