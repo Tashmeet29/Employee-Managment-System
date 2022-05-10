@@ -173,22 +173,14 @@
                     style="@style/TextViewReg"
                     android:text="Date of Birth" />
 
-                <Button
-                    android:id="@+id/pick_date_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:background="@color/light_blue"
-                    android:gravity="center"
-                    android:text="Select Date"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-                <!--                <com.google.android.material.textfield.TextInputEditText-->
-                <!--                    android:id="@+id/et_dobs"-->
-                <!--                    style="@style/EditTextAuth"-->
-                <!--                    android:hint="Enter Your dob"-->
-                <!--                    android:inputType="date"-->
-                <!--                    android:textSize="16dp"/>-->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_dob"
+                    style="@style/EditTextAuth"
+                    android:layout_marginStart="5dp"
+                    android:hint="Enter Your dob"
+                    android:inputType="date"
+                    android:textSize="16dp" />
 
             </LinearLayout>
 

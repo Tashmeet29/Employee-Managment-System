@@ -70,12 +70,11 @@
                     style="@style/TextViewReg"
                     android:text="Organization" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_org"
-                    style="@style/EditTextAuth"
-                    android:hint="Select Your Organization"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                <Spinner
+                    android:id="@+id/spinner_organization"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circular_stock_black_bg" />
 
 
             </LinearLayout>
@@ -103,27 +102,26 @@
 
             </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                style="@style/TextViewAuth"
+                android:text="Departments " />
+
+            <!--Spinner widget-->
+            <Spinner
+                android:id="@+id/spinner_departments"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Department" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_department"
-                    style="@style/EditTextAuth"
-                    android:hint="Select Your Department"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
+                android:layout_height="50dp"
+                android:background="@drawable/circular_stock_black_bg"/>
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -138,12 +136,11 @@
                     style="@style/TextViewReg"
                     android:text="Role" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_role"
-                    style="@style/EditTextAuth"
-                    android:hint="Select Your Role"
-                    android:inputType="phone"
-                    android:textSize="16dp" />
+                <Spinner
+                    android:id="@+id/spinner_role"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circular_stock_black_bg" />
 
             </LinearLayout>
 
@@ -227,7 +224,7 @@
                     android:text="Answer" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_aswer"
+                    android:id="@+id/et_answer"
                     style="@style/EditTextAuth"
                     android:hint="Enter Answer of Hint Que"
                     android:inputType="textPersonName"

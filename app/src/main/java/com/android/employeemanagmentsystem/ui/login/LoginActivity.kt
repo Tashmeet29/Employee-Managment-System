@@ -17,6 +17,7 @@ import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 
 private const val TAG = "xLoginActivity"
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
@@ -70,43 +71,59 @@ class LoginActivity : AppCompatActivity() {
                 //checking email and password is empty or not
                 email.isBlank() -> toast("Please Enter Email")
                 password.isBlank() -> toast("Please Enter Password")
+
                 else -> {
                     GlobalScope.launch {
 
 
-
-
                         try {
                             //making network call to get user credentials
-                            val employee: Employee = authRepository.empLogin(email, password, authApi)
+                            val employee: Employee =
+                                authRepository.empLogin(email, password, authApi)
 
                             //saving the employee in local database
                             authRepository.saveEmp(employee, employeeDao)
 
                             val employeeRoleId = employee.role_id.toInt()
 
-                            //role id 1 is for employee
-                            when {
-                                employeeRoleId.toInt() == ROLE_EMPLOYEE -> {
-                                    this@LoginActivity.move(EmployeeDashboard::class.java, true)
-                                }
-                                employeeRoleId.toInt() == ROLE_Registrar -> {
-                                    this@LoginActivity.move(RegistrarDashboard::class.java, true)
-                                }
-                                else -> {
-                                    this@LoginActivity.move(AdminDashBoardActivity::class.java, true)
 
+                            if (employee.is_verified == "1") {
+                                //role id 1 is for employee
+                                when {
+                                    employeeRoleId.toInt() == ROLE_EMPLOYEE -> {
+                                        this@LoginActivity.move(EmployeeDashboard::class.java, true)
+                                    }
+                                    employeeRoleId.toInt() == ROLE_Registrar -> {
+                                        this@LoginActivity.move(
+                                            RegistrarDashboard::class.java,
+                                            true
+                                        )
+                                    }
+                                    else -> {
+                                        this@LoginActivity.move(
+                                            AdminDashBoardActivity::class.java,
+                                            true
+                                        )
+
+                                    }
+                                }
+
+                            } else {
+                                Dispatchers.Main {
+                                    toast("You are Not Verified Yet!!")
                                 }
                             }
 
 
-                        }catch (e: Exception){
+                        } catch (e: Exception) {
                             handleException(e)
                         }
 
                     }
                 }
             }
+
+
         }
     }
 }

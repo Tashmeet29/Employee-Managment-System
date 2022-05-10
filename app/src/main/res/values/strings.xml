@@ -19,4 +19,8 @@
     <string name="title_activity_principal_dashboard">ActivityPrincipalDashboard</string>
     <string name="menu_logout">Logout</string>
     <string name="add_user_details">Add User Details</string>
+    <string name="menu_verify_user">Verify User</string>
+    <string name="user_details">Profile</string>
+    <string name="menu_user_details">User Details</string>
+    <string name="menu_all_employees">All Employees</string>
 </resources>
