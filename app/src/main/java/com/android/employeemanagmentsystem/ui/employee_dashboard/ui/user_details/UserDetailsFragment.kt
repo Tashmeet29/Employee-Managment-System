@@ -77,6 +77,7 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
                         tvDesignation.text = employeeDetails.designation
                         tvBloodgroup.text = employeeDetails.blood_grp
                         tvCast.text = employeeDetails.cast
+                        tvRetirement.text = employeeDetails.retriement_date
                         tvAlternateContact.text = employeeDetails.alternative_contact_no
                         tvCity.text = employeeDetails.city
                         tvState.text = employeeDetails.state

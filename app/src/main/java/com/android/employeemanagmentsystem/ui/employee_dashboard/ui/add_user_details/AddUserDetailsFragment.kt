@@ -35,25 +35,27 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
         init_variables()
         handleBtnSubmitClick()
 
+
     }
 
 
     private fun init_variables() {
         authRepository = AuthRepository()
         authApi = AuthApi.invoke()
-//        employeeDao = AppDatabase.invoke(this@AddUserDetailsFragment).getEmployeeDao()
+        employeeDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
 
     }
 
     private fun handleBtnSubmitClick() {
         //POST Form on Btn Click
         binding.btnSubmit.setOnClickListener {
+
+
             val first_name = binding.etFirstName.text.toString()
             val middle_name = binding.etMiddleName.text.toString()
             val last_name = binding.etLastName.text.toString()
             val gender = (binding.rbMale.isChecked) then "Male" ?: "Female"
             val dob = binding.etDob.text.toString()
-            val sevarth_id = binding.etSevarthId.text.toString()
             val contact_no = binding.etContNo.text.toString()
             val alternative_contact_no = binding.etAltContNo.text.toString()
             val qualification = binding.etQualification.text.toString()
@@ -81,7 +83,6 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                 last_name.isBlank() -> toast("Please Enter Email")
                 gender.isBlank() -> toast("Please Enter Email")
                 dob.isBlank() -> toast("Please Enter Email")
-                sevarth_id.isBlank() -> toast("Please Enter Email")
                 contact_no.isBlank() -> toast("Please Enter Email")
                 alternative_contact_no.isBlank() -> toast("Please Enter Email")
                 qualification.isBlank() -> toast("Please Enter Email")
@@ -103,6 +104,7 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 //
                 else -> {
                     GlobalScope.launch {
+                        val employee = authRepository.getEmployee(employeeDao)
 
                         try {
 
@@ -113,7 +115,7 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                                         "$last_name,\n" +
                                         "$gender,\n" +
                                         "$dob,\n" +
-                                        "$sevarth_id,\n" +
+                                        "${employee.sevarth_id}\n"+
                                         "$contact_no,\n" +
                                         "$alternative_contact_no,\n" +
                                         "$qualification,\n" +
@@ -139,7 +141,7 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                                 last_name,
                                 gender,
                                 dob,
-                                sevarth_id,
+                                employee.sevarth_id,
                                 contact_no,
                                 alternative_contact_no,
                                 qualification,
@@ -161,7 +163,11 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                             )
 
                             //role id 1 is for employee
-                            if (status.status.toBoolean()) {
+                            if (status.status=="true") {
+
+                                Dispatchers.Main {
+                                    toast("Details Added!!")
+                                }
                                 findNavController().navigate(R.id.nav_user_details)
                             } else {
                                 Dispatchers.Main {

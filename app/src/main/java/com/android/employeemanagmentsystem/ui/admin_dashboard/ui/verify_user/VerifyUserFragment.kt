@@ -89,6 +89,7 @@ class VerifyUserFragment : Fragment(R.layout.fragment_verify_user),
                         if (employee.status == "true") {
                             withContext(Dispatchers.Main) {
                                 getEmployees()
+                                Toast.makeText(context, "Application Accepted!", Toast.LENGTH_SHORT).show()
                             }
 
 
@@ -120,6 +121,7 @@ class VerifyUserFragment : Fragment(R.layout.fragment_verify_user),
                         //saving the employee in local database
                         if (employee.status == "true") {
                             withContext(Dispatchers.Main){
+                                Toast.makeText(context, "Application Decline Success!", Toast.LENGTH_SHORT).show()
                                 getEmployees()
                             }
                         } else {

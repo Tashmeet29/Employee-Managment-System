@@ -195,28 +195,6 @@
 
                 <TextView
                     style="@style/TextViewReg"
-                    android:text="Sevarth ID" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_sevarth_id"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Sevarth ID"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
                     android:text="Contact Number" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -246,28 +224,6 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Alternet Contact Number"
                     android:inputType="phone"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Photo" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_photo"
-                    style="@style/EditTextAuth"
-                    android:hint="Tu kheech teri photo"
-                    android:inputType="textPersonName"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -315,29 +271,6 @@
                     android:textSize="16dp" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <TextView
-                    style="@style/TextViewReg"
-                    android:text="Department ID" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_dept_id"
-                    style="@style/EditTextAuth"
-                    android:hint="Enter Your Department ID"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

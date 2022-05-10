@@ -161,7 +161,7 @@
                     android:id="@+id/et_email"
                     style="@style/EditTextAuth"
                     android:hint="Enter Email"
-                    android:inputType="phone"
+                    android:inputType="textEmailAddress"
                     android:textSize="16dp" />
 
             </LinearLayout>

@@ -68,7 +68,7 @@ interface AuthApi {
 
     //Post Add Details Form
     @FormUrlEncoded
-    @POST("add_details")
+    @POST("EmployeeDetails/add_details")
     suspend fun addDetails(
         @Field("first_name") first_name:String,
         @Field("middle_name") middle_name: String,
@@ -81,7 +81,7 @@ interface AuthApi {
         @Field("qualification") qualification: String,
         @Field("designation") designation: String,
         @Field("experience") experience: String,
-        @Field("retirement") retirement: String,
+        @Field("retirement_date") retirement: String,
         @Field("aadhar_no") aadhar_no: String,
         @Field("pan_no") pan_no: String,
         @Field("cast") cast: String,
