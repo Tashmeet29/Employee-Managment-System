@@ -1,8 +1,11 @@
 package com.android.employeemanagmentsystem.ui.splash
 
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.android.employeemanagmentsystem.data.models.responses.Employee
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
@@ -15,7 +18,9 @@ import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashb
 import com.android.employeemanagmentsystem.utils.ROLE_EMPLOYEE
 import com.android.employeemanagmentsystem.utils.ROLE_Registrar
 import com.android.employeemanagmentsystem.utils.move
+import com.android.employeemanagmentsystem.utils.toast
 import kotlinx.coroutines.*
+import java.util.jar.Manifest
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -34,7 +39,26 @@ class SplashActivity : AppCompatActivity() {
         authRepository = AuthRepository()
         employeeDao = AppDatabase.invoke(applicationContext).getEmployeeDao()
 
-        setSplashTime()
+        checkStoragePermission()
+    }
+
+    private fun checkStoragePermission() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.MANAGE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ){
+          ActivityCompat.requestPermissions(this,
+              arrayOf(
+                  android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                  android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                  android.Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+              ),
+              100
+          )
+        }else{
+            setSplashTime()
+        }
     }
 
     //Delay the screen for some seconds
@@ -82,5 +106,22 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
+        if (requestCode == 100){
+
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                setSplashTime()
+            }else{
+                toast("You need to accept Store Permission to Proceed")
+                checkStoragePermission()
+            }
+
+        }
+    }
 }
