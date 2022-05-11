@@ -11,9 +11,6 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.employeemanagmentsystem.R
-import com.android.employeemanagmentsystem.data.models.responses.Employee
-import com.android.employeemanagmentsystem.data.models.responses.Training
-import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
 import com.android.employeemanagmentsystem.data.network.apis.TrainingApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
@@ -30,7 +27,11 @@ import android.graphics.*
 import android.graphics.pdf.PdfDocument
 import android.graphics.pdf.PdfDocument.PageInfo
 import android.net.Uri
+import android.os.Environment
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.android.employeemanagmentsystem.data.models.responses.*
+import kotlinx.android.synthetic.main.fragment_training_details.*
 import java.io.FileOutputStream
 import java.io.IOException
 
@@ -48,7 +49,10 @@ class TrainingApplicationDetails : Fragment(R.layout.fragment_training_details) 
     private lateinit var employeeDao: EmployeeDao
 
     private lateinit var employee: Employee
+    private lateinit var employeeDetails: EmployeeDetails
     private var file_name_path = ""
+
+    lateinit var paint: Paint
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,39 +71,111 @@ class TrainingApplicationDetails : Fragment(R.layout.fragment_training_details) 
         setTrainingType(training.training_type)
         setValuesOnFields()
 
-        generatePdf()
+
     }
+    private fun createTabularPdf() {
 
-    private fun generatePdf() {
+        GlobalScope.launch {
 
-        binding.apply {
-            btnGeneratePdf.setOnClickListener {
-                val builder = VmPolicy.Builder()
-                StrictMode.setVmPolicy(builder.build())
+            withContext(Dispatchers.IO){
 
-                val permissions = listOf<String>(
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE)
-
-                if (!hasPermissions(requireContext(), permissions)) {
-//                    ActivityCompat.requestPermissions(
-//                        requireActivity(),
-//                        permissions.toArray() as Array<out String>,
-//                        1
-//                    )
-                    requireContext().toast("missing permission")
+                withContext(Dispatchers.Main){
+                    binding.progressBar.isVisible = true
                 }
 
-                val file: File = File(
-                    requireContext().getExternalFilesDir(null)?.getAbsolutePath(),
-                    "pdfsdcard_location"
-                );
-                if (!file.exists()) {
-                    file.mkdir();
-                    createpdf()
+                val myPdfDocument = PdfDocument()
+                paint = Paint().apply {
+                    textSize = 55F
+                    typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+                    color = ContextCompat.getColor(requireContext(), R.color.black)
+                }
+
+                setPage(myPdfDocument, 1);
+
+                storePdfOffline(myPdfDocument)
+
+                withContext(Dispatchers.Main){
+                    binding.progressBar.isVisible = false
                 }
             }
+
+
         }
+
+    }
+
+
+    private fun setPage(myPdfDocument: PdfDocument, pageNumber: Int) {
+
+        var myPageInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(1120, 792, pageNumber).create()
+        var myPage = myPdfDocument.startPage(myPageInfo)
+        var canvas = myPage.canvas
+
+        paint.apply {
+            textSize = 70f
+            style = Paint.Style.FILL_AND_STROKE
+            strokeWidth = 2F
+        }
+
+
+        canvas.drawText("Government Polytechnic Amravati", 800F, 100F, paint)
+
+        paint.apply {
+            textSize = 50f
+            style = Paint.Style.STROKE
+            strokeWidth = 2F
+        }
+
+
+
+        canvas.drawText("Sevarth-Id", 230f, 230f, paint)
+        canvas.drawText("Training Name", 230f, 330f, paint)
+        canvas.drawText("Duration ", 230f, 430f, paint)
+        canvas.drawText("Start Date ", 230f, 530f, paint)
+        canvas.drawText("End Date ", 230f, 630f, paint)
+        canvas.drawText("Status", 230f, 730f, paint)
+        canvas.drawText("Organized By", 230f, 830f, paint)
+
+
+
+        canvas.drawText(employee.sevarth_id, 560f, 230f, paint)
+        canvas.drawText(training.name, 560f, 330f, paint)
+        canvas.drawText(getDurationInWeeks(training.duration), 560f, 430f, paint)
+        canvas.drawText(training.start_date, 560f, 530f, paint)
+        canvas.drawText(training.end_date, 560f, 630f, paint)
+        canvas.drawText("Taining status ID", 560f, 730f, paint)
+        canvas.drawText(training.organized_by, 560f, 830f, paint)
+
+
+
+        myPdfDocument.finishPage(myPage)
+    }
+
+
+    private suspend fun storePdfOffline(myPdfDocument: PdfDocument) {
+
+        withContext(Dispatchers.IO){
+            employee = authRepository.getEmployee(employeeDao)
+            val name = employee.sevarth_id + ".pdf"
+            val file =
+                File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${name}")
+
+            try {
+                myPdfDocument.writeTo(FileOutputStream(file))
+                withContext(Dispatchers.Main) {
+                    requireContext().toast("Document Created Successfully")
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    requireContext().toast(e.toString())
+                    e.printStackTrace()
+                }
+            } finally {
+                myPdfDocument.close()
+            }
+        }
+
+
     }
 
     private fun hasPermissions(context: Context, permissions: List<String>): Boolean {
@@ -116,89 +192,6 @@ class TrainingApplicationDetails : Fragment(R.layout.fragment_training_details) 
         return true;
     }
 
-    fun createpdf() {
-        val bounds = Rect()
-        val pageWidth = 300
-        val pageheight = 470
-        val pathHeight = 2
-        val fileName = "mypdf"
-        file_name_path = "/pdfsdcard_location/$fileName.pdf"
-        val myPdfDocument = PdfDocument()
-        val paint = Paint()
-        val paint2 = Paint()
-        val path = Path()
-        val myPageInfo = PageInfo.Builder(pageWidth, pageheight, 1).create()
-        val documentPage = myPdfDocument.startPage(myPageInfo)
-        val canvas: Canvas = documentPage.canvas
-        var y = 25 // x = 10,
-        var x = 10
-        paint.getTextBounds(
-            "tv_title.getText().toString()",
-            0,
-            10,
-            bounds
-        )
-        x = canvas.getWidth() / 2 - bounds.width() / 2
-        canvas.drawText("tv_title.getText().toString()", x.toFloat(), y.toFloat(), paint)
-        paint.getTextBounds(
-            "tv_sub_title.getText().toString()",
-            0,
-            "tv_sub_title.getText().toString()".toString().length,
-            bounds
-        )
-        x = canvas.getWidth() / 2 - bounds.width() / 2
-        y += (paint.descent() - paint.ascent()).toInt()
-        canvas.drawText("tv_sub_title.getText().toString()", x.toFloat(), y.toFloat(), paint)
-        y += (paint.descent() - paint.ascent()).toInt()
-        canvas.drawText("", x.toFloat(), y.toFloat(), paint)
-
-//horizontal line
-        path.lineTo(pageWidth.toFloat(), pathHeight.toFloat())
-        paint2.setColor(Color.GRAY)
-        paint2.setStyle(Paint.Style.STROKE)
-        path.moveTo(x.toFloat(), y.toFloat())
-        canvas.drawLine(0F, y.toFloat(), pageWidth.toFloat(), y.toFloat(), paint2)
-
-////blank space
-//        y += (paint.descent() - paint.ascent()).toInt()
-//        canvas.drawText("", x, y, paint)
-//        y += (paint.descent() - paint.ascent()).toInt()
-//        x = 10
-//        canvas.drawText(tv_location.getText().toString(), x, y, paint)
-//        y += paint.descent() - paint.ascent()
-//        x = 10
-//        canvas.drawText(tv_city.getText().toString(), x, y, paint)
-//
-////blank space
-//        y += paint.descent() - paint.ascent()
-//        canvas.drawText("", x, y, paint)
-
-//horizontal line
-        path.lineTo(pageWidth.toFloat(), pathHeight.toFloat())
-        paint2.setColor(Color.GRAY)
-        paint2.setStyle(Paint.Style.STROKE)
-        path.moveTo(x.toFloat(), y.toFloat())
-        canvas.drawLine(0F, y.toFloat(), pageWidth.toFloat(), y.toFloat(), paint2)
-
-//blank space
-//        y += paint.descent() - paint.ascent()
-//        canvas.drawText("", x, y, paint)
-//        val res: Resources = resources
-//        val bitmap = BitmapFactory.decodeResource(res, R.drawable.logo)
-//        val b = Bitmap.createScaledBitmap(bitmap, 100, 50, false)
-//        canvas.drawBitmap(b, x, y, paint)
-//        y += 25
-        canvas.drawText(getString(R.string.app_name), 120F, y.toFloat(), paint)
-        myPdfDocument.finishPage(documentPage)
-        val file: File = File(requireContext().getExternalFilesDir(null)?.getAbsolutePath() + file_name_path)
-        try {
-            myPdfDocument.writeTo(FileOutputStream(file))
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        myPdfDocument.close()
-        viewPdfFile()
-    }
 
     fun viewPdfFile() {
         val file: File = File(requireContext().getExternalFilesDir(null)?.getAbsolutePath() + file_name_path)
@@ -277,6 +270,10 @@ class TrainingApplicationDetails : Fragment(R.layout.fragment_training_details) 
                         }
 
 
+                    }
+
+                    btnGeneratePdf.setOnClickListener {
+                        createTabularPdf()
                     }
 
                     btnDecline.setOnClickListener {

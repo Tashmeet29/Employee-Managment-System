@@ -164,6 +164,7 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                                     department_id = selected_department,
                                     application_type = application_type.toString(),
                                     from_department = employee.dept_id,
+                                    role_id = employee.role_id.toString(),
                                     applyPdf = convertBytesToMultipart(),
                                     iOApplicationApi = ioApplicationApi
                                 )

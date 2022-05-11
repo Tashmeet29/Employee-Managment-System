@@ -31,8 +31,15 @@ interface IOApplicationApi {
         @Part("department_id") department_id: RequestBody,
         @Part("application_type") application_type: RequestBody,
         @Part("from_department") from_department: RequestBody,
+        @Part("role_id") role_id: RequestBody,
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
+
+    @FormUrlEncoded
+    @POST("IoApplication/get_employee_details")
+    suspend fun getEmployeeDetails(
+        @Field("sevarth_id") sevarth_id: String,
+    ): Response<EmployeeDetails>
 
     @FormUrlEncoded
     @POST("IoApplication/get_applications")

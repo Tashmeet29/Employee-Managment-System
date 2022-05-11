@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.data.repository
 
+import com.android.employeemanagmentsystem.data.models.responses.EmployeeDetails
 import com.android.employeemanagmentsystem.data.models.responses.Training
 import com.android.employeemanagmentsystem.data.network.SafeApiRequest
 import com.android.employeemanagmentsystem.data.network.apis.IOApplicationApi
@@ -19,6 +20,7 @@ class IOApplicationRepository : SafeApiRequest() {
         department_id: String,
         application_type: String,
         from_department: String,
+        role_id: String,
         applyPdf: MultipartBody.Part,
         iOApplicationApi: IOApplicationApi
     ) = apiRequest {
@@ -31,10 +33,15 @@ class IOApplicationRepository : SafeApiRequest() {
             department_id.toMultipartReq(),
             application_type.toMultipartReq(),
             from_department.toMultipartReq(),
+            role_id.toMultipartReq(),
             applyPdf,
 
 
         )
+    }
+
+    suspend fun getEmployeeDetails(sevarth_id: String, iOApplicationApi: IOApplicationApi): EmployeeDetails{
+        return apiRequest { iOApplicationApi.getEmployeeDetails(sevarth_id) }
     }
 
     suspend fun getDepartments(iOApplicationApi: IOApplicationApi) = apiRequest { iOApplicationApi.getDepartments() }

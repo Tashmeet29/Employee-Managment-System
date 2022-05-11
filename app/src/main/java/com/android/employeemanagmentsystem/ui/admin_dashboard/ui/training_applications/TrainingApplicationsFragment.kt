@@ -67,11 +67,11 @@ class TrainingApplicationsFragment : Fragment(R.layout.fragment_training_applica
             status = listOf(
                 "All Status",
                 "Applied to HOD",
-                "Applied to Principle",
+                "Applied to Principal",
                 "Approved by HOD",
                 "Decline by HOD",
-                "Approved by Principle",
-                "Decline by Principle",
+                "Approved by Principal",
+                "Decline by Principal",
                 "Completed"
             )
 

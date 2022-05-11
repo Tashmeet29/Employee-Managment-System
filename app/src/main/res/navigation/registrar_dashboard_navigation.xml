@@ -37,6 +37,11 @@
             android:name="Application"
             app:argType="com.android.employeemanagmentsystem.data.models.responses.Application" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_apply_application"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_io_applications.ApplyIOApplicationsFragment"
+        android:label="@string/menu_apply_application"
+        tools:layout="@layout/fragment_io_apply_applications" />
 
 
 </navigation>

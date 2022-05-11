@@ -59,13 +59,13 @@ class IoApplicationDetails : Fragment(R.layout.fragment_io_application_details) 
             var hod_cond =
                 (curr_user.role_id.toInt() == ROLE_HOD) and (application.status_id.toInt() == IO_APPLICATION_APPLIED)
 
-            //if current user is registrar and hod had approved application
+            //if current user is registrar and hod had approved application or applied application
             var registrar_cond =
-                (curr_user.role_id.toInt() == ROLE_Registrar) and (application.status_id.toInt() == IO_APPROVED_BY_HOD)
+                (curr_user.role_id.toInt() == ROLE_Registrar) and (application.status_id.toInt() == IO_APPROVED_BY_HOD) or (application.status_id.toInt() == IO_APPLIED_BY_HOD)
 
-            //if current user is principle and hod had approved application
+            //if current user is principle and hod had approved application or applied by registrar
             var principle_cond =
-                (curr_user.role_id.toInt() == ROLE_Principle) and (application.status_id.toInt() == IO_APPROVED_BY_REGISTRAR)
+                (curr_user.role_id.toInt() == ROLE_Principle) and (application.status_id.toInt() == IO_APPROVED_BY_REGISTRAR) or (application.status_id.toInt() == IO_APPLIED_BY_REGISTRAR)
 
             withContext(Dispatchers.Main) {
                 //show approve or decline button if any one is true

@@ -11,9 +11,9 @@ data class Employee(
     val role_id: Integer,
     val email: String,
     val password: String,
+    val name: String,
 
     @PrimaryKey
     val UID: Int = 0
 
 )
-
