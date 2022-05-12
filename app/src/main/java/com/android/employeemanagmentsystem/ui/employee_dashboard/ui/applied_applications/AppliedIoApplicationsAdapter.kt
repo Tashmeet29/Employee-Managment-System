@@ -34,6 +34,7 @@ class AppliedIoApplicationsAdapter(
         fun bindData(application: Application){
             binding.apply {
 
+                tvId.text = application.id
                 tvName.text = application.title
                 tvDate.text = application.date
                 tvStatus.text = application.getApplicationStringStatus
