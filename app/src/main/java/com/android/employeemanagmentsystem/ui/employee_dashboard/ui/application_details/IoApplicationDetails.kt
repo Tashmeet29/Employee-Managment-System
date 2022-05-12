@@ -194,6 +194,7 @@ class IoApplicationDetails : Fragment(R.layout.fragment_io_application_details) 
     private fun setApplicationData() {
         binding.apply {
 
+            tvIoId.text = application.id
             tvIoTitle.text = application.title
             tvDesc.text = application.description
             tvDate.text = application.date

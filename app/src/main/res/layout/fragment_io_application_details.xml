@@ -32,6 +32,31 @@
             <!--                android:textSize="25dp" />-->
 
 
+            <!--Linear ID-->
+            <LinearLayout
+                android:id="@+id/linearLayoutIoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewAuth"
+                    android:text="Applicatio ID" />
+
+                <TextView
+                    android:id="@+id/tv_io_id"
+                    style="@style/EditTextAuth"
+                    android:hint="Application Id"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
             <!--Linear UserName-->
             <LinearLayout
                 android:id="@+id/linearLayoutUserName"
