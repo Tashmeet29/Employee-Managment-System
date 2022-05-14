@@ -107,6 +107,61 @@ class AuthRepository : SafeApiRequest() {
         }
     }
 
+    suspend fun editDetails(
+        first_name: String,
+        middle_name: String,
+        last_name: String,
+        gender: String,
+        dob: String,
+        sevarth_id: String,
+        contact_no: String,
+        alternative_contact_no: String,
+        qualification: String,
+        designation: String,
+        experience: String,
+        retirement_date: String,
+        aadhar_no: String,
+        pan_no: String,
+        cast: String,
+        subcast: String,
+        blood_grp: String,
+        identification_mark: String,
+        address: String,
+        city: String,
+        pin_code: String,
+        state: String,
+        country: String,
+        authApi: AuthApi
+    ): StatusResponse {
+        return apiRequest {
+            authApi.editDetails(
+                first_name,
+                middle_name,
+                last_name,
+                gender,
+                dob,
+                sevarth_id,
+                contact_no,
+                alternative_contact_no,
+                qualification,
+                designation,
+                experience,
+                retirement_date,
+                aadhar_no,
+                pan_no,
+                cast,
+                subcast,
+                blood_grp,
+                identification_mark,
+                address,
+                city,
+                pin_code,
+                state,
+                country,
+            )
+        }
+    }
+
     suspend fun saveEmp(employee: Employee, employeeDao: EmployeeDao) =
         withContext(Dispatchers.IO) {
             employeeDao.saveEmployee(employee)
@@ -157,6 +212,10 @@ class AuthRepository : SafeApiRequest() {
     suspend fun declineEmployee(sevarth_id: String, authApi: AuthApi) =
         withContext(Dispatchers.IO) {
             apiRequest { authApi.employeeInValidate(sevarth_id) }
+        }
+    suspend fun checkKey(key: String, authApi: AuthApi) =
+        withContext(Dispatchers.IO) {
+            apiRequest { authApi.checkKey(key) }
         }
 
 }

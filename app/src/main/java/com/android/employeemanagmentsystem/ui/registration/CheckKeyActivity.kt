@@ -1,28 +1,30 @@
-package com.android.employeemanagmentsystem.ui.forgot_password
+package com.android.employeemanagmentsystem.ui.registration
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.employeemanagmentsystem.R
 import com.android.employeemanagmentsystem.data.models.responses.StatusResponse
 import com.android.employeemanagmentsystem.data.network.apis.AuthApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
-import com.android.employeemanagmentsystem.databinding.ActivityAskEmailBinding
+import com.android.employeemanagmentsystem.databinding.ActivityCheckKeyBinding
+import com.android.employeemanagmentsystem.ui.forgot_password.ForgotPasswordActivity
 import com.android.employeemanagmentsystem.ui.login.LoginActivity
-import com.android.employeemanagmentsystem.utils.*
+import com.android.employeemanagmentsystem.utils.handleException
+import com.android.employeemanagmentsystem.utils.toast
 import kotlinx.coroutines.*
-import okhttp3.Dispatcher
 
-class AskEmailActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityAskEmailBinding
+class CheckKeyActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCheckKeyBinding
     private lateinit var authRepository: AuthRepository
     private lateinit var authApi: AuthApi
     private lateinit var employeeDao: EmployeeDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityAskEmailBinding.inflate(layoutInflater)
+        binding = ActivityCheckKeyBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         init_variables()
@@ -41,32 +43,31 @@ class AskEmailActivity : AppCompatActivity() {
         //handles the click of login button
         binding.btnSubmit.setOnClickListener {
             //getting email and password after click of login button
-            val email = binding.etEmail.text.toString()
-            toast(email)
+            val key = binding.etKey.text.toString()
+            toast(key)
 
             when {
                 //checking email and password is empty or not
-                email.isBlank() -> toast("Please Enter Email")
+                key.isBlank() -> toast("Please Enter Key")
                 else -> {
                     GlobalScope.launch {
 
                         try {
                             //making network call to get user credentials
-                            val message: StatusResponse = authRepository.validateEmail(email, authApi)
+                            val message: StatusResponse = authRepository.checkKey(key, authApi)
 //                            binding.tvAskingEmail.text = message.status.toString()
                             withContext(Dispatchers.Main){
-
-                                if(message.status != "false") {
+                                toast(message.status)
+                                if(message.status == "true") {
                                     Intent(
-                                        this@AskEmailActivity,
-                                        ForgotPasswordActivity::class.java
+                                        this@CheckKeyActivity,
+                                        RegistrationActivity::class.java
                                     ).apply {
-                                        putExtra("email", email)
-                                        putExtra("question", message.status)
+
                                         startActivity(this)
                                     }
                                 }else{
-                                    toast("Email ID Does Not Exists!")
+                                    toast("Invalid App Key!!")
                                 }
                             }
 
@@ -82,7 +83,7 @@ class AskEmailActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
 
-        startActivity(Intent(this@AskEmailActivity,LoginActivity::class.java))
+        startActivity(Intent(this@CheckKeyActivity, LoginActivity::class.java))
         finish()
     }
 }

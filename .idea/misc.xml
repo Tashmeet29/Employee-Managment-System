@@ -49,7 +49,8 @@
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/drawable/reg_btn.xml" value="0.1495" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_add_details.xml" value="0.129174543163201" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_ask_email.xml" value="0.264" />
-        <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_forgot_password.xml" value="0.16" />
+        <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_check_key.xml" value="0.264" />
+        <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_forgot_password.xml" value="0.4" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_registration.xml" value="0.1" />
@@ -58,6 +59,7 @@
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/activity_splash.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/fragment_add_user_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/fragment_all_employees.xml" value="0.264" />
+        <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/fragment_edit_user_details.xml" value="0.1" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/fragment_home.xml" value="0.18209562563580875" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/fragment_training_applications.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/fragment_user_details.xml" value="0.1" />

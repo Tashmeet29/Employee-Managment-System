@@ -23,4 +23,6 @@
     <string name="user_details">Profile</string>
     <string name="menu_user_details">User Details</string>
     <string name="menu_all_employees">All Employees</string>
+    <string name="edit_user_details">Edit User Details</string>
+    <string name="menu_edit_user_details">Edit Details</string>
 </resources>

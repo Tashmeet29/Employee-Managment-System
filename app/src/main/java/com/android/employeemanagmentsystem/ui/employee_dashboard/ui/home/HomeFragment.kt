@@ -69,6 +69,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }catch (e: Exception){
                 withContext(Dispatchers.Main){
+                    Log.d("EXCE","Exception: $e")
                     HomeFragmentDirections.actionNavHomeToAddUserDetailsFragment().apply {
                         findNavController().navigate(this)
                     }

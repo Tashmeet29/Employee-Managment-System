@@ -51,8 +51,9 @@
                     style="@style/EditTextAuth"
                     android:hint="Your Sevarth Id"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
+                    android:textAllCaps="true"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -97,9 +98,10 @@
                     android:id="@+id/et_emp_name"
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Name"
-                    android:inputType="textPersonName"
-                    android:textSize="16dp" />
 
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
         <LinearLayout
@@ -162,8 +164,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Email"
                     android:inputType="textEmailAddress"
-                    android:textSize="16dp" />
-
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -184,8 +186,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Strong Password"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -206,8 +208,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Hint Question"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
-
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -228,7 +230,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Answer of Hint Que"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 

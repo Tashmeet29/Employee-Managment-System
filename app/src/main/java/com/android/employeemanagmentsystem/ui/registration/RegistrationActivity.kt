@@ -1,5 +1,6 @@
 package com.android.employeemanagmentsystem.ui.registration
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AdapterView
@@ -40,6 +41,14 @@ class RegistrationActivity : AppCompatActivity() {
         getDepartments()
         getRoles()
         handleBtnSubmitClick()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        //Go Back to Login
+        startActivity(Intent(this@RegistrationActivity,LoginActivity::class.java))
+        finish()
+
     }
     private fun init_variables() {
         authRepository = AuthRepository()

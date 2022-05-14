@@ -35,6 +35,7 @@ class SplashActivity : AppCompatActivity() {
         employeeDao = AppDatabase.invoke(applicationContext).getEmployeeDao()
 
         setSplashTime()
+
     }
 
     //Delay the screen for some seconds
@@ -47,6 +48,7 @@ class SplashActivity : AppCompatActivity() {
             val savedEmployees = authRepository.getSplashEmployees(employeeDao)
 
             handleNavigation(savedEmployees)
+            finish()
 
 
         }

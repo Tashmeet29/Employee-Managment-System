@@ -96,8 +96,38 @@ interface AuthApi {
 
         ): Response<StatusResponse>
 
+
+    @FormUrlEncoded
+    @POST("edit_details")
+    suspend fun editDetails(
+        @Field("first_name") first_name:String,
+        @Field("middle_name") middle_name: String,
+        @Field("last_name") last_name: String,
+        @Field("gender") gender: String,
+        @Field("dob") dob: String,
+        @Field("sevarth_id") sevarth_id: String,
+        @Field("contact_no") contact_no: String,
+        @Field("alternative_contact_no") alternative_contact_no: String,
+        @Field("qualification") qualification: String,
+        @Field("designation") designation: String,
+        @Field("experience") experience: String,
+        @Field("retirement_date") retirement: String,
+        @Field("aadhar_no") aadhar_no: String,
+        @Field("pan_no") pan_no: String,
+        @Field("cast") cast: String,
+        @Field("subcast") subcast: String,
+        @Field("blood_grp") blood_grp: String,
+        @Field("identification_mark") identification_mark: String,
+        @Field("address") address: String,
+        @Field("city") city: String,
+        @Field("pin_code") pin_code: String,
+        @Field("state") state: String,
+        @Field("country") country: String,
+
+        ): Response<StatusResponse>
+
     //api request for login of all employees of all roles
-    @GET("EmployeeDetails/getDetails")
+    @GET("get_details")
     suspend fun getEmployeeDetails(
         @Query("sevarth_id") sevarth_id: String
     ): Response<EmployeeDetails>
@@ -127,6 +157,12 @@ interface AuthApi {
     @POST("decline_principle_request")
     suspend fun employeeInValidate(
         @Field("employee_id") employee_id: String,
+    ): Response<StatusResponse>
+
+@FormUrlEncoded
+    @POST("check_key")
+    suspend fun checkKey(
+        @Field("key") key: String,
     ): Response<StatusResponse>
 
 

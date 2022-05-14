@@ -14,7 +14,7 @@ data class EmployeeDetails(
     val cast: String,
     val subcast: String,
     val designation: String,
-    val retriement_date: String,
+    val retirement_date: String,
     val experience: String,
     val aadhar_no: String,
     val pan_no: String,

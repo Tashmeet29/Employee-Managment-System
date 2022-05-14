@@ -12,6 +12,7 @@ import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActi
 import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
 import com.android.employeemanagmentsystem.ui.forgot_password.AskEmailActivity
 import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
+import com.android.employeemanagmentsystem.ui.registration.CheckKeyActivity
 import com.android.employeemanagmentsystem.ui.registration.RegistrationActivity
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
@@ -42,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleRegisterClick() {
         binding.btnRegister.setOnClickListener {
-            this@LoginActivity.move(RegistrationActivity::class.java, true)
+            this@LoginActivity.move(CheckKeyActivity::class.java, true)
         }
     }
 

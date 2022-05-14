@@ -27,7 +27,7 @@
             <TextView
                 style="@style/TextViewReg"
                 android:layout_gravity="center_horizontal"
-                android:text="Add Details"
+                android:text="Edit Details"
                 android:textSize="25dp" />
 
 
@@ -51,7 +51,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your First Name"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
 
             </LinearLayout>
@@ -75,7 +76,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Middle Name"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
 
             </LinearLayout>
@@ -99,7 +101,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Last Name"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -180,7 +183,8 @@
                     android:layout_marginStart="5dp"
                     android:hint="Enter Your dob"
                     android:inputType="date"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -202,7 +206,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Contact Number"
                     android:inputType="phone"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -224,7 +229,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Alternet Contact Number"
                     android:inputType="phone"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -246,7 +252,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Qualification"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -268,7 +275,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Designation"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
             <LinearLayout
@@ -289,7 +297,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Experience In Years."
                     android:inputType="number"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -311,7 +320,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Retirement Year"
                     android:inputType="number"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -333,7 +343,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Aadhar Card"
                     android:inputType="number"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -356,8 +367,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Pan Card"
                     android:inputType="textPersonName"
-                    android:textAllCaps="true"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -379,7 +390,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Cast"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -402,7 +414,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Sub-Cast"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -424,7 +437,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Blood Group"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -447,7 +461,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Identification Mark"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -469,7 +484,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Address"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -492,7 +508,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your City"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -514,7 +531,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Pin-Code"
                     android:inputType="number"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -536,7 +554,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your State"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -558,7 +577,8 @@
                     style="@style/EditTextAuth"
                     android:hint="Enter Your Country"
                     android:inputType="textPersonName"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 

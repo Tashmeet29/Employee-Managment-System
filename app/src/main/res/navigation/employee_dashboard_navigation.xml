@@ -89,6 +89,11 @@
         android:label="@string/add_user_details"
         tools:layout="@layout/fragment_add_user_details" />
     <fragment
+        android:id="@+id/nav_edit_details"
+        android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.edit_user_details.EditDetailsFragment"
+        android:label="@string/edit_user_details"
+        tools:layout="@layout/fragment_edit_user_details" />
+    <fragment
         android:id="@+id/nav_user_details"
         android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.user_details.UserDetailsFragment"
         android:label="@string/user_details"
