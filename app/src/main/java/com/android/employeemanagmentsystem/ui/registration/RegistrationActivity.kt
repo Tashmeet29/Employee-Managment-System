@@ -78,6 +78,7 @@ class RegistrationActivity : AppCompatActivity() {
                 org_id.isBlank()->toast("Please Select Organisation")
                 name.isBlank()->toast("Please Enter Name")
                 sevarth_id.isBlank()->toast("Please enter Sevarth Id")
+                sevarth_id.length != 12 -> toast("Please Enter 12 digits sevarth id")
                 hint_answer.isBlank()->toast("Please enter Hint Answer")
                 hint_question.isBlank()->toast("Please enter Question")
 

@@ -57,7 +57,7 @@ class CheckKeyActivity : AppCompatActivity() {
                             val message: StatusResponse = authRepository.checkKey(key, authApi)
 //                            binding.tvAskingEmail.text = message.status.toString()
                             withContext(Dispatchers.Main){
-                                toast(message.status)
+                                toast("Authorized Successfully")
                                 if(message.status == "true") {
                                     Intent(
                                         this@CheckKeyActivity,

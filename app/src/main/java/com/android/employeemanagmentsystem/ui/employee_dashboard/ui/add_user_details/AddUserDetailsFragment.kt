@@ -55,7 +55,7 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
             val middle_name = binding.etMiddleName.text.toString()
             val last_name = binding.etLastName.text.toString()
             val gender = (binding.rbMale.isChecked) then "Male" ?: "Female"
-            val dob = binding.etDob.text.toString()
+            val dob = binding.tvDob.text.toString()
             val contact_no = binding.etContNo.text.toString()
             val alternative_contact_no = binding.etAltContNo.text.toString()
             val qualification = binding.etQualification.text.toString()
@@ -78,28 +78,30 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 //                if () {
             when {
                 //checking email and password is empty or not
-                first_name.isBlank() -> toast("Please Enter Email")
-                middle_name.isBlank() -> toast("Please Enter Email")
-                last_name.isBlank() -> toast("Please Enter Email")
-                gender.isBlank() -> toast("Please Enter Email")
-                dob.isBlank() -> toast("Please Enter Email")
-                contact_no.isBlank() -> toast("Please Enter Email")
-                alternative_contact_no.isBlank() -> toast("Please Enter Email")
-                qualification.isBlank() -> toast("Please Enter Email")
-                designation.isBlank() -> toast("Please Enter Email")
-                experience.isBlank() -> toast("Please Enter Email")
-                retirement_date.isBlank() -> toast("Please Enter Email")
-                aadhar_no.isBlank() -> toast("Please Enter Email")
-                pan_no.isBlank() -> toast("Please Enter Email")
-                cast.isBlank() -> toast("Please Enter Email")
-                subcast.isBlank() -> toast("Please Enter Email")
-                blood_grp.isBlank() -> toast("Please Enter Email")
-                identification_mark.isBlank() -> toast("Please Enter Email")
-                address.isBlank() -> toast("Please Enter Email")
-                city.isBlank() -> toast("Please Enter Email")
-                pin_code.isBlank() -> toast("Please Enter Email")
-                state.isBlank() -> toast("Please Enter Email")
-                country.isBlank() -> toast("Please Enter Email")
+                first_name.isBlank() -> toast("Enter Your First Name")
+                middle_name.isBlank() -> toast("Enter Your Middle Name")
+//                last_name.isBlank() -> toast("Enter Your Last Name")
+//                gender.isBlank() -> toast("Enter Your Gender")
+//                dob.isBlank() -> toast("Enter Your Date of Birth")
+//                contact_no.isBlank() -> toast("Enter Your Contact Number")
+//                contact_no.length != 10 -> toast("Enter Correct Number")
+//                alternative_contact_no.isBlank() -> toast("Enter Your Alternate Contact Number")
+//                alternative_contact_no.length != 10 -> toast("Enter Correct Alternate Contact Number")
+//                qualification.isBlank() -> toast("Enter Your Qualification")
+//                designation.isBlank() -> toast("Enter Your Designation")
+//                experience.isBlank() -> toast("Enter Your Experience")
+//                retirement_date.isBlank() -> toast("Enter your Retirement Date")
+//                aadhar_no.isBlank() -> toast("Enter Your Aadhaar Number")
+//                pan_no.isBlank() -> toast("Enter Your Pan Number")
+//                cast.isBlank() -> toast("Enter Your Cast")
+//                subcast.isBlank() -> toast("Enter Your Sub-Cast")
+//                blood_grp.isBlank() -> toast("Enter Your Blood Group")
+//                identification_mark.isBlank() -> toast("Enter Your Identification Mark")
+//                address.isBlank() -> toast("Enter Your Address")
+//                city.isBlank() -> toast("Enter Your City")
+//                pin_code.isBlank() -> toast("Enter Your Pin-Code")
+//                state.isBlank() -> toast("Enter Your State")
+//                country.isBlank() -> toast("Enter Your Country.")
 
 //
                 else -> {
@@ -166,12 +168,13 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                             if (status.status=="true") {
 
                                 Dispatchers.Main {
-                                    toast("Details Added!!")
+                                    toast("Details Added Successfully!!")
+                                    findNavController().navigate(R.id.nav_user_details)
                                 }
-                                findNavController().navigate(R.id.nav_user_details)
+
                             } else {
                                 Dispatchers.Main {
-                                    toast("Error Occured: ")
+                                    toast("Error Occurred: ")
 
                                 }
                             }
@@ -179,10 +182,10 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                         } catch (e: Exception) {
 
                             Dispatchers.Main {
-                                toast("Error Occured: $e")
+                                toast("Error Occurred: $e")
 
                             }
-                            Log.d("Eror DB", "Error Occured: $e")
+                            Log.d("Error DB", "Error Occurred: $e")
                         }
 
                     }
@@ -190,16 +193,15 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
             }
         }
 
-
-        binding.etDob.setOnClickListener {
+        binding.tvDob.setOnClickListener {
             val calendar: Calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
 
-                binding.etDob.setText("$date-${month + 1}-$year")
+            var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
+                binding.tvDob.text = "$date-${month + 1}-$year"
             }
 
             DatePickerDialog(
@@ -211,6 +213,8 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
             ).show()
 
         }
+
+
         rb_male.setOnClickListener {
             rb_male.isChecked = true
             rb_female.isChecked = false

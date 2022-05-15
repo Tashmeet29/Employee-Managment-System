@@ -171,9 +171,10 @@ class EditDetailsFragment : Fragment(R.layout.fragment_edit_user_details) {
                             if (status.status=="true") {
 
                                 Dispatchers.Main {
-                                    toast("Details Edited!!")
+                                    toast("Details Edited Successfully!!")
+                                    findNavController().navigate(R.id.nav_user_details)
                                 }
-                                findNavController().navigate(R.id.nav_user_details)
+
                             } else {
                                 Dispatchers.Main {
                                     toast("Error Occured: ")

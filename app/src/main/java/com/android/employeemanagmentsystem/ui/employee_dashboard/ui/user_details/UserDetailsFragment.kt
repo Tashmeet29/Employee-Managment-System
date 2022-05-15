@@ -92,9 +92,16 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
                 }
             }catch (e: Exception){
                 withContext(Dispatchers.Main){
-                    HomeFragmentDirections.actionNavHomeToAddUserDetailsFragment().apply {
-                        findNavController().navigate(this)
+                    try {
+                        HomeFragmentDirections.actionNavHomeToAddUserDetailsFragment().apply {
+                            findNavController().navigate(this)
+                        }
+
+                    }catch (e: Exception){
+                        requireContext().toast("Dirrection not found")
+                        Log.e(TAG, "getEmployeeDetails: Dirrection not found $e" )
                     }
+
                 }
 
             }
