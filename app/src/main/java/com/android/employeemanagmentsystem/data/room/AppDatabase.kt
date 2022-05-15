@@ -8,7 +8,7 @@ import com.android.employeemanagmentsystem.data.models.responses.Employee
 
 @Database(
     entities = [Employee::class],
-    version = 1
+    version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
 

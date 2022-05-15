@@ -71,6 +71,7 @@ class SplashActivity : AppCompatActivity() {
             val savedEmployees = authRepository.getSplashEmployees(employeeDao)
 
             handleNavigation(savedEmployees)
+            finish()
 
 
         }

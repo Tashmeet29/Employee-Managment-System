@@ -17,6 +17,21 @@
         android:theme="@style/Theme.EmployeeManagmentSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.registration.CheckKeyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.registration.RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.forgot_password.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.forgot_password.AskEmailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.forgot_password.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.registrar_dashboard.RegistrarDashboard"
             android:exported="true" />
         <activity

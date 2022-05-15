@@ -6,7 +6,8 @@ import com.android.employeemanagmentsystem.utils.getTrainingStatusById
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Training(
+data class
+Training(
     val id: String,
     val sevarth_id: String,
     val name: String,

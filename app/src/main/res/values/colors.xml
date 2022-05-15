@@ -2,7 +2,8 @@
 <resources>
 
 
-    <color name = "dark_blue"> #0000ff </color>
+    <color name = "dark_blue"> #104382 </color>
+    <color name="l_blue">#006CF1</color>
     <color name = "light_blue"> #8CA9E8</color>
     <color name = "extra_light_blue"> #6495ed </color>
     <color name = "blue100">#FCFCFC </color>
@@ -13,8 +14,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="text_color_dark">#1E1D1D</color>
+    <color name="text_color_dark">#212121</color>
     <color name="text_color_light">#AAACAE</color>
+
 
     <color name="light_pink">#F4EBF1</color>
     <color name="dark_pink">#FBDDD7</color>

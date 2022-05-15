@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2E2E2"
+    tools:context=".ui.registration.RegistrationActivity">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewReg"
+                android:layout_gravity="center_horizontal"
+                android:text="Registration Form"
+                android:textSize="25dp" />
+
+
+            <!--Linear UserName-->
+            <LinearLayout
+                android:id="@+id/linearLayoutUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Sevarth ID" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sevarth_id"
+                    style="@style/EditTextAuth"
+                    android:hint="Your Sevarth Id"
+                    android:inputType="textPersonName"
+                    android:textAllCaps="true"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <!--Organization Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Organization" />
+
+                <Spinner
+                    android:id="@+id/spinner_organization"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circular_stock_black_bg" />
+
+
+            </LinearLayout>
+
+            <!--Organized By-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Employee Name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_emp_name"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Your Name"
+
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                style="@style/TextViewAuth"
+                android:text="Departments " />
+
+            <!--Spinner widget-->
+            <Spinner
+                android:id="@+id/spinner_departments"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/circular_stock_black_bg"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Role" />
+
+                <Spinner
+                    android:id="@+id/spinner_role"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circular_stock_black_bg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Enter Your Email" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Email"
+                    android:inputType="textEmailAddress"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Password" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Strong Password"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Hint Question(for Forgot Password)" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_hint_question"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Hint Question"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/TextViewReg"
+                    android:text="Answer" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_answer"
+                    style="@style/EditTextAuth"
+                    android:hint="Enter Answer of Hint Que"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="45dp"
+                android:background="@drawable/auth_btn"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Submit"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_marginTop="60dp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>
+
