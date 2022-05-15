@@ -80,28 +80,28 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                 //checking email and password is empty or not
                 first_name.isBlank() -> toast("Enter Your First Name")
                 middle_name.isBlank() -> toast("Enter Your Middle Name")
-//                last_name.isBlank() -> toast("Enter Your Last Name")
-//                gender.isBlank() -> toast("Enter Your Gender")
-//                dob.isBlank() -> toast("Enter Your Date of Birth")
-//                contact_no.isBlank() -> toast("Enter Your Contact Number")
-//                contact_no.length != 10 -> toast("Enter Correct Number")
-//                alternative_contact_no.isBlank() -> toast("Enter Your Alternate Contact Number")
-//                alternative_contact_no.length != 10 -> toast("Enter Correct Alternate Contact Number")
-//                qualification.isBlank() -> toast("Enter Your Qualification")
-//                designation.isBlank() -> toast("Enter Your Designation")
-//                experience.isBlank() -> toast("Enter Your Experience")
-//                retirement_date.isBlank() -> toast("Enter your Retirement Date")
-//                aadhar_no.isBlank() -> toast("Enter Your Aadhaar Number")
-//                pan_no.isBlank() -> toast("Enter Your Pan Number")
-//                cast.isBlank() -> toast("Enter Your Cast")
-//                subcast.isBlank() -> toast("Enter Your Sub-Cast")
-//                blood_grp.isBlank() -> toast("Enter Your Blood Group")
-//                identification_mark.isBlank() -> toast("Enter Your Identification Mark")
-//                address.isBlank() -> toast("Enter Your Address")
-//                city.isBlank() -> toast("Enter Your City")
-//                pin_code.isBlank() -> toast("Enter Your Pin-Code")
-//                state.isBlank() -> toast("Enter Your State")
-//                country.isBlank() -> toast("Enter Your Country.")
+                last_name.isBlank() -> toast("Enter Your Last Name")
+                gender.isBlank() -> toast("Enter Your Gender")
+                dob.isBlank() -> toast("Enter Your Date of Birth")
+                contact_no.isBlank() -> toast("Enter Your Contact Number")
+                contact_no.length != 10 -> toast("Enter Correct Number")
+                alternative_contact_no.isBlank() -> toast("Enter Your Alternate Contact Number")
+                alternative_contact_no.length != 10 -> toast("Enter Correct Alternate Contact Number")
+                qualification.isBlank() -> toast("Enter Your Qualification")
+                designation.isBlank() -> toast("Enter Your Designation")
+                experience.isBlank() -> toast("Enter Your Experience")
+                retirement_date.isBlank() -> toast("Enter your Retirement Date")
+                aadhar_no.isBlank() -> toast("Enter Your Aadhaar Number")
+                pan_no.isBlank() -> toast("Enter Your Pan Number")
+                cast.isBlank() -> toast("Enter Your Cast")
+                subcast.isBlank() -> toast("Enter Your Sub-Cast")
+                blood_grp.isBlank() -> toast("Enter Your Blood Group")
+                identification_mark.isBlank() -> toast("Enter Your Identification Mark")
+                address.isBlank() -> toast("Enter Your Address")
+                city.isBlank() -> toast("Enter Your City")
+                pin_code.isBlank() -> toast("Enter Your Pin-Code")
+                state.isBlank() -> toast("Enter Your State")
+                country.isBlank() -> toast("Enter Your Country.")
 
 //
                 else -> {
@@ -179,7 +179,8 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                                 }
                             }
 
-                        } catch (e: Exception) {
+                        }
+                        catch (e: Exception) {
 
                             Dispatchers.Main {
                                 toast("Error Occurred: $e")
