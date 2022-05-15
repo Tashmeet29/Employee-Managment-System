@@ -16,7 +16,8 @@ interface AuthApi {
         @Field("email") email: String,
         @Field("password") password: String,
     ): Response<Employee>
-@FormUrlEncoded
+
+    @FormUrlEncoded
     @POST("register_user")
     suspend fun employeeRegister(
         @Field("email") email: String,
@@ -49,22 +50,6 @@ interface AuthApi {
         @Field("email") email: String,
         @Field("password") password: String,
     ): Response<StatusResponse>
-    //post registration form
-//    @FormUrlEncoded
-//    @POST("new_registration")
-//    suspend fun newRegistration(
-//        @Field("sevarth_id") sevarth_id:String,
-//        @Field("organization") organization: String,
-//        @Field("name") name: String,
-//        @Field("department") department: String,
-//        @Field("email") email: String,
-//        @Field("role") role: String,
-//        @Field("password") password: String,
-//        @Field("hint_question") hint_question: String,
-//        @Field("hint_answer") hint_answer: String,
-//
-//    ): Response<StatusResponse>
-
 
     //Post Add Details Form
     @FormUrlEncoded
