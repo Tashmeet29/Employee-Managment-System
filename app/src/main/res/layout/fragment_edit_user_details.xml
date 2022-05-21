@@ -177,14 +177,13 @@
                     android:text="Date of Birth" />
 
 
-                <com.google.android.material.textfield.TextInputEditText
+                <TextView
                     android:id="@+id/et_dob"
                     style="@style/EditTextAuth"
                     android:layout_marginStart="5dp"
-                    android:hint="Enter Your dob"
-                    android:inputType="date"
-                    android:textSize="16dp"
-                    android:textColor="@color/black"/>
+                    android:text="Select Date"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
 
             </LinearLayout>
 

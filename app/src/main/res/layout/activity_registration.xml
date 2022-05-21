@@ -48,7 +48,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sevarth_id"
-                    style="@style/EditTextAuth"
+                    style="@style/EditTextAuthCap"
                     android:hint="Your Sevarth Id"
                     android:inputType="textPersonName"
                     android:textAllCaps="true"

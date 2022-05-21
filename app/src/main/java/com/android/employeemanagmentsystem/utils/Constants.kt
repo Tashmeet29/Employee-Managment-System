@@ -1,7 +1,8 @@
 package com.android.employeemanagmentsystem.utils
 
 
-const val BASE_URL = "http://13.127.197.30"+"/EMS-API/"
+const val BASE_URL = "http" +
+        "://13.127.197.30"+"/EMS-API/"
 
 const val TRAINING_ALL_STATUS = 0
 const val TRAINING_APPLIED_TO_HOD = 1

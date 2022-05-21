@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,7 +21,10 @@ import kotlinx.android.synthetic.main.fragment_add_user_details.*
 import kotlinx.android.synthetic.main.fragment_user_details.*
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
+import java.time.LocalDate
+import java.time.Period
 import java.util.*
+import java.util.regex.Pattern
 
 class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 
@@ -78,28 +82,28 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 //                if () {
             when {
                 //checking email and password is empty or not
-                first_name.isBlank() -> toast("Please Enter Email")
-                middle_name.isBlank() -> toast("Please Enter Email")
-                last_name.isBlank() -> toast("Please Enter Email")
-                gender.isBlank() -> toast("Please Enter Email")
-                dob.isBlank() -> toast("Please Enter Email")
-                contact_no.isBlank() -> toast("Please Enter Email")
-                alternative_contact_no.isBlank() -> toast("Please Enter Email")
-                qualification.isBlank() -> toast("Please Enter Email")
-                designation.isBlank() -> toast("Please Enter Email")
-                experience.isBlank() -> toast("Please Enter Email")
-                retirement_date.isBlank() -> toast("Please Enter Email")
-                aadhar_no.isBlank() -> toast("Please Enter Email")
-                pan_no.isBlank() -> toast("Please Enter Email")
-                cast.isBlank() -> toast("Please Enter Email")
-                subcast.isBlank() -> toast("Please Enter Email")
-                blood_grp.isBlank() -> toast("Please Enter Email")
-                identification_mark.isBlank() -> toast("Please Enter Email")
-                address.isBlank() -> toast("Please Enter Email")
-                city.isBlank() -> toast("Please Enter Email")
-                pin_code.isBlank() -> toast("Please Enter Email")
-                state.isBlank() -> toast("Please Enter Email")
-                country.isBlank() -> toast("Please Enter Email")
+                first_name.isBlank() -> toast("Please Enter Frist Name")
+                middle_name.isBlank() -> toast("Please Enter Middle Name")
+                last_name.isBlank() -> toast("Please Enter Last Name")
+                gender.isBlank() -> toast("Please Select Gender")
+                dob.isBlank() -> toast("Please Select DOB")
+                validatePhone(contact_no) -> toast("Please Enter Valid Phone Number")
+                validatePhone(alternative_contact_no) -> toast("Please Valid Alternative Number")
+                qualification.isBlank() -> toast("Please Enter Qualification")
+                designation.isBlank() -> toast("Please Enter designation")
+                experience.isBlank() -> toast("Please Enter experience")
+                retirement_date.isBlank() -> toast("Please Enter retirement ")
+                aadhar_no.isBlank() -> toast("Please Enter aadhar")
+                pan_no.isBlank() -> toast("Please Enter PAN ")
+                cast.isBlank() -> toast("Please Enter Cast")
+                subcast.isBlank() -> toast("Please Enter Sub cast")
+                blood_grp.isBlank() -> toast("Please Enter Blood group")
+                identification_mark.isBlank() -> toast("Please Enter Identification Mark")
+                address.isBlank() -> toast("Please Enter Address")
+                city.isBlank() -> toast("Please Enter City")
+                pin_code.isBlank() -> toast("Please Enter Pincode")
+                state.isBlank() -> toast("Please Enter State")
+                country.isBlank() -> toast("Please Enter Country")
 
 //
                 else -> {
@@ -202,15 +206,21 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                 binding.etDob.setText("$date-${month + 1}-$year")
             }
 
-            DatePickerDialog(
+            val dpd = DatePickerDialog(
                 requireContext(),
                 listener,
                 year,
                 month,
-                day
-            ).show()
+                day)
+            calendar.set(1960,month-1,day)
+            dpd.datePicker.minDate = calendar.timeInMillis
 
+            calendar.set(2000,month-1,day)
+            dpd.datePicker.maxDate =  calendar.timeInMillis
+            dpd.show()
         }
+
+
         rb_male.setOnClickListener {
             rb_male.isChecked = true
             rb_female.isChecked = false
@@ -223,8 +233,13 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 
 
     fun toast(msg: String) {
-
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
+    private fun validatePhone(phone:String):Boolean{
+
+        Log.d("lengt","${phone.length>=7 && phone.length<=13}")
+        return phone.length !in 7..13
+
     }
 
 

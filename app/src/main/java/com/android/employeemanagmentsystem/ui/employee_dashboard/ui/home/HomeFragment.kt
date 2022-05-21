@@ -65,7 +65,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 val employeeDetails: EmployeeDetails =
                     authRepository.getEmployeeDetailse(employee.sevarth_id, authApi)
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context,"Welcome to Ems", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"Welcome to EMS", Toast.LENGTH_SHORT).show()
+                }
+
+                withContext(Dispatchers.Main){
+                    binding.tvSid.text = "Sevarth Id: "+employee.sevarth_id
+                    binding.tvName.text = "Name: "+employee.name
+                    when(employee.role_id.toString()){
+                        "1"->binding.tvRole.text = "Role : Employee"
+                        "2"->binding.tvRole.text = "Role : HOD"
+                        "3"->binding.tvRole.text = "Role : Principal"
+                        "4"->binding.tvRole.text = "Role : Registrar"
+                        "5"->binding.tvRole.text = "Role : Joint Director"
+                        "6"->binding.tvRole.text = "Role : Director"
+                        else->binding.tvRole.text = "Role : Employee"
+                    }
                 }
             }catch (e: Exception){
                 withContext(Dispatchers.Main){

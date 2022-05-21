@@ -88,8 +88,8 @@ class EditDetailsFragment : Fragment(R.layout.fragment_edit_user_details) {
                 last_name.isBlank() -> toast("Please Enter Email")
                 gender.isBlank() -> toast("Please Enter Email")
                 dob.isBlank() -> toast("Please Enter Email")
-                contact_no.isBlank() -> toast("Please Enter Email")
-                alternative_contact_no.isBlank() -> toast("Please Enter Email")
+                validatePhone(contact_no) -> toast("Please Enter Valid Phone Number")
+                validatePhone(alternative_contact_no) -> toast("Please Valid Alternative Number")
                 qualification.isBlank() -> toast("Please Enter Email")
                 designation.isBlank() -> toast("Please Enter Email")
                 experience.isBlank() -> toast("Please Enter Email")
@@ -195,7 +195,6 @@ class EditDetailsFragment : Fragment(R.layout.fragment_edit_user_details) {
             }
         }
 
-
         binding.etDob.setOnClickListener {
             val calendar: Calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
@@ -207,14 +206,18 @@ class EditDetailsFragment : Fragment(R.layout.fragment_edit_user_details) {
                 binding.etDob.setText("$date-${month + 1}-$year")
             }
 
-            DatePickerDialog(
+            val dpd = DatePickerDialog(
                 requireContext(),
                 listener,
                 year,
                 month,
-                day
-            ).show()
+                day)
+            calendar.set(1960,month-1,day)
+            dpd.datePicker.minDate = calendar.timeInMillis
 
+            calendar.set(2000,month-1,day)
+            dpd.datePicker.maxDate =  calendar.timeInMillis
+            dpd.show()
         }
         rb_male.setOnClickListener {
             rb_male.isChecked = true
@@ -286,6 +289,13 @@ class EditDetailsFragment : Fragment(R.layout.fragment_edit_user_details) {
             }
 
         }
+    }
+
+    private fun validatePhone(phone:String):Boolean{
+
+        Log.d("lengt","${phone.length>=7 && phone.length<=13}")
+        return phone.length !in 7..13
+
     }
 }
 
