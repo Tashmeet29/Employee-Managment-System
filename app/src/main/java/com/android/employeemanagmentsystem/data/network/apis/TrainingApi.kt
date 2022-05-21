@@ -38,6 +38,24 @@ interface TrainingApi {
 
     //api request for apply to training
     @Multipart
+    @POST("Training/apply_training_by_hod")
+    suspend fun applyTrainingByHod(
+        @Part("sevarth_id") sevarth_id: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("duration") duration: RequestBody,
+        @Part("start_date") start_date: RequestBody,
+        @Part("end_date") end_date: RequestBody,
+        @Part("org_name") org_name: RequestBody,
+        @Part("organized_by") organized_by: RequestBody,
+        @Part("training_status_id") training_status_id: RequestBody,
+        @Part("org_id") org_id: RequestBody,
+        @Part("department_id") department_id: RequestBody,
+        @Part("training_type") training_type: RequestBody,
+        @Part part: MultipartBody.Part
+    ): Response<StatusResponse>
+
+    //api request for apply to training
+    @Multipart
     @POST("Training/add_completed_training")
     suspend fun add_completed_training(
         @Part("sevarth_id") sevarth_id: RequestBody,

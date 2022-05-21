@@ -206,60 +206,7 @@
             </LinearLayout>
 
             <!--Linear End Date-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:padding="5dp">
 
-                <TextView
-                    style="@style/TextViewAuth"
-                    android:layout_marginTop="5dp"
-
-                    android:text="Apply To" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="right">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-
-                        <RadioButton
-                            android:id="@+id/rb_hod"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:text="HOD"
-                            android:textColor="@color/text_color_light" />
-
-
-                        <RadioButton
-                            android:id="@+id/rb_principal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Principal"
-                            android:textColor="@color/text_color_light" />
-
-
-                    </LinearLayout>
-
-
-                </RadioGroup>
-
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btnSubmit"

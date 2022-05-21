@@ -25,4 +25,5 @@
     <string name="menu_all_employees">All Employees</string>
     <string name="edit_user_details">Edit User Details</string>
     <string name="menu_edit_user_details">Edit Details</string>
+    <string name="menu_apply_traning">Apply Training</string>
 </resources>

@@ -4,23 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AdapterView
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.android.employeemanagmentsystem.data.network.apis.AuthApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
-import com.android.employeemanagmentsystem.databinding.ActivityForgotPasswordBinding
 import com.android.employeemanagmentsystem.databinding.ActivityRegistrationBinding
-import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training.TrainingTypesAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.view.View
 import com.android.employeemanagmentsystem.data.models.responses.*
-import com.android.employeemanagmentsystem.ui.admin_dashboard.AdminDashBoardActivity
-import com.android.employeemanagmentsystem.ui.employee_dashboard.EmployeeDashboard
 import com.android.employeemanagmentsystem.ui.login.LoginActivity
-import com.android.employeemanagmentsystem.ui.registrar_dashboard.RegistrarDashboard
 import com.android.employeemanagmentsystem.utils.*
 
 class RegistrationActivity : AppCompatActivity() {

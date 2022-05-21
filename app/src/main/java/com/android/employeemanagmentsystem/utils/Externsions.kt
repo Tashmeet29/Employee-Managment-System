@@ -3,6 +3,7 @@ package com.android.employeemanagmentsystem.utils
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.util.Log
 
 fun Uri.getOriginalFileName(context: Context): String? {
     return context.contentResolver.query(this, null, null, null, null)?.use {
@@ -22,6 +23,7 @@ fun Int.getTrainingStatusById(): String{
         TRAINING_APPROVED_BY_PRINCIPAL -> "Approved by Principal"
         TRAINING_DECLINED_BY_PRINCIPLE -> "Decline by Principal"
         TRAINING_COMPLETED -> "Completed"
+        -1 -> "Applied By Principal"
 
         else -> "Unknown status id found"
     }
@@ -61,12 +63,21 @@ fun Int.getIoApplicationStatusById(): String{
 
 }
 
-fun String.getDurationInWeeks(): String {
-    val day: Int = this.toInt()
 
-    return if(day < 7) "$this days "
-    else{
-        val week = (day % 365) / 7
-        "$week weeks"
+
+fun String.getDurationInWeeks(): String {
+    try {
+        val day: Int = this.toInt()
+
+        return if(day < 7) "$this days "
+        else{
+            val week = (day % 365) / 7
+            "$week weeks"
+        }
+    }catch (e: Exception){
+        Log.e(TAG, "getDurationInWeeks: can not be converted $this", )
     }
+
+    return this
+
 }

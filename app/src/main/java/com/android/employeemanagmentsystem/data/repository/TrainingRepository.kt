@@ -40,6 +40,8 @@ class TrainingRepository : SafeApiRequest() {
         )
     }
 
+
+
     //converting strings to multipart response
     suspend fun add_completed_training(
         sevarth_id: String,

@@ -11,6 +11,10 @@
             android:title="@string/menu_home" />
 
         <item
+            android:id="@+id/nav_apply_training"
+            android:title="@string/menu_apply_traning" />
+
+        <item
             android:id="@+id/nav_training_applications"
             android:title="@string/menu_training_applications" />
         <item

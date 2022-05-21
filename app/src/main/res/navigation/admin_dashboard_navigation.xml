@@ -17,12 +17,11 @@
     </fragment>
 
 
-
     <fragment
         android:id="@+id/nav_training_applications"
         android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.training_applications.TrainingApplicationsFragment"
         android:label="@string/menu_training_applications"
-        tools:layout="@layout/fragment_training_applications" >
+        tools:layout="@layout/fragment_training_applications">
         <action
             android:id="@+id/action_nav_training_applications_to_applicationDetails"
             app:destination="@id/applicationDetails" />
@@ -37,7 +36,7 @@
         android:id="@+id/applicationDetails"
         android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.application_details.TrainingApplicationDetails"
         android:label="Application Details"
-        tools:layout="@layout/fragment_training_details" >
+        tools:layout="@layout/fragment_training_details">
         <argument
             android:name="training"
             app:argType="com.android.employeemanagmentsystem.data.models.responses.Training" />
@@ -53,7 +52,7 @@
         android:id="@+id/ioApplicationDetails"
         android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.application_details.IoApplicationDetails"
         android:label="Io Application"
-        tools:layout="@layout/fragment_io_application_details" >
+        tools:layout="@layout/fragment_io_application_details">
         <argument
             android:name="Application"
             app:argType="com.android.employeemanagmentsystem.data.models.responses.Application" />
@@ -63,7 +62,7 @@
         android:id="@+id/nav_applied_applications"
         android:name="com.android.employeemanagmentsystem.ui.employee_dashboard.ui.applied_applications.AppliedIoApplicationsFragment"
         android:label="@string/menu_applied_applications"
-        tools:layout="@layout/fragment_applied_applications" >
+        tools:layout="@layout/fragment_applied_applications">
         <action
             android:id="@+id/action_nav_applied_applications_to_ioApplicationDetails"
             app:destination="@id/ioApplicationDetails" />
@@ -106,6 +105,11 @@
             android:id="@+id/action_nav_userDetailsFragment_to_addUserDetailsFragment"
             app:destination="@id/addUserDetailsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_apply_training"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.apply_training.ApplyTrainingFragment"
+        android:label="Apply Training" />
 
 
 </navigation>

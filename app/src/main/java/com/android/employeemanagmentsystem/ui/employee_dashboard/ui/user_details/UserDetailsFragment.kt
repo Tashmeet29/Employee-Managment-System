@@ -1,40 +1,20 @@
 package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.user_details
 
 import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.home.HomeFragmentDirections
-import android.annotation.SuppressLint
-import android.app.DatePickerDialog
-import android.content.Intent
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.employeemanagmentsystem.R
 import com.android.employeemanagmentsystem.data.models.responses.EmployeeDetails
-import com.android.employeemanagmentsystem.data.models.responses.TrainingTypes
 import com.android.employeemanagmentsystem.data.network.apis.AuthApi
-import com.android.employeemanagmentsystem.data.network.apis.TrainingApi
 import com.android.employeemanagmentsystem.data.repository.AuthRepository
-import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
-import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingBinding
-import com.android.employeemanagmentsystem.databinding.FragmentHomeBinding
 import com.android.employeemanagmentsystem.databinding.FragmentUserDetailsBinding
-import com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_training.TrainingTypesAdapter
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
-import okhttp3.MultipartBody
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
-import java.time.LocalDateTime
-import java.util.*
 
 class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
 

@@ -1,8 +1,14 @@
 package com.android.employeemanagmentsystem.ui.splash
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -20,7 +26,6 @@ import com.android.employeemanagmentsystem.utils.ROLE_Registrar
 import com.android.employeemanagmentsystem.utils.move
 import com.android.employeemanagmentsystem.utils.toast
 import kotlinx.coroutines.*
-import java.util.jar.Manifest
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -30,6 +35,7 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var authRepository: AuthRepository
     private lateinit var employeeDao: EmployeeDao
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,23 +48,32 @@ class SplashActivity : AppCompatActivity() {
         checkStoragePermission()
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private fun checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(
                 this,
-                android.Manifest.permission.MANAGE_EXTERNAL_STORAGE
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
-        ){
-          ActivityCompat.requestPermissions(this,
-              arrayOf(
-                  android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                  android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                  android.Manifest.permission.MANAGE_EXTERNAL_STORAGE,
-              ),
-              100
-          )
-        }else{
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    android.Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                ),
+                100
+            )
+        } else if (!Environment.isExternalStorageManager()) {
+            Intent().apply {
+                action = Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
+                data = Uri.fromParts("package", this@SplashActivity.packageName, null)
+                startActivity(this)
+            }
+
+        } else {
             setSplashTime()
         }
+
     }
 
     //Delay the screen for some seconds
@@ -107,6 +122,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -114,11 +130,11 @@ class SplashActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (requestCode == 100){
+        if (requestCode == 100) {
 
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 setSplashTime()
-            }else{
+            } else {
                 toast("You need to accept Store Permission to Proceed")
                 checkStoragePermission()
             }

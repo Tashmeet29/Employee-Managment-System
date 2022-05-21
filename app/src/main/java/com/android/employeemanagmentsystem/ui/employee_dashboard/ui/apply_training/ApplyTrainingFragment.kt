@@ -22,12 +22,14 @@ import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingBinding
+import com.android.employeemanagmentsystem.ui.admin_dashboard.ui.apply_training.TrainingTypesAdapter
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
-import java.time.LocalDate
+import java.lang.Math.abs
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.*
 
@@ -105,7 +107,6 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                 val training_name = etTrainingName.text.toString()
                 val organization_name = etOrganizationName.text.toString()
                 val organized_by = etOrganizedBy.text.toString()
-                val training_duration = etDuration.text.toString()
                 val training_start_date = binding.tvStartDate.text.toString()
                 val training_end_date = binding.tvEndDate.text.toString()
 
@@ -114,12 +115,16 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
 
                     training_name.isBlank() -> requireContext().toast("Please Enter Training Name")
                     organization_name.isBlank() -> requireContext().toast("Please Enter organization name")
-                    training_duration.isBlank() -> requireContext().toast("Please Enter Training Duration")
                     training_start_date.isBlank() -> requireContext().toast("Please Select Start Date")
                     training_end_date.isBlank() -> requireContext().toast("Please Select End Name")
                     !isPdfSelected -> requireContext().toast("Please Select PDF to Upload")
+                    getDurationInDays(training_start_date, training_end_date).toInt() == 0 ->  requireContext().toast("Start date and end Date should be different")
+                    getDurationInDays(training_start_date, training_end_date).toInt() < 0 ->  requireContext().toast("Start date must be smaller than end date")
 
                     else -> {
+
+                        Log.e(TAG, "handleClickOfApplyTrainingButton: success training", )
+                        
 
                         GlobalScope.launch {
 
@@ -135,7 +140,7 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
                                 val trainingResponse = trainingRepo.applyTraining(
                                     sevarth_id = employee.sevarth_id,
                                     name = training_name,
-                                    duration = training_duration,
+                                    duration = getDurationInDays(training_start_date, training_end_date),
                                     start_date = training_start_date,
                                     end_date = training_end_date,
                                     org_name = organization_name,
@@ -321,5 +326,37 @@ class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training) {
         return filePart
 
 
+    }
+
+    private fun getDurationInDays(startDate: String, endDate: String): String{
+
+
+        val date2: Date
+        val date1: Date
+
+        var newStartDate = startDate.replace("-", "/")
+        var newEndDate = endDate.replace("-", "/")
+
+        Log.e(TAG, "getDurationInDays: $newStartDate")
+
+        val dates = SimpleDateFormat("dd/MM/yyyy")
+        date1 = dates.parse(newStartDate)
+        date2 = dates.parse(newEndDate)
+        val difference: Long = kotlin.math.abs(date1.time - date2.time)
+        val differenceIsNeg: Boolean = (date2.time - date1.time) < 0
+        var differenceDates = difference / (24 * 60 * 60 * 1000)
+
+
+        Log.e(TAG, "getDurationInDays: $difference", )
+        Log.e(TAG, "getDurationInDays: $differenceIsNeg", )
+        Log.e(TAG, "getDurationInDays: $differenceDates", )
+
+        if(differenceIsNeg){
+            differenceDates *= -1
+        }
+
+        Log.e(TAG, "getDurationInDays: $differenceDates", )
+        
+        return differenceDates.toString()
     }
 }

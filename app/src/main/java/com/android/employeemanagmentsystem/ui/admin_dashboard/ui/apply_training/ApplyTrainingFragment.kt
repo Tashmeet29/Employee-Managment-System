@@ -1,4 +1,4 @@
-package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.completed_trainings
+package com.android.employeemanagmentsystem.ui.admin_dashboard.ui.apply_training
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -21,20 +21,21 @@ import com.android.employeemanagmentsystem.data.repository.AuthRepository
 import com.android.employeemanagmentsystem.data.repository.TrainingRepository
 import com.android.employeemanagmentsystem.data.room.AppDatabase
 import com.android.employeemanagmentsystem.data.room.EmployeeDao
-import com.android.employeemanagmentsystem.databinding.FragmentAddCompletedTrainingBinding
-import com.android.employeemanagmentsystem.ui.admin_dashboard.ui.apply_training.TrainingTypesAdapter
+import com.android.employeemanagmentsystem.databinding.FragmentApplyTrainingAdminBinding
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
-import java.time.LocalDate
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
+import java.util.*
 
-private const val TAG = "CompletedTrainingsFragm"
-class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_training) {
+private const val TAG = "ApplyTrainingFragment"
 
-    private lateinit var binding: FragmentAddCompletedTrainingBinding
+class ApplyTrainingFragment : Fragment(R.layout.fragment_apply_training_admin) {
+
+    private lateinit var binding: FragmentApplyTrainingAdminBinding
     private lateinit var authRepository: AuthRepository
     private lateinit var employeeDao: EmployeeDao
     private lateinit var trainingRepo: TrainingRepository
@@ -44,13 +45,12 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
     private lateinit var byteArray: ByteArray
     private var selectedType = "-1"
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentAddCompletedTrainingBinding.bind(view)
 
+        binding = FragmentApplyTrainingAdminBinding.bind(view)
 
         handleClickOfApplyTrainingButton()
 
@@ -60,10 +60,9 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
         trainingApi = TrainingApi()
 
         getTrainingTypes()
-
     }
 
-    fun getTrainingTypes() {
+    public fun getTrainingTypes() {
         GlobalScope.launch {
             val types: List<TrainingTypes> = trainingRepo.getTrainingTypes(trainingApi)
 
@@ -105,19 +104,21 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
                 val training_name = etTrainingName.text.toString()
                 val organization_name = etOrganizationName.text.toString()
                 val organized_by = etOrganizedBy.text.toString()
-                val training_duration = etDuration.text.toString()
                 val training_start_date = binding.tvStartDate.text.toString()
                 val training_end_date = binding.tvEndDate.text.toString()
+
 
 
                 when {
 
                     training_name.isBlank() -> requireContext().toast("Please Enter Training Name")
                     organization_name.isBlank() -> requireContext().toast("Please Enter organization name")
-                    training_duration.isBlank() -> requireContext().toast("Please Enter Training Duration")
                     training_start_date.isBlank() -> requireContext().toast("Please Select Start Date")
                     training_end_date.isBlank() -> requireContext().toast("Please Select End Name")
                     !isPdfSelected -> requireContext().toast("Please Select PDF to Upload")
+                    getDurationInDays(training_start_date, training_end_date).toInt() == 0 ->  requireContext().toast("Start date and end Date should be different")
+                    getDurationInDays(training_start_date, training_end_date).toInt() < 0 ->  requireContext().toast("Start date must be smaller than end date")
+
 
                     else -> {
 
@@ -132,10 +133,13 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
                                 //getting employee details from room database
                                 val employee = authRepository.getEmployee(employeeDao)
 
-                                val trainingResponse = trainingRepo.add_completed_training(
+                                val trainingResponse = trainingRepo.applyTraining(
                                     sevarth_id = employee.sevarth_id,
                                     name = training_name,
-                                    duration = training_duration,
+                                    duration = getDurationInDays(
+                                        training_start_date,
+                                        training_end_date
+                                    ),
                                     start_date = training_start_date,
                                     end_date = training_end_date,
                                     org_name = organization_name,
@@ -143,7 +147,8 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
                                     org_id = employee.org_id.toString(),
                                     department_id = employee.dept_id.toString(),
                                     trainingApi = trainingApi,
-                                    training_status_id = TRAINING_COMPLETED.toString(),
+                                    training_status_id = (employee.role_id.toInt() == ROLE_HOD) then TRAINING_APPLIED_TO_PRINCIPLE.toString()
+                                        ?: "-1",
                                     applyPdf = convertBytesToMultipart(),
                                     training_type = selectedType
                                 )
@@ -157,7 +162,8 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
                                 delay((1 * 1000).toLong())
 
                                 withContext(Dispatchers.Main) {
-                                    findNavController().navigate(R.id.nav_applied_trainings)
+                                    findNavController().popBackStack(R.id.nav_apply_training, true)
+                                    findNavController().navigate(R.id.nav_training_applications)
                                 }
 
                             } catch (e: Exception) {
@@ -179,6 +185,7 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
             }
 
 
+
             tvPdf.setOnClickListener {
                 val intent = Intent()
                 intent.type = "application/pdf"
@@ -187,7 +194,10 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
             }
 
             tvStartDate.setOnClickListener {
-                var localDate = LocalDate.now()
+                val calendar: Calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
 
                 var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
                     tvStartDate.text = "$date-${month + 1}-$year"
@@ -196,15 +206,18 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
                 DatePickerDialog(
                     requireContext(),
                     listener,
-                    localDate.dayOfMonth,
-                    localDate.monthValue,
-                    localDate.year
+                    year,
+                    month,
+                    day
                 ).show()
 
             }
 
             tvEndDate.setOnClickListener {
-                var localDate = LocalDate.now()
+                val calendar: Calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
 
                 var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
 
@@ -214,9 +227,9 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
                 DatePickerDialog(
                     requireContext(),
                     listener,
-                    localDate.dayOfMonth,
-                    localDate.monthValue,
-                    localDate.year
+                    year,
+                    month,
+                    day
                 ).show()
 
             }
@@ -303,6 +316,37 @@ class CompletedTrainingsFragment: Fragment(R.layout.fragment_add_completed_train
 
         return filePart
 
+    }
 
+    private fun getDurationInDays(startDate: String, endDate: String): String{
+
+
+        val date2: Date
+        val date1: Date
+
+        var newStartDate = startDate.replace("-", "/")
+        var newEndDate = endDate.replace("-", "/")
+
+        Log.e(TAG, "getDurationInDays: $newStartDate")
+
+        val dates = SimpleDateFormat("dd/MM/yyyy")
+        date1 = dates.parse(newStartDate)
+        date2 = dates.parse(newEndDate)
+        val difference: Long = kotlin.math.abs(date1.time - date2.time)
+        val differenceIsNeg: Boolean = (date2.time - date1.time) < 0
+        var differenceDates = difference / (24 * 60 * 60 * 1000)
+
+
+        Log.e(TAG, "getDurationInDays: $difference", )
+        Log.e(TAG, "getDurationInDays: $differenceIsNeg", )
+        Log.e(TAG, "getDurationInDays: $differenceDates", )
+
+        if(differenceIsNeg){
+            differenceDates *= -1
+        }
+
+        Log.e(TAG, "getDurationInDays: $differenceDates", )
+
+        return differenceDates.toString()
     }
 }
