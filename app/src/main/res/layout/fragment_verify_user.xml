@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_heading"
         android:layout_marginTop="10dp"
-        tools:listitem="@layout/item_trainings" />
+        tools:listitem="@layout/item_verify_employee" />
 
     <RelativeLayout
         android:layout_width="match_parent"

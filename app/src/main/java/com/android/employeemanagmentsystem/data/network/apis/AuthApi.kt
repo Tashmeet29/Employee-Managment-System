@@ -120,8 +120,13 @@ interface AuthApi {
     @GET("show_employees")
     suspend fun getEmployees(): Response<List<Employee>>
 
-    @GET("show_verifications")
+    @POST("show_verifications")
     suspend fun getVerifications(): Response<List<Employee>>
+
+    @GET("show_hod_verifications")
+    suspend fun getHodVerifications(
+        @Field("hod_id")hod_id:String
+    ): Response<List<Employee>>
 
     @GET("get_organization")
     suspend fun getOrganizations(): Response<List<Organizations>>

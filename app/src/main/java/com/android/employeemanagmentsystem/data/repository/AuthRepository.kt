@@ -179,6 +179,10 @@ class AuthRepository : SafeApiRequest() {
         return apiRequest { authApi.getVerifications() }
     }
 
+    suspend fun getHodVerifications(hod_id:String,authApi: AuthApi): List<Employee> {
+        return apiRequest { authApi.getVerifications() }
+    }
+
     suspend fun getOrganizations(authApi: AuthApi): List<Organizations> {
         return apiRequest { authApi.getOrganizations() }
     }
