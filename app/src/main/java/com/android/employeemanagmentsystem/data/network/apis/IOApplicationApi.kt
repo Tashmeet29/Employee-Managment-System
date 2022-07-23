@@ -32,6 +32,7 @@ interface IOApplicationApi {
         @Part("application_type") application_type: RequestBody,
         @Part("from_department") from_department: RequestBody,
         @Part("role_id") role_id: RequestBody,
+        @Part("applicant_name") applicant_name: RequestBody,
         @Part part: MultipartBody.Part
     ): Response<StatusResponse>
 

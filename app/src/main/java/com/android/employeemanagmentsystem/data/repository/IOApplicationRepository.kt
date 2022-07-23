@@ -21,6 +21,7 @@ class IOApplicationRepository : SafeApiRequest() {
         application_type: String,
         from_department: String,
         role_id: String,
+        applicant_name: String,
         applyPdf: MultipartBody.Part,
         iOApplicationApi: IOApplicationApi
     ) = apiRequest {
@@ -34,6 +35,7 @@ class IOApplicationRepository : SafeApiRequest() {
             application_type.toMultipartReq(),
             from_department.toMultipartReq(),
             role_id.toMultipartReq(),
+            applicant_name.toMultipartReq(),
             applyPdf,
 
 
