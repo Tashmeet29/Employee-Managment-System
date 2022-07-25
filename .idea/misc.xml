@@ -79,10 +79,15 @@
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/layout/item_verify_employee.xml" value="0.4" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/menu/employee_dashboard.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/AYUSH/AndroidStudioProjects/EmployeeManagmentSystem/app/src/main/res/menu/registrar_dashboard.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/EmployeeManagmentSystem12/app/src/main/res/drawable-v24/text_input_border.xml" value="0.1" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/EmployeeManagmentSystem12/app/src/main/res/layout/activity_cs_dsr.xml" value="0.1" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/EmployeeManagmentSystem12/app/src/main/res/layout/activity_dsr.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/EmployeeManagmentSystem12/app/src/main/res/layout/fragment_departments.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/EmployeeManagmentSystem12/app/src/main/res/layout/fragment_distr_details.xml" value="0.11197916666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

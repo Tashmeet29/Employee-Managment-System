@@ -38,8 +38,14 @@
             android:title="@string/menu_apply_application" />
 
         <item
+            android:id="@+id/nav_dsr"
+            android:title="@string/menu_dsr" />
+
+        <item
             android:id="@+id/nav_logout"
             android:title="@string/menu_logout" />
+
+
 
 
     </group>

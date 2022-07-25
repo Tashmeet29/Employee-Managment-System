@@ -26,4 +26,10 @@
     <string name="edit_user_details">Edit User Details</string>
     <string name="menu_edit_user_details">Edit Details</string>
     <string name="menu_apply_traning">Apply Training</string>
+    <string name="menu_dsr">DeadStock Register</string>
+    <string name="menu_central_store_dsr">Central Store DSR</string>
+    <string name="welcome_to_dead_stock_register">Welcome To DeadStock Register</string>
+    <string name="look_out_the_inventories_of_institute">Look out the Inventories of Institute</string>
+    <string name="select_dsr">Select DSR</string>
+    <string name="departments_dsr">Departments DSR</string>
 </resources>

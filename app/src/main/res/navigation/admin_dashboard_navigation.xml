@@ -111,5 +111,192 @@
         android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.apply_training.ApplyTrainingFragment"
         android:label="Apply Training" />
 
+    <fragment
+        android:id="@+id/nav_central_store_dsr"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr.CsDSR"
+        android:label="@string/menu_central_store_dsr"
+        tools:layout="@layout/activity_cs_dsr">
+        <action
+            android:id="@+id/action_nav_central_store_dsr_to_nav_dsr"
+            app:destination="@+id/nav_dsr"
+            app:popUpTo="@id/nav_dsr" />
+        <action
+            android:id="@+id/action_nav_central_store_dsr_to_distributeItems"
+            app:destination="@id/distributeItems" />
+        <argument
+            android:name="CsDSR"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_nav_central_store_dsr_to_addProduct"
+            app:destination="@id/addProduct" />
+        <action
+            android:id="@+id/action_nav_central_store_dsr_to_distrDetails2"
+            app:destination="@id/distrDetails2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_dsr"
+        app:startDestination="@+id/nav_dsr"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr.Dsr"
+        android:label="@string/menu_dsr"
+        tools:layout="@layout/activity_dsr">
+        <action
+            android:id="@+id/action_nav_dsr_to_nav_central_store_dsr"
+            app:destination="@id/nav_central_store_dsr"
+            app:popUpTo="@id/nav_dsr"
+            app:popUpToInclusive="true"
+            />
+        <!--        <action-->
+        <!--            android:id="@+id/action_nav_dsr_to_departments"-->
+        <!--            app:destination="@id/departments" />-->
+        <action
+            android:id="@+id/action_nav_dsr_to_hostels"
+            app:destination="@id/hostels"
+            app:popUpTo="@id/nav_dsr"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_dsr_to_library"
+            app:destination="@id/library"
+            app:popUpTo="@id/nav_dsr"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_dsr_to_office"
+            app:destination="@id/office"
+            app:popUpTo="@id/nav_dsr"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_dsr_to_departments2"
+            app:destination="@id/departments2"
+            app:popUpTo="@id/nav_dsr"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/distributeItems"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.DistributeItems"
+        android:label="Distribute Products"
+        tools:layout="@layout/fragment_distribute_items" />
+    <!--    <fragment-->
+    <!--        android:id="@+id/departments"-->
+    <!--        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.Departments"-->
+    <!--        android:label="Departments"-->
+    <!--        tools:layout="@layout/fragment_departments" >-->
+    <!--        <argument-->
+    <!--            android:name="Departments"-->
+    <!--            app:argType="integer" />-->
+    <!--    </fragment>-->
+    <fragment
+        android:id="@+id/hostels"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.Hostels"
+        android:label="Hostels"
+        tools:layout="@layout/fragment_hostels" >
+        <argument
+            android:name="Hostels"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_hostels_to_transferHostels"
+            app:destination="@id/transferHostels" />
+        <action
+            android:id="@+id/action_hostels_to_reqHostels"
+            app:destination="@id/reqHostels" />
+    </fragment>
+    <fragment
+        android:id="@+id/library"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.Library"
+        android:label="Library"
+        tools:layout="@layout/fragment_library" >
+        <argument
+            android:name="Library"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_library_to_transferLibrary"
+            app:destination="@id/transferLibrary" />
+        <action
+            android:id="@+id/action_library_to_reqLibrary"
+            app:destination="@id/reqLibrary" />
+    </fragment>
+    <fragment
+        android:id="@+id/office"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.Office"
+        android:label="Office"
+        tools:layout="@layout/fragment_office">
+        <argument
+            android:name="Office"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_office_to_transferOffice"
+            app:destination="@id/transferOffice" />
+        <action
+            android:id="@+id/action_office_to_reqOffice"
+            app:destination="@id/reqOffice" />
+    </fragment>
+    <fragment
+        android:id="@+id/departments2"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.Departments"
+        android:label="Departments"
+        tools:layout="@layout/fragment_departments" >
+        <argument
+            android:name="departments"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_departments2_to_transferDept"
+            app:destination="@id/transferDept" />
+        <action
+            android:id="@+id/action_departments2_to_reqDept"
+            app:destination="@id/reqDept" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProduct"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.AddProduct"
+        android:label="Add Products"
+        tools:layout="@layout/fragment_add_product" />
+    <fragment
+        android:id="@+id/distrDetails2"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.DistrDetails"
+        android:label="Distribution Details"
+        tools:layout="@layout/fragment_distr_details" />
+    <fragment
+        android:id="@+id/transferDept"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.TransferDept"
+        android:label="fragment_transfer_dept"
+        tools:layout="@layout/fragment_transfer_dept" />
+    <fragment
+        android:id="@+id/transferHostels"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.TransferHostels"
+        android:label="fragment_transfer_hostels"
+        tools:layout="@layout/fragment_transfer_hostels" />
+    <fragment
+        android:id="@+id/transferLibrary"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.TransferLibrary"
+        android:label="fragment_transfer_library"
+        tools:layout="@layout/fragment_transfer_library" />
+    <fragment
+        android:id="@+id/transferOffice"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.TransferOffice"
+        android:label="fragment_transfer_office"
+        tools:layout="@layout/fragment_transfer_office" />
+    <fragment
+        android:id="@+id/reqDept"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.ReqDept"
+        android:label="Send Request"
+        tools:layout="@layout/fragment_req_dept" />
+    <fragment
+        android:id="@+id/reqHostels"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.ReqHostels"
+        android:label="Send Request"
+        tools:layout="@layout/fragment_req_hostels" />
+    <fragment
+        android:id="@+id/reqLibrary"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.ReqLibrary"
+        android:label="Send Request"
+        tools:layout="@layout/fragment_req_library" />
+    <fragment
+        android:id="@+id/reqOffice"
+        android:name="com.android.employeemanagmentsystem.ui.admin_dashboard.ui.dsr_details.ReqOffice"
+        android:label="Send Request"
+        tools:layout="@layout/fragment_req_office" />
+
+
 
 </navigation>
