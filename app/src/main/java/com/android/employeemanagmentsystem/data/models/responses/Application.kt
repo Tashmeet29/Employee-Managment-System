@@ -23,6 +23,7 @@ data class Application(
     val application_type: String,
     val to_dept: String,
     val from_dept: String,
+    val applicant_name: String
 
 ) : Parcelable {
 

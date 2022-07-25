@@ -35,7 +35,7 @@
 
                 <TextView
                     style="@style/TextViewAuth"
-                    android:text="Name" />
+                    android:text="Training Name" />
 
                 <TextView
                     android:id="@+id/et_training_name"

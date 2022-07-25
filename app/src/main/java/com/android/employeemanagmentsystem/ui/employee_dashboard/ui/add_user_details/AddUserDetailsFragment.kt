@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,7 +21,10 @@ import kotlinx.android.synthetic.main.fragment_add_user_details.*
 import kotlinx.android.synthetic.main.fragment_user_details.*
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.coroutines.*
+import java.time.LocalDate
+import java.time.Period
 import java.util.*
+import java.util.regex.Pattern
 
 class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 
@@ -55,7 +59,7 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
             val middle_name = binding.etMiddleName.text.toString()
             val last_name = binding.etLastName.text.toString()
             val gender = (binding.rbMale.isChecked) then "Male" ?: "Female"
-            val dob = binding.tvDob.text.toString()
+            val dob = binding.etDob.text.toString()
             val contact_no = binding.etContNo.text.toString()
             val alternative_contact_no = binding.etAltContNo.text.toString()
             val qualification = binding.etQualification.text.toString()
@@ -78,30 +82,28 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 //                if () {
             when {
                 //checking email and password is empty or not
-                first_name.isBlank() -> toast("Enter Your First Name")
-                middle_name.isBlank() -> toast("Enter Your Middle Name")
-                last_name.isBlank() -> toast("Enter Your Last Name")
-                gender.isBlank() -> toast("Enter Your Gender")
-                dob.isBlank() -> toast("Enter Your Date of Birth")
-                contact_no.isBlank() -> toast("Enter Your Contact Number")
-                contact_no.length != 10 -> toast("Enter Correct Number")
-                alternative_contact_no.isBlank() -> toast("Enter Your Alternate Contact Number")
-                alternative_contact_no.length != 10 -> toast("Enter Correct Alternate Contact Number")
-                qualification.isBlank() -> toast("Enter Your Qualification")
-                designation.isBlank() -> toast("Enter Your Designation")
-                experience.isBlank() -> toast("Enter Your Experience")
-                retirement_date.isBlank() -> toast("Enter your Retirement Date")
-                aadhar_no.isBlank() -> toast("Enter Your Aadhaar Number")
-                pan_no.isBlank() -> toast("Enter Your Pan Number")
-                cast.isBlank() -> toast("Enter Your Cast")
-                subcast.isBlank() -> toast("Enter Your Sub-Cast")
-                blood_grp.isBlank() -> toast("Enter Your Blood Group")
-                identification_mark.isBlank() -> toast("Enter Your Identification Mark")
-                address.isBlank() -> toast("Enter Your Address")
-                city.isBlank() -> toast("Enter Your City")
-                pin_code.isBlank() -> toast("Enter Your Pin-Code")
-                state.isBlank() -> toast("Enter Your State")
-                country.isBlank() -> toast("Enter Your Country.")
+                first_name.isBlank() -> toast("Please Enter Frist Name")
+                middle_name.isBlank() -> toast("Please Enter Middle Name")
+                last_name.isBlank() -> toast("Please Enter Last Name")
+                gender.isBlank() -> toast("Please Select Gender")
+                dob.isBlank() -> toast("Please Select DOB")
+                validatePhone(contact_no) -> toast("Please Enter Valid Phone Number")
+                validatePhone(alternative_contact_no) -> toast("Please Valid Alternative Number")
+                qualification.isBlank() -> toast("Please Enter Qualification")
+                designation.isBlank() -> toast("Please Enter designation")
+                experience.isBlank() -> toast("Please Enter experience")
+                retirement_date.isBlank() -> toast("Please Enter retirement ")
+                aadhar_no.isBlank() -> toast("Please Enter aadhar")
+                pan_no.isBlank() -> toast("Please Enter PAN ")
+                cast.isBlank() -> toast("Please Enter Cast")
+                subcast.isBlank() -> toast("Please Enter Sub cast")
+                blood_grp.isBlank() -> toast("Please Enter Blood group")
+                identification_mark.isBlank() -> toast("Please Enter Identification Mark")
+                address.isBlank() -> toast("Please Enter Address")
+                city.isBlank() -> toast("Please Enter City")
+                pin_code.isBlank() -> toast("Please Enter Pincode")
+                state.isBlank() -> toast("Please Enter State")
+                country.isBlank() -> toast("Please Enter Country")
 
 //
                 else -> {
@@ -168,25 +170,23 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
                             if (status.status=="true") {
 
                                 Dispatchers.Main {
-                                    toast("Details Added Successfully!!")
-                                    findNavController().navigate(R.id.nav_user_details)
+                                    toast("Details Added!!")
                                 }
-
+                                findNavController().navigate(R.id.nav_user_details)
                             } else {
                                 Dispatchers.Main {
-                                    toast("Error Occurred: ")
+                                    toast("Error Occured: ")
 
                                 }
                             }
 
-                        }
-                        catch (e: Exception) {
+                        } catch (e: Exception) {
 
                             Dispatchers.Main {
-                                toast("Error Occurred: $e")
+                                toast("Error Occured: $e")
 
                             }
-                            Log.d("Error DB", "Error Occurred: $e")
+                            Log.d("Eror DB", "Error Occured: $e")
                         }
 
                     }
@@ -194,25 +194,30 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
             }
         }
 
-        binding.tvDob.setOnClickListener {
+
+        binding.etDob.setOnClickListener {
             val calendar: Calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-
             var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
-                binding.tvDob.text = "$date-${month + 1}-$year"
+
+                binding.etDob.setText("$date-${month + 1}-$year")
             }
 
-            DatePickerDialog(
+            val dpd = DatePickerDialog(
                 requireContext(),
                 listener,
                 year,
                 month,
-                day
-            ).show()
+                day)
+            calendar.set(1960,month-1,day)
+            dpd.datePicker.minDate = calendar.timeInMillis
 
+            calendar.set(2000,month-1,day)
+            dpd.datePicker.maxDate =  calendar.timeInMillis
+            dpd.show()
         }
 
 
@@ -228,8 +233,13 @@ class AddUserDetailsFragment : Fragment(R.layout.fragment_add_user_details) {
 
 
     fun toast(msg: String) {
-
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
+    private fun validatePhone(phone:String):Boolean{
+
+        Log.d("lengt","${phone.length>=7 && phone.length<=13}")
+        return phone.length !in 7..13
+
     }
 
 

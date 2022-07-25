@@ -8,9 +8,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">EMS</string>
     <string name="menu_apply_training">Apply Training</string>
-    <string name="menu_applied_training">Applied Trainings</string>
+    <string name="menu_applied_training">View Trainings</string>
     <string name="menu_apply_application">Apply Application</string>
     <string name="menu_applied_applications">Applied Applications</string>
 

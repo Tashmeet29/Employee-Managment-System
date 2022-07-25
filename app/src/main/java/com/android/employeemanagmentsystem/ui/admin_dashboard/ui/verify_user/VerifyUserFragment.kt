@@ -54,6 +54,7 @@ class VerifyUserFragment : Fragment(R.layout.fragment_verify_user),
 
         authRepository = AuthRepository()
         authApi = AuthApi.invoke()
+        employeeDao = AppDatabase.invoke(requireContext()).getEmployeeDao()
 
         getEmployees()
     }
@@ -62,8 +63,20 @@ class VerifyUserFragment : Fragment(R.layout.fragment_verify_user),
         val authRepository = AuthRepository()
         val authApi = AuthApi.invoke()
 
+
         GlobalScope.launch {
 
+        val employee = authRepository.getEmployee(employeeDao)
+
+            if(employee.role_id.toString() == "2"){
+                employees = authRepository.getHodVerifications(employee.sevarth_id,authApi)
+                withContext(Dispatchers.Main) {
+                    binding.recyclerView.apply {
+                        adapter = EmployeeVerificationsAdapter(employees, this@VerifyUserFragment)
+                        layoutManager = LinearLayoutManager(requireContext())
+                    }
+                }
+            }else{
             employees = authRepository.getAllVerifications(authApi)
 
             withContext(Dispatchers.Main) {
@@ -71,6 +84,8 @@ class VerifyUserFragment : Fragment(R.layout.fragment_verify_user),
                     adapter = EmployeeVerificationsAdapter(employees, this@VerifyUserFragment)
                     layoutManager = LinearLayoutManager(requireContext())
                 }
+            }
+
             }
         }
     }

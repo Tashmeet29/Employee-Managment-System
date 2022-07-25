@@ -1,6 +1,8 @@
 package com.android.employeemanagmentsystem.ui.employee_dashboard.ui.apply_io_applications
 
-import android.app.DatePickerDialog
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -23,11 +25,13 @@ import com.android.employeemanagmentsystem.data.room.EmployeeDao
 import com.android.employeemanagmentsystem.databinding.FragmentIoApplyApplicationsBinding
 import com.android.employeemanagmentsystem.utils.*
 import kotlinx.android.synthetic.main.fragment_apply_training.*
+import kotlinx.android.synthetic.main.item_application.*
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
-import java.time.LocalDateTime
+import java.text.SimpleDateFormat
+
 import java.util.*
 
 private const val TAG = "ApplyIOApplicationsFrag"
@@ -59,6 +63,14 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
 
         applyApplications()
         getDepartments()
+
+        setCurrentDate()
+    }
+
+    private fun setCurrentDate() {
+
+        val date = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+        binding.tvDate.text = date
     }
 
     /*Shows Departments on spinner and handle its click*/
@@ -103,31 +115,11 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
 
             rbInward.isChecked = true
 
-            tvDate.setOnClickListener {
-                val calendar: Calendar = Calendar.getInstance()
-                val year = calendar.get(Calendar.YEAR)
-                val month = calendar.get(Calendar.MONTH)
-                val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-
-                var listener = DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
-                    tvDate.text = "$date-${month + 1}-$year"
-                }
-
-                DatePickerDialog(
-                    requireContext(),
-                    listener,
-                    year,
-                    month,
-                    day
-                ).show()
-
-            }
 
             btnSubmit.setOnClickListener {
                 val title = etIoTitle.text.toString()
                 val desc = etDesc.text.toString()
-                val date = tvDate.text.toString()
                 val pdf = tvPdf.text.toString()
 
 
@@ -135,7 +127,6 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                 when {
                     title.isEmpty()-> requireContext().toast("Enter Title")
                     desc.isEmpty()-> requireContext().toast("Enter Description")
-                    date.isEmpty()-> requireContext().toast("Enter Date")
                     pdf.isEmpty()-> requireContext().toast("Select PDF please")
                     !isPdfSelected -> requireContext().toast("Please Select PDF to Upload")
 
@@ -156,13 +147,15 @@ class ApplyIOApplicationsFragment: Fragment(R.layout.fragment_io_apply_applicati
                                     sevarth_id = employee.sevarth_id,
                                     title = title,
                                     desc = desc,
-                                    date = date,
+                                    date = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())x,
                                     org_id = employee.org_id,
                                     department_id = selected_department,
                                     application_type = application_type.toString(),
                                     from_department = employee.dept_id,
                                     role_id = employee.role_id.toString(),
+                                    applicant_name= employee.name,
                                     applyPdf = convertBytesToMultipart(),
+
                                     iOApplicationApi = ioApplicationApi
                                 )
 
